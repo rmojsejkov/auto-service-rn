@@ -9,19 +9,22 @@ const SwiperData = props => {
             <Swiper showsButtons={true}>
                 <View style={styles.container}>
                     <Image
-                        source={ require('../../assets/swiperPhoto/Image1.jpg') }
+                        style={{ width: "100%", height: "100%" }}
+                        source={ require('../assets/swiperPhoto/Image1.png') }
                     />
                 </View>
 
                 <View style={styles.container} >
                     <Image
-                        source={ require('../../assets/swiperPhoto/Image2.jpg') }
+                        style={{ width: "100%", height: "100%" }}
+                        source={ require('../assets/swiperPhoto/Image2.jpg') }
                     />
                 </View>
 
                 <View style={styles.container}>
                     <Image
-                        source={ require('../../assets/swiperPhoto/Image3.jpg') }
+                        style={{ width: "100%", height: "100%" }}
+                        source={ require('../assets/swiperPhoto/Image3.jpg') }
                     />
                 </View>
 

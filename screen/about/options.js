@@ -1,0 +1,1 @@
+export {aboutScreenOptions} from "./AboutScreenView";
