@@ -1,15 +1,26 @@
 import React, {useEffect} from "react";
-import {Text, View, StyleSheet } from "react-native";
+import {Text, View, StyleSheet, FlatList} from "react-native";
 
-import {HeaderToggleButton} from "../default-options";
+import { HeaderToggleButton } from "../default-options";
 import SwiperData from '../../components/Swiper';
 import Colors from '../../constants/colors';
+import RecommendHome from "../../components/RecommendHome";
 
 const HomeScreenView = ({navigation, ...props}) => {
     return (
         <View style={styles.screen}>
             <View style={styles.swiper}>
                 <SwiperData/>
+            </View>
+            <View>
+                <FlatList
+                    // data={citiesWeather}
+                    keyExtractor={item => item.id + ''}
+                    numColumns={1}
+                    renderItem={itemData => <RecommendHome city={itemData.item} onSelect={() => ({})} />}
+                    // refreshing={isLoading}
+                    // onRefresh={() => loadCities()}
+                />
             </View>
         </View>
     )

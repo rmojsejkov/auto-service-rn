@@ -1,0 +1,1 @@
+export {priceScreenOptions} from "./PriceScreenView";
