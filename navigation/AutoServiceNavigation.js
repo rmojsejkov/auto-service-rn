@@ -1,117 +1,42 @@
 import React from "react";
-import {createStackNavigator} from "@react-navigation/stack";
-import {Image, SafeAreaView, StyleSheet, View, Text} from "react-native";
-import {createDrawerNavigator, DrawerItem} from "@react-navigation/drawer";
-
-import { HomeScreen } from "../screen/home";
-import { ServicesScreen } from "../screen/services";
-import { AboutScreen } from "../screen/about";
-import { homeScreenOptions } from "../screen/home/options";
-import { aboutScreenOptions } from "../screen/about/options";
-import { servicesScreenOptions } from "../screen/services/options";
-import { EmployeeScreen } from '../screen/emloyee';
-import { employeeScreenOptions } from "../screen/emloyee/options";
-import { PriceScreen } from '../screen/prices';
-import { priceScreenOptions } from "../screen/prices/options";
+import {Image, SafeAreaView, StyleSheet, View} from "react-native";
+import {createDrawerNavigator, DrawerItemList} from "@react-navigation/drawer";
 
 import Colors from '../constants/colors';
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-const defaultStackNavOptions = {
-    headerStyle: {
-        backgroundColor: Colors.splash,
-        elevation: 5,
-        shadowOpacity: 4
-    },
-    headerTitleStyle: {
-        color: Colors.mainBackground,
-    },
-    headerBackTitleStyle: {
-
-    },
-    headerTintColor: 'white',
-    headerTitle: 'Screen'
-};
-
-const HomeStackNavigator = createStackNavigator();
-
-const HomeNavigator = () => {
-    return (
-        <HomeStackNavigator.Navigator
-            screenOptions={defaultStackNavOptions}
-        >
-            <HomeStackNavigator.Screen
-                name="HomeStack"
-                component={HomeScreen}
-                options={homeScreenOptions}
-            />
-        </HomeStackNavigator.Navigator>
-    )
-}
-
-const ServicesStackNavigator = createStackNavigator();
-
-const ServicesNavigator = () => {
-    return (
-        <ServicesStackNavigator.Navigator screenOptions={defaultStackNavOptions}>
-            <ServicesStackNavigator.Screen
-                name="ServicesStack"
-                component={ServicesScreen}
-                options={servicesScreenOptions}
-            />
-        </ServicesStackNavigator.Navigator>
-    )
-}
-
-const AboutStackNavigator = createStackNavigator();
-
-const AboutNavigator = () => {
-    return (
-        <AboutStackNavigator.Navigator screenOptions={defaultStackNavOptions}>
-            <AboutStackNavigator.Screen
-                name="AboutStack"
-                component={AboutScreen}
-                options={aboutScreenOptions}
-            />
-        </AboutStackNavigator.Navigator>
-    )
-}
-
-const EmployeeStackNavigator = createStackNavigator();
-
-const EmployeeNavigator = () => {
-    return (
-        <EmployeeStackNavigator.Navigator screenOptions={defaultStackNavOptions}>
-            <EmployeeStackNavigator.Screen
-                name="EmployeeStack"
-                component={EmployeeScreen}
-                options={employeeScreenOptions}
-            />
-        </EmployeeStackNavigator.Navigator>
-    )
-}
-
-const PriceStackNavigator = createStackNavigator();
-
-const PriceNavigator = () => {
-    return (
-        <PriceStackNavigator.Navigator screenOptions={defaultStackNavOptions}>
-            <PriceStackNavigator.Screen
-                name="PriceStack"
-                component={PriceScreen}
-                options={priceScreenOptions}
-            />
-        </PriceStackNavigator.Navigator>
-    )
-}
+import {
+    HomeNavigator,
+    AboutNavigator,
+    EmployeeNavigator,
+    PriceNavigator,
+    ServicesNavigator
+} from './navigators';
 
 const AutoServiceDrawerNavigator = createDrawerNavigator();
 
 export const AutoServiceNavigator = () => {
-
-
     return (
-        <AutoServiceDrawerNavigator.Navigator>
+        <AutoServiceDrawerNavigator.Navigator
+            drawerContent={props => {
+                return (
+                    <View style={styles.drawer}>
+                        <SafeAreaView forceInset={{ top: 'always', horizontal: 'never' }}>
+                            <View style={styles.imageContainer}>
+                                <Image
+                                    borderRadius={50}
+                                    style={styles.image}
+                                    source={require("../assets/new-icon.png")} />
+                            </View>
+                            <DrawerItemList {...props} />
+                        </SafeAreaView>
+                    </View>
+                )
+            }}
+            drawerContentOptions={{
+                activeTintColor: Colors.primary
+            }}
+        >
             <AutoServiceDrawerNavigator.Screen 
                 name="Home"
                 component={HomeNavigator}
@@ -185,3 +110,16 @@ export const AutoServiceNavigator = () => {
         </AutoServiceDrawerNavigator.Navigator>
     )
 }
+
+const styles = StyleSheet.create({
+    drawer: { flex: 1, paddingTop: 30 },
+    imageContainer: {
+        width: '100%',
+        alignItems: 'center',
+        padding: 20
+    },
+    image: {
+        width: 80,
+        height: 80
+    }
+});

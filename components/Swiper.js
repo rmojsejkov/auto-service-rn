@@ -6,7 +6,6 @@ import Colors from '../constants/colors';
 
 const SwiperData = props => {
 
-
     return(
         <View style={styles.container}>
             <Swiper
@@ -26,17 +25,30 @@ const SwiperData = props => {
                 <View style={styles.container} >
                     <Image
                         style={{ width: "100%", height: "100%" }}
-                        source={ require('../assets/swiperPhoto/Image2.jpg') }
+                        source={ require('../assets/swiperPhoto/Image2.png') }
                     />
                 </View>
 
                 <View style={styles.container}>
                     <Image
                         style={{ width: "100%", height: "100%" }}
-                        source={ require('../assets/swiperPhoto/Image3.jpg') }
+                        source={ require('../assets/swiperPhoto/Image3.png') }
                     />
                 </View>
 
+                <View style={styles.container}>
+                    <Image
+                        style={{ width: "100%", height: "100%" }}
+                        source={ require('../assets/swiperPhoto/Image4.png') }
+                    />
+                </View>
+
+                <View style={styles.container}>
+                    <Image
+                        style={{ width: "100%", height: "100%" }}
+                        source={ require('../assets/swiperPhoto/Image5.png') }
+                    />
+                </View>
             </Swiper>
         </View>
     );
