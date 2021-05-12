@@ -4,6 +4,7 @@ import { createDrawerNavigator, DrawerItemList } from "@react-navigation/drawer"
 
 import Colors from '../constants/colors';
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { SignInButton, SignUpButton } from "../components/Buttons";
 
 import {
     HomeNavigator,
@@ -21,8 +22,13 @@ export const AutoServiceNavigator = () => {
             drawerContent={props => {
                 return (
                     <View style={styles.drawer}>
-                        <View style={styles.button}>
-                            <Button title='Button' color={Colors.red} onPress={() => ({})} />
+                        <View style={styles.container}>
+                            <View style={styles.buttonIn}>
+                                <SignInButton />
+                            </View>
+                            <View style={styles.buttonUp}>
+                                <SignUpButton />
+                            </View>
                         </View>
                         <SafeAreaView forceInset={{ top: 'always', horizontal: 'never' }}>
                             <DrawerItemList {...props} />
@@ -115,21 +121,46 @@ export const AutoServiceNavigator = () => {
 }
 
 const styles = StyleSheet.create({
+    container: {
+        // borderWidth: 1,
+        height: '9%'
+    },
     drawer: {
         flex: 1,
         paddingTop: 30
     },
     imageContainer: {
-        width: '100%',
+        width: '37%',
         alignItems: 'center',
-        paddingTop: 300
+        // paddingTop: '90%',
+        // borderWidth: 0.1,
+        // borderRadius: 90,
+        top: '90%',
+        left: '30%',
+        // elevation: 3
     },
     image: {
-        width: 80,
-        height: 80
+        width: 100,
+        height: 100
     },
-    button: {
-        alignItems: 'center'
+    buttonUp: {
+        alignItems: 'center',
+        // justifyContent: 'center',
+        // paddingTop: 10,
+        margin: 10,
+        // borderWidth: 3,
+        // paddingVertical: 10,
+        bottom: '93%',
+        paddingLeft: '50%'
+    },
+    buttonIn: {
+        alignItems: 'center',
+        // justifyContent: 'center',
+        paddingTop: '2%',
+        margin: 10,
+        // borderWidth: 3,
+        paddingVertical: 10,
+        paddingRight: '50%'
 
     }
 });

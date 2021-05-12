@@ -6,5 +6,7 @@ export default {
     white: '#ffffff',
     black: '#000000',
     gray: 'gray',
-    lightgray: '#dcdcdc'
+    lightgray: '#dcdcdc',
+    signInBack: '#3d5875',
+    signInBorder: '#6D214F'
 };
