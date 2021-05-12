@@ -8,13 +8,25 @@ import ServicesScreenView from "./ServicesScreenView";
 const ServicesScreenContainer = ({navigation, ...props}) => {
     const {
         defaultServices
-    } = useSelector(state => state.services);
+    } = useSelector(state => state.service);
+    console.log(defaultServices)
+
+    const [ isLoading, setIsLoading ] = useState(true);
+    const [ error, setError ] = useState(null);
 
     const dispatch = useDispatch();
 
     const loadServices = useCallback(async () => {
-        await dispatch(serviceActions.getDefaultServices());
-    }, [dispatch]);
+        setIsLoading(true);
+        try {
+            await dispatch(serviceActions.getDefaultServices());
+        } catch (err) {
+            Alert.alert('Error', err.message, [{ message: 'Okay' }]);
+            setError('Something went wrong during network call');
+        }
+        setIsLoading(false);
+
+    }, [dispatch, setIsLoading, setError]);
 
     useEffect(() => {
         loadServices();
@@ -31,6 +43,8 @@ const ServicesScreenContainer = ({navigation, ...props}) => {
         <ServicesScreenView
             defaultServices={defaultServices}
             loadServices={loadServices}
+            error={error}
+            isLoading={isLoading}
         />
     )
 }

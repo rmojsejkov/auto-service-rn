@@ -10,12 +10,17 @@ export const clearServices = () => {
 
 export const getDefaultServices = () => {
     return async dispatch => {
-        const response = await fetch(`https://autoservice-db-default-rtdb.firebaseio.com/services/service1.json`);
+        const response = await fetch(`${URL}/services.json`);
         const fetchServices = await response.json();
-        console.log('khgkg:', fetchServices)
+        const arr = Object.keys(fetchServices).map(key => ({
+            ...fetchServices[key],
+            id: key})
+        )
+        console.log(arr)
         dispatch({
             type: SERVICES.GET_DEFAULT_SERVICES,
-            payload: fetchServices
+            payload: arr
         });
+
     }
 }

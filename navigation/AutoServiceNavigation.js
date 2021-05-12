@@ -1,6 +1,6 @@
 import React from "react";
-import {Image, SafeAreaView, StyleSheet, View} from "react-native";
-import {createDrawerNavigator, DrawerItemList} from "@react-navigation/drawer";
+import { Image, SafeAreaView, StyleSheet, View, Text, Button } from "react-native";
+import { createDrawerNavigator, DrawerItemList } from "@react-navigation/drawer";
 
 import Colors from '../constants/colors';
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -21,14 +21,17 @@ export const AutoServiceNavigator = () => {
             drawerContent={props => {
                 return (
                     <View style={styles.drawer}>
+                        <View style={styles.button}>
+                            <Button title='Button' color={Colors.red} onPress={() => ({})} />
+                        </View>
                         <SafeAreaView forceInset={{ top: 'always', horizontal: 'never' }}>
+                            <DrawerItemList {...props} />
                             <View style={styles.imageContainer}>
                                 <Image
                                     borderRadius={50}
                                     style={styles.image}
                                     source={require("../assets/new-icon.png")} />
                             </View>
-                            <DrawerItemList {...props} />
                         </SafeAreaView>
                     </View>
                 )
@@ -112,14 +115,21 @@ export const AutoServiceNavigator = () => {
 }
 
 const styles = StyleSheet.create({
-    drawer: { flex: 1, paddingTop: 30 },
+    drawer: {
+        flex: 1,
+        paddingTop: 30
+    },
     imageContainer: {
         width: '100%',
         alignItems: 'center',
-        padding: 20
+        paddingTop: 300
     },
     image: {
         width: 80,
         height: 80
+    },
+    button: {
+        alignItems: 'center'
+
     }
 });

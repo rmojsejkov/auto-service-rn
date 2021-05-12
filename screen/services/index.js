@@ -1,3 +1,3 @@
-import ServicesScreen from "./ServicesScreenView";
+import ServicesScreen from "./ServicesScreenContainer";
 
 export {ServicesScreen};

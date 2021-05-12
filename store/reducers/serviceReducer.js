@@ -1,7 +1,7 @@
 import { SERVICES } from "../../constants/types";
 
 const initialState = {
-    defaultServices: null,
+    defaultServices: [],
 }
 
 const handlers = {
