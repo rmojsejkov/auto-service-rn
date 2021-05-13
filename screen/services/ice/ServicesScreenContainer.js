@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { Alert } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { serviceActions } from '../../store/actions';
+import { serviceActions } from '../../../store/actions';
 import ServicesScreenView from "./ServicesScreenView";
 
 const ServicesScreenContainer = ({navigation, ...props}) => {

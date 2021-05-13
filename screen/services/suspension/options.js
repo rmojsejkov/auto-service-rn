@@ -1,0 +1,1 @@
+export { suspensionScreenOptions } from "./SuspensionScreenView";

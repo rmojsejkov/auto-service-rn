@@ -10,7 +10,7 @@ const SignInButton = (...props) => {
             onPress={() => ({})}
         >
             <Text style={styles.buttonText}>
-                Sign In
+                Войти
             </Text>
         </TouchableOpacity>
     );

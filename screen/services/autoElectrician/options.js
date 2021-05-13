@@ -1,0 +1,1 @@
+export { autoElectricianScreenOptions } from "./AutoElectricianScreenView";

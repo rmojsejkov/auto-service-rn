@@ -1,1 +1,0 @@
-export {servicesScreenOptions} from "./ServicesScreenView";

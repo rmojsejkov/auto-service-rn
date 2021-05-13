@@ -1,9 +1,9 @@
 import React from "react";
 import {Text, View, StyleSheet, FlatList, Button, ActivityIndicator } from "react-native";
 
-import {HeaderToggleButton} from "../default-options";
-import Colors from '../../constants/colors';
-import { ServiceBlockItem } from '../../components/Blocks'
+import {HeaderToggleButton} from "../../default-options";
+import Colors from '../../../constants/colors';
+import { ServiceBlockItem } from '../../../components/Blocks'
 
 const ServicesScreenView = ({navigation, ...props}) => {
 
@@ -49,7 +49,7 @@ const ServicesScreenView = ({navigation, ...props}) => {
 
 export const servicesScreenOptions = navData => {
     return {
-        headerTitle: 'Services',
+        headerTitle: 'Работа с ДВС',
         headerLeft: () => (
             <HeaderToggleButton navData={navData} />
         )

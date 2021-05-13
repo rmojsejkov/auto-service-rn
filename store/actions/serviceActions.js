@@ -10,7 +10,7 @@ export const clearServices = () => {
 
 export const getDefaultServices = () => {
     return async dispatch => {
-        const response = await fetch(`${URL}/services.json`);
+        const response = await fetch(`${URL}/services/ice.json`);
         const fetchServices = await response.json();
         const arr = Object.keys(fetchServices).map(key => ({
             ...fetchServices[key],

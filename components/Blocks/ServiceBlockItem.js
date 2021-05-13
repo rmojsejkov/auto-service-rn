@@ -64,11 +64,13 @@ const styles = StyleSheet.create({
     },
     title: {
         padding: 10,
-        alignItems: 'center'
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     titleText: {
         fontSize: 17,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        alignItems: 'center'
     },
     touchable: {
         overflow: 'hidden',

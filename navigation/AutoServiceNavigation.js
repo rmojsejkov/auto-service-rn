@@ -27,7 +27,7 @@ export const AutoServiceNavigator = () => {
                                 <SignInButton />
                             </View>
                             <View style={styles.buttonUp}>
-                                <SignUpButton />
+                                {/*<SignUpButton />*/}
                             </View>
                         </View>
                         <SafeAreaView forceInset={{ top: 'always', horizontal: 'never' }}>
@@ -50,7 +50,7 @@ export const AutoServiceNavigator = () => {
                 name="Home"
                 component={HomeNavigator}
                 options={{
-                    drawerLabel: 'Home',
+                    drawerLabel: 'Главная',
                     drawerIcon: props => (
                         <MaterialCommunityIcons
                             name="home"
@@ -64,7 +64,7 @@ export const AutoServiceNavigator = () => {
                 name="Services"
                 component={ServicesNavigator}
                 options={{
-                    drawerLabel: 'Services',
+                    drawerLabel: 'Услуги',
                     drawerIcon: props => (
                         <MaterialCommunityIcons
                             name="wrench"
@@ -78,7 +78,7 @@ export const AutoServiceNavigator = () => {
                 name="Employee"
                 component={EmployeeNavigator}
                 options={{
-                    drawerLabel: 'Employees',
+                    drawerLabel: 'Сотрудники',
                     drawerIcon: props => (
                         <MaterialCommunityIcons
                             name="account-cog"
@@ -92,7 +92,7 @@ export const AutoServiceNavigator = () => {
                 name="About"
                 component={AboutNavigator}
                 options={{
-                    drawerLabel: 'About',
+                    drawerLabel: 'Контакты',
                     drawerIcon: props => (
                         <MaterialCommunityIcons
                             name="newspaper-variant-multiple"
@@ -106,7 +106,7 @@ export const AutoServiceNavigator = () => {
                 name="Prices"
                 component={PriceNavigator}
                 options={{
-                    drawerLabel: 'Prices',
+                    drawerLabel: 'Цены',
                     drawerIcon: props => (
                         <MaterialCommunityIcons
                             name="cash-multiple"
@@ -145,12 +145,12 @@ const styles = StyleSheet.create({
     },
     buttonUp: {
         alignItems: 'center',
-        // justifyContent: 'center',
         // paddingTop: 10,
-        margin: 10,
-        // borderWidth: 3,
+        // ----------------
+        // margin: 6,
+        //-----------------
         // paddingVertical: 10,
-        bottom: '93%',
+        bottom: 60,
         paddingLeft: '50%'
     },
     buttonIn: {

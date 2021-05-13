@@ -8,5 +8,6 @@ export default {
     gray: 'gray',
     lightgray: '#dcdcdc',
     signInBack: '#3d5875',
-    signInBorder: '#6D214F'
+    signInBorder: '#6D214F',
+    bottomTabIcon: '#0055ff'
 };
