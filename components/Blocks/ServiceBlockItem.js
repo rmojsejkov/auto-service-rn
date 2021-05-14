@@ -20,7 +20,7 @@ const ServiceBlockItem = ({service, onSelect, ...props}) => {
                         </View>
                         <View style={styles.priceContainer}>
                             {/*<CityWeatherIcon iconName={city.weather[0].icon} />*/}
-                            <View style={styles.price}>
+                            <View style={styles.priceTextCont}>
                                 <Text style={styles.priceText}>Цена: {service.price}</Text>
                             </View>
                         </View>
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     weather: {
         paddingVertical: 5
     },
-    price: {
+    priceTextCont: {
         paddingVertical: 5,
 
     },

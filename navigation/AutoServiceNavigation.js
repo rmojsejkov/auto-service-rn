@@ -4,7 +4,7 @@ import { createDrawerNavigator, DrawerItemList } from "@react-navigation/drawer"
 
 import Colors from '../constants/colors';
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { SignInButton, SignUpButton } from "../components/Buttons";
+import { SignInButton, SignUpButton } from "../components";
 
 import {
     HomeNavigator,

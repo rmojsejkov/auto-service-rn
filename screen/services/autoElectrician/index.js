@@ -1,3 +1,3 @@
-import AutoElectricianScreen from "./AutoElectricianScreenView";
+import AutoElectricianScreen from "./AutoElectricianScreenContainer";
 
 export { AutoElectricianScreen } ;

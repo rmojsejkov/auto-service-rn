@@ -1,18 +1,30 @@
-import React from "react";
-import {Text, View, StyleSheet, FlatList, Button, ActivityIndicator } from "react-native";
+import React, {useEffect} from "react";
+import { Text, View, StyleSheet, FlatList, Button, ActivityIndicator } from "react-native";
 
-import {HeaderToggleButton} from "../../default-options";
+import { HeaderToggleButton } from "../../default-options";
 import Colors from '../../../constants/colors';
-import { ServiceBlockItem } from '../../../components/Blocks'
+import { ServiceBlockItem, InputContainer, CustomButtonSearch, CustomButtonAdding } from '../../../components';
 
-const ServicesScreenView = ({navigation, ...props}) => {
+const ServicesScreenView = (props) => {
 
     const {
+        buttonSheet,
         error,
         isLoading,
         loadServices,
-        defaultServices
+        defaultServicesIce,
+        navigation
     } = props;
+
+    // useEffect(() => {
+    //     navigation.setOptions({
+    //         headerTitle: () => {
+    //             return (
+    //                 <InputContainer />
+    //             );
+    //         }
+    //     });
+    // }, []);
 
     if (error) {
         return (
@@ -35,14 +47,23 @@ const ServicesScreenView = ({navigation, ...props}) => {
 
     return (
         <View style={styles.screen}>
+            <View>
+                <InputContainer />
+            </View>
             <FlatList
-                data={defaultServices}
+                data={defaultServicesIce}
                 keyExtractor={item => item.id + ''}
                 numColumns={1}
-                renderItem={itemData => <ServiceBlockItem service={itemData.item} onSelect={() => ({})} />}
+                renderItem={itemData => <ServiceBlockItem service={itemData.item} onSelect={() => ({})}/>}
                 refreshing={isLoading}
                 onRefresh={() => loadServices()}
             />
+            <View style={styles.buttonSearch}>
+                <CustomButtonSearch />
+            </View>
+            <View style={styles.buttonAdd}>
+                <CustomButtonAdding />
+            </View>
         </View>
     );
 };
@@ -59,6 +80,14 @@ export const servicesScreenOptions = navData => {
 const styles = StyleSheet.create({
     screen: {
         flex: 1
+    },
+    buttonSearch: {
+        bottom: '15%',
+        left: '2%'
+    },
+    buttonAdd: {
+        bottom: '6%',
+        left: '2%'
     }
 });
 

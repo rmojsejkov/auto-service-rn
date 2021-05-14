@@ -1,13 +1,24 @@
 import { SERVICES } from "../../constants/types";
 
 const initialState = {
-    defaultServices: [],
+    defaultServicesIce: [],
+    defaultServicesSuspension: [],
+    defaultServicesAutoElectrician: []
+
 }
 
 const handlers = {
-    [SERVICES.GET_DEFAULT_SERVICES]: (state, {payload}) => ({
+    [SERVICES.GET_DEFAULT_SERVICES_ICE]: (state, {payload}) => ({
         ...state,
-        defaultServices: payload
+        defaultServicesIce: payload
+    }),
+    [SERVICES.GET_DEFAULT_SERVICES_SUSPENSION]: (state, {payload}) => ({
+        ...state,
+        defaultServicesSuspension: payload
+    }),
+    [SERVICES.GET_DEFAULT_SERVICES_ELECTRICIAN]: (state, {payload}) => ({
+        ...state,
+        defaultServicesAutoElectrician: payload
     }),
     DEFAULT: state => state
 }

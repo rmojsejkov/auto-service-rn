@@ -1,3 +1,3 @@
-import SuspensionScreen from "./SuspensionScreenView";
+import SuspensionScreen from "./SuspensionScreenContainer";
 
 export { SuspensionScreen };

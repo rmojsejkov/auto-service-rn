@@ -2,9 +2,9 @@ import React, {useEffect} from "react";
 import {Text, View, StyleSheet, FlatList} from "react-native";
 
 import { HeaderToggleButton } from "../default-options";
-import SwiperData from '../../components/Swiper';
+import { SwiperData }  from '../../components';
 import Colors from '../../constants/colors';
-import RecommendHome from "../../components/RecommendHome";
+import { RecommendHome } from "../../components";
 
 const HomeScreenView = ({navigation, ...props}) => {
     return (

@@ -4,8 +4,8 @@ import {Image, StyleSheet, View, Text} from "react-native";
 
 import Colors from '../../../../constants/colors';
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import {ServicesScreen} from "../../../../screen/services/ice";
-import {servicesScreenOptions} from "../../../../screen/services/ice/ServicesScreenView";
+import { ServicesScreen } from "../../../../screen/services/ice";
+import { servicesScreenOptions } from "../../../../screen/services/ice/ServicesScreenView";
 
 const defaultStackNavOptions = {
     headerStyle: {
