@@ -3,11 +3,14 @@ import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 
 import Colors from '../../constants/colors';
 import { Ionicons } from "@expo/vector-icons";
+import IceAddScreen from "../../screen/services/ice/iceAdd/IceAddScreen";
+import { TouchableComponent } from "../Blocks";
 
-const CustomButtonAdding = (buttonSheetAdd, ...props) => {
+
+const CustomButtonAdding = (onSelect, ...props) => {
     return (
         <View style={styles.button}>
-            <TouchableOpacity onPress={() => (buttonSheetAdd)}>
+            <TouchableOpacity onPress={() => onSelect()}>
                 <Ionicons
                     name="md-add"
                     size={40}

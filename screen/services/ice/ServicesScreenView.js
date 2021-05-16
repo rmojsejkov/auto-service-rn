@@ -3,7 +3,12 @@ import { Text, View, StyleSheet, FlatList, Button, ActivityIndicator } from "rea
 
 import { HeaderToggleButton } from "../../default-options";
 import Colors from '../../../constants/colors';
-import { ServiceBlockItem, InputContainer, CustomButtonSearch, CustomButtonAdding } from '../../../components';
+import {
+    ServiceBlockItem,
+    InputContainer,
+    CustomButtonSearch,
+    CustomButtonAdding
+} from '../../../components';
 
 const ServicesScreenView = (props) => {
 
@@ -13,6 +18,7 @@ const ServicesScreenView = (props) => {
         isLoading,
         loadServices,
         defaultServicesIce,
+        IceAddHandler,
         navigation
     } = props;
 
@@ -45,6 +51,7 @@ const ServicesScreenView = (props) => {
         )
     }
 
+    // console.log(defaultServicesIce. + 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
     return (
         <View style={styles.screen}>
             <View>
@@ -62,7 +69,7 @@ const ServicesScreenView = (props) => {
                 <CustomButtonSearch />
             </View>
             <View style={styles.buttonAdd}>
-                <CustomButtonAdding />
+                <CustomButtonAdding onPress={IceAddHandler.bind(this)}/>
             </View>
         </View>
     );
@@ -83,7 +90,7 @@ const styles = StyleSheet.create({
     },
     buttonSearch: {
         bottom: '15%',
-        left: '2%'
+        left: '3%'
     },
     buttonAdd: {
         bottom: '6%',

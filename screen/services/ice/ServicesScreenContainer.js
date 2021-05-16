@@ -10,7 +10,7 @@ const ServicesScreenContainer = ({navigation, ...props}) => {
         buttonSheet,
         defaultServicesIce
     } = useSelector(state => state.service);
-    console.log(defaultServicesIce)
+    // console.log(defaultServicesIce)
 
     const [isSearchTap, setIsSearchTap] = useState(true);
     const [ isLoading, setIsLoading ] = useState(true);
@@ -30,6 +30,14 @@ const ServicesScreenContainer = ({navigation, ...props}) => {
 
     }, [dispatch, setIsLoading, setError]);
 
+    const IceAddHandler = service => {
+        console.log(service + 'dsdsddsdsddddsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsd')
+        navigation.navigate('IceAddScreen', {
+            serviceName: service.serviceName,
+            price: service.price
+        })
+    }
+
     useEffect(() => {
         loadServices();
     }, [loadServices]);
@@ -48,6 +56,7 @@ const ServicesScreenContainer = ({navigation, ...props}) => {
             error={error}
             isLoading={isLoading}
             navigation={navigation}
+            IceAddHandler={IceAddHandler}
         />
     )
 }

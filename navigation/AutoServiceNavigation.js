@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
         margin: 10,
         // borderWidth: 3,
         paddingVertical: 10,
-        paddingRight: '50%'
+        paddingRight: '70%'
 
     }
 });

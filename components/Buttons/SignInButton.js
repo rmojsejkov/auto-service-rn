@@ -2,6 +2,7 @@ import React from 'react';
 import {Text, StyleSheet, Alert, TouchableOpacity} from 'react-native';
 // import { TouchableComponent } from '../Blocks';
 import Colors from '../../constants/colors';
+import {FontAwesome5, MaterialCommunityIcons} from "@expo/vector-icons";
 
 const SignInButton = (...props) => {
     return (
@@ -9,9 +10,14 @@ const SignInButton = (...props) => {
             style={styles.signInButton}
             onPress={() => ({})}
         >
-            <Text style={styles.buttonText}>
-                Войти
-            </Text>
+            {/*<Text style={styles.buttonText}>*/}
+            {/*    Войти*/}
+            {/*</Text>*/}
+            <FontAwesome5
+                name="sign-in-alt"
+                size={23}
+                color={Colors.splash}
+            />
         </TouchableOpacity>
     );
 };
