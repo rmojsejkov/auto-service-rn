@@ -30,8 +30,7 @@ const ServicesScreenContainer = ({navigation, ...props}) => {
 
     }, [dispatch, setIsLoading, setError]);
 
-    const IceAddHandler = service => {
-        console.log(service + 'dsdsddsdsddddsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsd')
+    const iceAddHandler = service => {
         navigation.navigate('IceAddScreen', {
             serviceName: service.serviceName,
             price: service.price
@@ -56,7 +55,7 @@ const ServicesScreenContainer = ({navigation, ...props}) => {
             error={error}
             isLoading={isLoading}
             navigation={navigation}
-            IceAddHandler={IceAddHandler}
+            iceAddHandler={iceAddHandler}
         />
     )
 }

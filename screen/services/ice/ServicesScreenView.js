@@ -18,7 +18,7 @@ const ServicesScreenView = (props) => {
         isLoading,
         loadServices,
         defaultServicesIce,
-        IceAddHandler,
+        iceAddHandler,
         navigation
     } = props;
 
@@ -51,7 +51,6 @@ const ServicesScreenView = (props) => {
         )
     }
 
-    // console.log(defaultServicesIce. + 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
     return (
         <View style={styles.screen}>
             <View>
@@ -69,7 +68,7 @@ const ServicesScreenView = (props) => {
                 <CustomButtonSearch />
             </View>
             <View style={styles.buttonAdd}>
-                <CustomButtonAdding onPress={IceAddHandler.bind(this)}/>
+                <CustomButtonAdding onPress={iceAddHandler}/>
             </View>
         </View>
     );

@@ -10,7 +10,8 @@ const SwiperData = props => {
         <View style={styles.container}>
             <Swiper
                 showsButtons={true}
-                selectionColor={{backgroundColor: Colors.red}}
+                selectionColor={{backgroundColor: Colors.white}}
+                // style={{backgroundColor: Colors.red}}
                 showPagination={true}
                 autoplay={true}
                 animated={true}
@@ -56,10 +57,11 @@ const SwiperData = props => {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1
+        flex: 1,
+        // backgroundColor: Colors.red
     },
     WrapperStyle: {
-        // backgroundColor: Colors.lightgray
+        // backgroundColor: Colors.red
     },
     // nextButton: {
     //     backgroundColor: Colors.red

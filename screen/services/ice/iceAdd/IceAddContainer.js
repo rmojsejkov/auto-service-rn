@@ -2,18 +2,18 @@ import React, { useEffect } from "react";
 
 import IceAddScreen from "./IceAddScreen";
 import Colors from '../../../../constants/colors';
-
+import {Button} from "react-native";
 
 const IceAddContainer = ({ navigation, route, ...props }) => {
     const { serviceName, price } = route.params;
     useEffect(() => {
         navigation.setOptions({
-            headerTitle: 'serviceDetailsAdd',
+            headerTitle: 'Добавление услуги',
             // headerTitle: cityName,
             headerTitleAlign: 'center',
             headerTitleStyle: {
-                color: Colors.red,
-                fontSize: 24
+                color: Colors.white,
+                fontSize: 22
             }
         })
     }, []);

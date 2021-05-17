@@ -6,6 +6,8 @@ import Colors from '../../../../constants/colors';
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { ServicesScreen } from "../../../../screen/services/ice";
 import { servicesScreenOptions } from "../../../../screen/services/ice/ServicesScreenView";
+import { IceAddScreen } from "../../../../screen/services/ice/iceAdd";
+import { IceAddScreenOptions } from "../../../../screen/services/ice/iceAdd/IceAddScreen";
 
 const defaultStackNavOptions = {
     headerStyle: {
@@ -16,10 +18,7 @@ const defaultStackNavOptions = {
     headerTitleStyle: {
         color: Colors.mainBackground,
     },
-    headerBackTitleStyle: {
-
-    },
-    headerTintColor: 'white',
+    headerTintColor: Colors.white,
     headerTitle: 'Screen'
 };
 
@@ -29,9 +28,14 @@ const IceNavigator = () => {
     return (
         <IceStackNavigator.Navigator screenOptions={defaultStackNavOptions}>
             <IceStackNavigator.Screen
-                name="ServicesStack"
+                name="ServicesScreen"
                 component={ServicesScreen}
                 options={servicesScreenOptions}
+            />
+            <IceStackNavigator.Screen
+                name="IceAddScreen"
+                component={IceAddScreen}
+                options={IceAddScreenOptions}
             />
         </IceStackNavigator.Navigator>
     )

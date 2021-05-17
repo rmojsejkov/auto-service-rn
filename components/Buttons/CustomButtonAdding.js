@@ -7,10 +7,12 @@ import IceAddScreen from "../../screen/services/ice/iceAdd/IceAddScreen";
 import { TouchableComponent } from "../Blocks";
 
 
-const CustomButtonAdding = (onSelect, ...props) => {
+const CustomButtonAdding = (props) => {
     return (
         <View style={styles.button}>
-            <TouchableOpacity onPress={() => onSelect()}>
+            <TouchableOpacity
+                onPress={props.onPress}
+            >
                 <Ionicons
                     name="md-add"
                     size={40}
