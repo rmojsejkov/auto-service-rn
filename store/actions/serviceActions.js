@@ -43,6 +43,31 @@ export const getDefaultServicesAutoElectrician = () => {
     }
 }
 
+export const setDefaultService = serviceName => {
+    return async dispatch => {
+        console.log('by name ' + serviceName)
+        const response = await fetch(`${URL}/services/ice.json`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'item30/json'
+            },
+            body: JSON.stringify({
+                serviceName
+            })
+        });
+        if (!response.ok) {
+            throw new Error("Can't post service");
+        }
+        const fetchService = await response.json();
+        console.log(fetchService)
+
+        // dispatch({
+        //     type: SERVICES.SET_DEFAULT_SERVICE,
+        //     payload: fetchService
+        // });
+    }
+}
+
 export const getDefaultServicesIce = () => {
     return async dispatch => {
         const response = await fetch(`${URL}/services/ice.json`);

@@ -35,7 +35,6 @@ const IceNavigator = () => {
             <IceStackNavigator.Screen
                 name="IceAddScreen"
                 component={IceAddScreen}
-                options={IceAddScreenOptions}
             />
         </IceStackNavigator.Navigator>
     )

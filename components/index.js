@@ -4,7 +4,6 @@ import SwiperData from "./Swiper";
 import { Block, ServiceBlockItem, TouchableComponent } from './Blocks';
 import { SignInButton, SignUpButton, CustomButtonSearch, CustomButtonAdding } from './Buttons';
 import { MaterialHeaderButton } from "./UI";
-import IceAddInput from "./IceAddInput";
 
 export {
     InputContainer,
@@ -17,6 +16,5 @@ export {
     SignUpButton,
     MaterialHeaderButton,
     CustomButtonSearch,
-    CustomButtonAdding,
-    IceAddInput
+    CustomButtonAdding
 }

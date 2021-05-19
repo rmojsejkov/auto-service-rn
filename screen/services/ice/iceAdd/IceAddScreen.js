@@ -1,27 +1,39 @@
-import React, { useState, useEffect } from 'react';
-import {Text, View, StyleSheet, Button, TextInput, KeyboardAvoidingView, TouchableWithoutFeedback} from 'react-native';
+import React from 'react';
+import {ActivityIndicator, Button, KeyboardAvoidingView, StyleSheet, Text, TextInput, View} from 'react-native';
 
 import Colors from '../../../../constants/colors';
-import { IceAddInput } from '../../../../components';
 import {Icon} from "react-native-elements";
 
 const IceAddScreen = ({navigation, ...props}) => {
     const {
         serviceInputValue,
-        textHandler,
-        onChangeText
+        onChangeText,
+        error,
+        isLoading,
+        // textHandler
     } = props;
 
-    const [enteredService, setEnteredService] = useState(serviceInputValue || '');
 
-    const serviceInputHandler = enteredService => {
-        setEnteredService(enteredService);
+    if (error) {
+        return (
+            <View style={{...styles.screen, justifyContent: 'center', alignItems: 'center'}}>
+                <Text>{error}</Text>
+                <View>
+                    <Button title='Try again' color={Colors.black} onPress={() => ({})}/>
+                </View>
+            </View>
+        )
     }
 
-    useEffect(() => {
-        onChangeText(enteredService);
-    }, [enteredService]);
-    console.log(serviceInputValue)
+    if (isLoading) {
+        return (
+            <View style={{...styles.screen, justifyContent: 'center', alignItems: 'center'}}>
+                <ActivityIndicator size='large' color={Colors.splash} />
+            </View>
+        )
+    }
+
+
 
     return(
         <View style={styles.screen}>
@@ -41,7 +53,8 @@ const IceAddScreen = ({navigation, ...props}) => {
                     <TextInput
                         style={{borderBottomColor: Colors.black, borderBottomWidth: 1, width: '80%', fontSize: 18, marginHorizontal: 14}}
                         placeholder="Введите цену услуги"
-                        autoCapitalize='words'
+                        keyboardType='numeric'
+                        // value={serviceInputValue}
                     />
                 </KeyboardAvoidingView>
                 <KeyboardAvoidingView
@@ -54,13 +67,13 @@ const IceAddScreen = ({navigation, ...props}) => {
                         type='font-awesome'
                         size={21}
                         style={styles.icon}
-                        onPress={() => serviceInputHandler('')}
                     />
                     <TextInput
                         style={{borderBottomColor: Colors.black, borderBottomWidth: 1, width: '80%', fontSize: 18, marginHorizontal: 10}}
                         placeholder="Введите название услуги"
                         autoCapitalize='words'
-                        value={enteredService}
+                        value={serviceInputValue}
+                        onChangeText={onChangeText}
                     />
                 </KeyboardAvoidingView>
             </View>
