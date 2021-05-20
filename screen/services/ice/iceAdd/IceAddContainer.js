@@ -4,45 +4,43 @@ import IceAddScreen from "./IceAddScreen";
 import Colors from '../../../../constants/colors';
 import {Button, TouchableOpacity, StyleSheet, Alert} from "react-native";
 // import {HeaderToggleButton} from "../../../default-options";
-import {FontAwesome5, Ionicons} from "@expo/vector-icons";
 import {useDispatch} from "react-redux";
 import {serviceActions} from "../../../../store/actions";
 import {MaterialHeaderButton} from "../../../../components";
 import {HeaderButtons, Item} from "react-navigation-header-buttons";
-// import {setDefaultService} from "../../../../store/actions/serviceActions";
 
 const IceAddContainer = ({ navigation, route, ...props }) => {
-    // const { serviceName, price } = route.params;
 
     const [serviceInputValue, setServiceInputValue] = useState('');
+    const [priceInputValue, setPriceInputValue] = useState('');
     const [isAdd, setIsAdd] = useState(false);
 
     const [ isLoading, setIsLoading ] = useState(false);
     const [ error, setError ] = useState(null);
 
-    let timeoutId;
     const dispatch = useDispatch();
 
-    const textHandler = text => {
-        console.log(text)
-        setServiceInputValue(text);
-        // console.log(serviceInputValue)
-        // if (text.trim() !== '' && text.length > 3) {
-        //     if (timeoutId) {
-        //         clearTimeout(timeoutId);
-        //     }
-        //     timeoutId = setTimeout(() => {
-        //         postServiceAdd(text);
-        //     }, 500);
-        //     return;
-        // // }
-        // postServiceAdd(text);
-        // setIsAdd(false);
-    };
+    const postServiceAdd = useCallback( async () => {
+        console.log('click save');
+        console.log(serviceInputValue);
+        console.log(priceInputValue)
+
+        setIsLoading(true);
+        setIsAdd(true);
+        try {
+            await dispatch(serviceActions.setDefaultService(serviceInputValue, priceInputValue));
+        } catch (err) {
+            Alert.alert('Error', err.message, [{ message: 'Okay' }]);
+            setError('Something went wrong during network call');
+        }
+        setIsAdd(true);
+        setIsLoading(false);
+        navigation.goBack();
+    }, [serviceInputValue, setIsLoading, dispatch, priceInputValue]);
 
     const addHandler = () => {
-        Alert.alert('Warning',
-            'Вы уверены?',
+        Alert.alert('Предупреждение',
+            'Добавить услугу?',
             [
                 {
                     text: 'Нет',
@@ -55,29 +53,11 @@ const IceAddContainer = ({ navigation, route, ...props }) => {
                 }
             ]
         );
-    };
-
-    const postServiceAdd = useCallback( async () => {
-        console.log('click save');
-        console.log(serviceInputValue);
-
-        setIsLoading(true);
-        setIsAdd(true);
-        try {
-            await dispatch(serviceActions.setDefaultService(serviceInputValue));
-        } catch (err) {
-            Alert.alert('Error', err.message, [{ message: 'Okay' }]);
-            setError('Something went wrong during network call');
-        }
-        setIsAdd(true);
-        setIsLoading(false);
-        navigation.goBack();
-    }, [serviceInputValue, setServiceInputValue, setIsLoading, dispatch]);
+    }
 
     useEffect(() => {
         navigation.setOptions({
             headerTitle: 'Добавление услуги',
-            // headerTitle: cityName,
             headerTitleAlign: 'center',
             headerTitleStyle: {
                 color: Colors.white,
@@ -100,9 +80,10 @@ const IceAddContainer = ({ navigation, route, ...props }) => {
             error={error}
             isLoading={isLoading}
             serviceInputValue={serviceInputValue}
-            // textHandler={textHandler}
+            priceInputValue={priceInputValue}
             isAdd={isAdd}
-            onChangeText={setServiceInputValue}
+            onChangeService={setServiceInputValue}
+            onChangePrice={setPriceInputValue}
         />
     )
 };

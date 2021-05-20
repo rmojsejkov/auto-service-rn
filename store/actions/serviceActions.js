@@ -43,16 +43,17 @@ export const getDefaultServicesAutoElectrician = () => {
     }
 }
 
-export const setDefaultService = serviceName => {
+export const setDefaultService = (serviceName, price) => {
     return async dispatch => {
-        console.log('by name ' + serviceName)
+        console.log('by name ' + serviceName + price)
         const response = await fetch(`${URL}/services/ice.json`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'item30/json'
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                serviceName
+                serviceName,
+                price
             })
         });
         if (!response.ok) {

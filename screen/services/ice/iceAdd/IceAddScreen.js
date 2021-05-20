@@ -7,12 +7,12 @@ import {Icon} from "react-native-elements";
 const IceAddScreen = ({navigation, ...props}) => {
     const {
         serviceInputValue,
-        onChangeText,
+        onChangeService,
+        onChangePrice,
         error,
         isLoading,
-        // textHandler
+        priceInputValue,
     } = props;
-
 
     if (error) {
         return (
@@ -54,7 +54,8 @@ const IceAddScreen = ({navigation, ...props}) => {
                         style={{borderBottomColor: Colors.black, borderBottomWidth: 1, width: '80%', fontSize: 18, marginHorizontal: 14}}
                         placeholder="Введите цену услуги"
                         keyboardType='numeric'
-                        // value={serviceInputValue}
+                        value={priceInputValue}
+                        onChangeText={onChangePrice}
                     />
                 </KeyboardAvoidingView>
                 <KeyboardAvoidingView
@@ -73,7 +74,7 @@ const IceAddScreen = ({navigation, ...props}) => {
                         placeholder="Введите название услуги"
                         autoCapitalize='words'
                         value={serviceInputValue}
-                        onChangeText={onChangeText}
+                        onChangeText={onChangeService}
                     />
                 </KeyboardAvoidingView>
             </View>
