@@ -8,6 +8,8 @@ import { ServicesScreen } from "../../../../screen/services/ice";
 import { servicesScreenOptions } from "../../../../screen/services/ice/ServicesScreenView";
 import { IceAddScreen } from "../../../../screen/services/ice/iceAdd";
 import { IceAddScreenOptions } from "../../../../screen/services/ice/iceAdd/IceAddScreen";
+import { ServicesDetails } from "../../../../screen/services/ice/servicesDetails";
+import { servicesDetailsOptions } from "../../../../screen/services/ice/servicesDetails/ServicesDetails"
 
 const defaultStackNavOptions = {
     headerStyle: {
@@ -35,6 +37,10 @@ const IceNavigator = () => {
             <IceStackNavigator.Screen
                 name="IceAddScreen"
                 component={IceAddScreen}
+            />
+            <IceStackNavigator.Screen
+                name="ServicesDetails"
+                component={ServicesDetails}
             />
         </IceStackNavigator.Navigator>
     )

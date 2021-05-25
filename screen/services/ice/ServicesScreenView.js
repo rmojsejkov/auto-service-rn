@@ -19,7 +19,8 @@ const ServicesScreenView = (props) => {
         loadServices,
         defaultServicesIce,
         iceAddHandler,
-        navigation
+        navigation,
+        iceSelectHandler
     } = props;
 
     // useEffect(() => {
@@ -60,7 +61,7 @@ const ServicesScreenView = (props) => {
                 data={defaultServicesIce}
                 keyExtractor={item => item.id + ''}
                 numColumns={1}
-                renderItem={itemData => <ServiceBlockItem service={itemData.item} onSelect={() => ({})}/>}
+                renderItem={itemData => <ServiceBlockItem service={itemData.item} onSelect={iceSelectHandler.bind(this)}/>}
                 refreshing={isLoading}
                 onRefresh={() => loadServices()}
             />

@@ -37,6 +37,14 @@ const ServicesScreenContainer = ({navigation, ...props}) => {
         })
     }
 
+    const iceSelectHandler = service => {
+        navigation.navigate('ServicesDetails', {
+            serviceName: service.serviceName,
+            price: service.price,
+            id: service.id
+        })
+    }
+
     useEffect(() => {
         loadServices();
     }, [loadServices]);
@@ -56,6 +64,7 @@ const ServicesScreenContainer = ({navigation, ...props}) => {
             isLoading={isLoading}
             navigation={navigation}
             iceAddHandler={iceAddHandler}
+            iceSelectHandler={iceSelectHandler}
         />
     )
 }

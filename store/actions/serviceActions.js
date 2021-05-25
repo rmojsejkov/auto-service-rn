@@ -11,7 +11,7 @@ export const clearServices = () => {
 
 export const getDefaultServicesSuspension = () => {
     return async dispatch => {
-        const response = await fetch(`${URL}/services/suspense.json`);
+        const response = await fetch(`${URL}/services/suspension.json`);
         const fetchServices = await response.json();
         const suspenseArr = Object.keys(fetchServices).map(key => ({
             ...fetchServices[key],
@@ -43,6 +43,23 @@ export const getDefaultServicesAutoElectrician = () => {
     }
 }
 
+export const setDeleteService = id => {
+    return async dispatch => {
+        // console.log('by name ' + serviceName + price)
+        const response = await fetch(`${URL}/services/ice/${id}.json`, {
+            method: 'DELETE',
+        });
+        if (!response.ok) {
+            throw new Error("Can't delete service");
+        }
+
+        dispatch({
+            type: SERVICES.DELETE_SERVICE,
+            payload: id
+        });
+    }
+}
+
 export const setDefaultService = (serviceName, price) => {
     return async dispatch => {
         console.log('by name ' + serviceName + price)
@@ -59,13 +76,14 @@ export const setDefaultService = (serviceName, price) => {
         if (!response.ok) {
             throw new Error("Can't post service");
         }
-        const fetchService = await response.json();
-        console.log(fetchService)
+        const newId = await response.json();
 
-        // dispatch({
-        //     type: SERVICES.SET_DEFAULT_SERVICE,
-        //     payload: fetchService
-        // });
+        dispatch({
+            type: SERVICES.SET_DEFAULT_SERVICE,
+            payload: {
+                serviceName, price, id: newId
+            }
+        });
     }
 }
 

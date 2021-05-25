@@ -13,7 +13,6 @@ const IceAddContainer = ({ navigation, route, ...props }) => {
 
     const [serviceInputValue, setServiceInputValue] = useState('');
     const [priceInputValue, setPriceInputValue] = useState('');
-    const [isAdd, setIsAdd] = useState(false);
 
     const [ isLoading, setIsLoading ] = useState(false);
     const [ error, setError ] = useState(null);
@@ -26,14 +25,12 @@ const IceAddContainer = ({ navigation, route, ...props }) => {
         console.log(priceInputValue)
 
         setIsLoading(true);
-        setIsAdd(true);
         try {
             await dispatch(serviceActions.setDefaultService(serviceInputValue, priceInputValue));
         } catch (err) {
             Alert.alert('Error', err.message, [{ message: 'Okay' }]);
             setError('Something went wrong during network call');
         }
-        setIsAdd(true);
         setIsLoading(false);
         navigation.goBack();
     }, [serviceInputValue, setIsLoading, dispatch, priceInputValue]);
@@ -68,7 +65,7 @@ const IceAddContainer = ({ navigation, route, ...props }) => {
                     <Item
                         title="Save"
                         iconName="save"
-                        onPress={postServiceAdd.bind(this)}
+                        onPress={addHandler.bind(this)}
                     />
                 </HeaderButtons>
             )
@@ -81,7 +78,6 @@ const IceAddContainer = ({ navigation, route, ...props }) => {
             isLoading={isLoading}
             serviceInputValue={serviceInputValue}
             priceInputValue={priceInputValue}
-            isAdd={isAdd}
             onChangeService={setServiceInputValue}
             onChangePrice={setPriceInputValue}
         />
