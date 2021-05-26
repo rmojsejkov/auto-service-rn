@@ -16,7 +16,6 @@ export const getDefaultServicesAutoElectrician = () => {
             ...fetchServices[key],
             id: key})
         )
-        console.log(electricianArr)
         dispatch({
             type: SERVICES.GET_DEFAULT_SERVICES_ELECTRICIAN,
             payload: electricianArr
@@ -43,7 +42,6 @@ export const DeleteServiceElectrician = id => {
 
 export const setDefaultServiceElectrician = (serviceName, price) => {
     return async dispatch => {
-        console.log('by name ' + serviceName + price)
         const response = await fetch(`${URL}/services/electrician.json`, {
             method: 'POST',
             headers: {
@@ -57,12 +55,12 @@ export const setDefaultServiceElectrician = (serviceName, price) => {
         if (!response.ok) {
             throw new Error("Can't post service");
         }
-        const newId = await response.json();
+        const {name} = await response.json();
 
         dispatch({
             type: SERVICES.SET_DEFAULT_SERVICE_ELECTRICIAN,
             payload: {
-                serviceName, price, id: newId
+                serviceName, price, id: name
             }
         });
     }

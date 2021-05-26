@@ -19,7 +19,6 @@ const ServiceBlockItem = ({service, onSelect, ...props}) => {
                             <Text style={styles.titleText}>{service.serviceName}</Text>
                         </View>
                         <View style={styles.priceContainer}>
-                            {/*<CityWeatherIcon iconName={city.weather[0].icon} />*/}
                             <View style={styles.priceTextCont}>
                                 <Text style={styles.priceText}>Цена: {service.price}</Text>
                             </View>

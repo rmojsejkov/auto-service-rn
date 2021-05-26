@@ -16,7 +16,6 @@ export const getDefaultServicesSuspension = () => {
             ...fetchServices[key],
             id: key})
         )
-        console.log(suspenseArr)
         dispatch({
             type: SERVICES.GET_DEFAULT_SERVICES_SUSPENSION,
             payload: suspenseArr
@@ -55,12 +54,12 @@ export const setDefaultServiceSuspension = (serviceName, price) => {
         if (!response.ok) {
             throw new Error("Can't post service");
         }
-        const newId = await response.json();
+        const {name} = await response.json();
 
         dispatch({
             type: SERVICES.SET_DEFAULT_SERVICE_SUSPENSION,
             payload: {
-                serviceName, price, id: newId
+                serviceName, price, id: name
             }
         });
     }

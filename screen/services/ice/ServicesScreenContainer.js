@@ -10,7 +10,6 @@ const ServicesScreenContainer = ({navigation, ...props}) => {
         defaultServicesIce
     } = useSelector(state => state.service);
 
-    // const [isSearchTap, setIsSearchTap] = useState(true);
     const [ isLoading, setIsLoading ] = useState(true);
     const [ error, setError ] = useState(null);
 

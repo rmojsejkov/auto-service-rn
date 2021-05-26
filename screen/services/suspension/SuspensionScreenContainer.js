@@ -9,7 +9,6 @@ const SuspensionScreenContainer = ({navigation, ...props}) => {
     const {
         defaultServicesSuspension
     } = useSelector(state => state.service);
-    console.log(defaultServicesSuspension)
 
     const [ isLoading, setIsLoading ] = useState(true);
     const [ error, setError ] = useState(null);

@@ -21,16 +21,6 @@ const ServicesScreenView = (props) => {
         iceSelectHandler
     } = props;
 
-    // useEffect(() => {
-    //     navigation.setOptions({
-    //         headerTitle: () => {
-    //             return (
-    //                 <InputContainer />
-    //             );
-    //         }
-    //     });
-    // }, []);
-
     if (error) {
         return (
             <View style={{...styles.screen, justifyContent: 'center', alignItems: 'center'}}>

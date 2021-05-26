@@ -26,7 +26,6 @@ export const DeleteService = id => {
 
 export const setDefaultService = (serviceName, price) => {
     return async dispatch => {
-        console.log('by name ' + serviceName + price)
         const response = await fetch(`${URL}/services/ice.json`, {
             method: 'POST',
             headers: {
@@ -40,12 +39,12 @@ export const setDefaultService = (serviceName, price) => {
         if (!response.ok) {
             throw new Error("Can't post service");
         }
-        const newId = await response.json();
+        const {name} = await response.json();
 
         dispatch({
             type: SERVICES.SET_DEFAULT_SERVICE,
             payload: {
-                serviceName, price, id: newId
+                serviceName, price, id: name
             }
         });
     }
@@ -59,7 +58,6 @@ export const getDefaultServicesIce = () => {
             ...fetchServices[key],
             id: key})
         )
-        console.log(iceArr)
         dispatch({
             type: SERVICES.GET_DEFAULT_SERVICES_ICE,
             payload: iceArr

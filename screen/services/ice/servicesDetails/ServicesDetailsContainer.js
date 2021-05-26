@@ -20,7 +20,6 @@ const ServicesDetailsContainer = ({ navigation, route, ...props }) => {
     const dispatch = useDispatch();
 
     const postServiceDelete = useCallback( async () => {
-        console.log('click delete');
 
         setIsLoading(true);
         try {
@@ -68,7 +67,7 @@ const ServicesDetailsContainer = ({ navigation, route, ...props }) => {
                 </HeaderButtons>
             )
         })
-    }, [navigation, postServiceDelete]);
+    }, [navigation, postServiceDelete, deleteHandler]);
     return (
         <ServicesDetails
             serviceName={serviceName}
