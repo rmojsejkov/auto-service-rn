@@ -3,7 +3,7 @@ import {Text, View, StyleSheet, FlatList, Button, ActivityIndicator } from "reac
 
 import { HeaderToggleButton } from "../../default-options";
 import Colors from '../../../constants/colors';
-import {InputContainer, ServiceBlockItem} from '../../../components'
+import {CustomButtonAdding, CustomButtonSearch, InputContainer, ServiceBlockItem} from '../../../components'
 
 
 const SuspensionScreenView = ({navigation, ...props}) => {
@@ -12,7 +12,9 @@ const SuspensionScreenView = ({navigation, ...props}) => {
         error,
         isLoading,
         loadServices,
-        defaultServicesSuspension
+        defaultServicesSuspension,
+        suspensionAddHandler,
+        suspensionSelectHandler
     } = props;
 
     if (error) {
@@ -43,10 +45,21 @@ const SuspensionScreenView = ({navigation, ...props}) => {
                 data={defaultServicesSuspension}
                 keyExtractor={item => item.id + ''}
                 numColumns={1}
-                renderItem={itemData => <ServiceBlockItem service={itemData.item} onSelect={() => ({})} />}
+                renderItem={itemData =>
+                    <ServiceBlockItem
+                    service={itemData.item}
+                    onSelect={suspensionSelectHandler.bind(this)}
+                    />
+                }
                 refreshing={isLoading}
                 onRefresh={() => loadServices()}
             />
+            <View style={styles.buttonSearch}>
+                <CustomButtonSearch />
+            </View>
+            <View style={styles.buttonAdd}>
+                <CustomButtonAdding onPress={suspensionAddHandler}/>
+            </View>
         </View>
     );
 };
@@ -63,6 +76,16 @@ export const suspensionScreenOptions = navData => {
 const styles = StyleSheet.create({
     screen: {
         flex: 1
+    },
+    buttonSearch: {
+        bottom: '15%',
+        right: '3%',
+        position: 'absolute'
+    },
+    buttonAdd: {
+        bottom: '6%',
+        position: 'absolute',
+        right: '3%'
     }
 });
 

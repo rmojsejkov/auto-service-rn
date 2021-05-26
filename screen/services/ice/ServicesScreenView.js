@@ -13,13 +13,11 @@ import {
 const ServicesScreenView = (props) => {
 
     const {
-        buttonSheet,
         error,
         isLoading,
         loadServices,
         defaultServicesIce,
         iceAddHandler,
-        navigation,
         iceSelectHandler
     } = props;
 
@@ -90,11 +88,13 @@ const styles = StyleSheet.create({
     },
     buttonSearch: {
         bottom: '15%',
-        left: '3%'
+        right: '3%',
+        position: 'absolute'
     },
     buttonAdd: {
         bottom: '6%',
-        left: '2%'
+        position: 'absolute',
+        right: '3%'
     }
 });
 

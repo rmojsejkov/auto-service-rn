@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, StyleSheet, TouchableOpacity} from 'react-native';
 
 import Colors from '../../constants/colors';
 import { Ionicons } from "@expo/vector-icons";
-// import IceAddScreen from "../../screen/services/ice/iceAdd/IceAddScreen";
-import { TouchableComponent } from "../Blocks";
 
 
 const CustomButtonAdding = (props) => {

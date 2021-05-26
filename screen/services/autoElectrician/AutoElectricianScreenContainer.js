@@ -2,14 +2,14 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { Alert } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { serviceActions } from '../../../store/actions';
+import { serviceActions } from '../../../store/actions/servicesActions';
 import AutoElectricianScreenView from "./AutoElectricianScreenView";
+import {getDefaultServicesAutoElectrician} from "../../../store/actions/servicesActions/electricianActions";
 
 const AutoElectricianScreenContainer = ({navigation, ...props}) => {
     const {
         defaultServicesAutoElectrician
     } = useSelector(state => state.service);
-    console.log(defaultServicesAutoElectrician)
 
     const [ isLoading, setIsLoading ] = useState(true);
     const [ error, setError ] = useState(null);
@@ -28,6 +28,21 @@ const AutoElectricianScreenContainer = ({navigation, ...props}) => {
 
     }, [dispatch, setIsLoading, setError]);
 
+    const electricianAddHandler = service => {
+        navigation.navigate('ElectricianAddScreen', {
+            serviceName: service.serviceName,
+            price: service.price
+        })
+    }
+
+    const electricianSelectHandler = service => {
+        navigation.navigate('ElectricianDetails', {
+            serviceName: service.serviceName,
+            price: service.price,
+            id: service.id
+        })
+    }
+
     useEffect(() => {
         loadServices();
     }, [loadServices]);
@@ -45,6 +60,9 @@ const AutoElectricianScreenContainer = ({navigation, ...props}) => {
             loadServices={loadServices}
             error={error}
             isLoading={isLoading}
+            navigation={navigation}
+            electricianAddHandler={electricianAddHandler}
+            electricianSelectHandler={electricianSelectHandler}
         />
     )
 }

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, StyleSheet, TouchableOpacity} from 'react-native';
 
 import Colors from '../../constants/colors';
 import { EvilIcons } from "@expo/vector-icons";

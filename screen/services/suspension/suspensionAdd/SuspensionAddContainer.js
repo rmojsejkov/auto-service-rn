@@ -1,15 +1,14 @@
 import React, {useCallback, useEffect, useState} from "react";
 
-import IceAddScreen from "./IceAddScreen";
+import SuspensionAddScreen from "./SuspensionAddScreen";
 import Colors from '../../../../constants/colors';
-import {Button, TouchableOpacity, StyleSheet, Alert} from "react-native";
-// import {HeaderToggleButton} from "../../../default-options";
+import {StyleSheet, Alert} from "react-native";
 import {useDispatch} from "react-redux";
-import {serviceActions} from "../../../../store/actions/servicesActions";
+import {suspensionActions} from "../../../../store/actions/servicesActions";
 import {MaterialHeaderButton} from "../../../../components";
 import {HeaderButtons, Item} from "react-navigation-header-buttons";
 
-const IceAddContainer = ({ navigation, route, ...props }) => {
+const SuspensionAddContainer = ({ navigation, route, ...props }) => {
 
     const [serviceInputValue, setServiceInputValue] = useState('');
     const [priceInputValue, setPriceInputValue] = useState('');
@@ -26,7 +25,7 @@ const IceAddContainer = ({ navigation, route, ...props }) => {
 
         setIsLoading(true);
         try {
-            await dispatch(serviceActions.setDefaultService(serviceInputValue, priceInputValue));
+            await dispatch(suspensionActions.setDefaultServiceSuspension(serviceInputValue, priceInputValue));
         } catch (err) {
             Alert.alert('Error', err.message, [{ message: 'Okay' }]);
             setError('Something went wrong during network call');
@@ -73,7 +72,7 @@ const IceAddContainer = ({ navigation, route, ...props }) => {
     }, [navigation, postServiceAdd]);
 
     return (
-        <IceAddScreen
+        <SuspensionAddScreen
             error={error}
             isLoading={isLoading}
             serviceInputValue={serviceInputValue}
@@ -94,4 +93,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default IceAddContainer;
+export default SuspensionAddContainer;

@@ -6,6 +6,9 @@ import Colors from '../../../../constants/colors';
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { AutoElectricianScreen } from "../../../../screen/services/autoElectrician";
 import { autoElectricianScreenOptions } from "../../../../screen/services/autoElectrician/AutoElectricianScreenView";
+import { ElectricianAddScreen } from './../../../../screen/services/autoElectrician/electricianAdd';
+import { ElectricianDetails } from './../../../../screen/services/autoElectrician/electricianDetails';
+import { electricianDetailsOptions } from '../../../../screen/services/autoElectrician/electricianDetails/ElectricianDetails'
 
 const defaultStackNavOptions = {
     headerStyle: {
@@ -29,9 +32,18 @@ const AutoElectricianNavigator = () => {
     return (
         <AutoElectricianStackNavigator.Navigator screenOptions={defaultStackNavOptions}>
             <AutoElectricianStackNavigator.Screen
-                name="ServicesStack"
+                name="ElectricianScreen"
                 component={AutoElectricianScreen}
                 options={autoElectricianScreenOptions}
+            />
+            <AutoElectricianStackNavigator.Screen
+                name="ElectricianAddScreen"
+                component={ElectricianAddScreen}
+            />
+            <AutoElectricianStackNavigator.Screen
+                name="ElectricianDetails"
+                component={ElectricianDetails}
+                options={electricianDetailsOptions}
             />
         </AutoElectricianStackNavigator.Navigator>
     )

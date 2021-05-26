@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { Alert } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { serviceActions } from '../../../store/actions';
+import {suspensionActions} from '../../../store/actions/servicesActions';
 import SuspensionScreenView from "./SuspensionScreenView";
 
 const SuspensionScreenContainer = ({navigation, ...props}) => {
@@ -19,7 +19,7 @@ const SuspensionScreenContainer = ({navigation, ...props}) => {
     const loadServices = useCallback(async () => {
         setIsLoading(true);
         try {
-            await dispatch(serviceActions.getDefaultServicesSuspension());
+            await dispatch(suspensionActions.getDefaultServicesSuspension());
         } catch (err) {
             Alert.alert('Error', err.message, [{ message: 'Okay' }]);
             setError('Something went wrong during network call');
@@ -27,6 +27,21 @@ const SuspensionScreenContainer = ({navigation, ...props}) => {
         setIsLoading(false);
 
     }, [dispatch, setIsLoading, setError]);
+
+    const suspensionAddHandler = service => {
+        navigation.navigate('SuspensionAddScreen', {
+            serviceName: service.serviceName,
+            price: service.price
+        })
+    }
+
+    const suspensionSelectHandler = service => {
+        navigation.navigate('SuspensionDetails', {
+            serviceName: service.serviceName,
+            price: service.price,
+            id: service.id
+        })
+    }
 
     useEffect(() => {
         loadServices();
@@ -45,6 +60,8 @@ const SuspensionScreenContainer = ({navigation, ...props}) => {
             loadServices={loadServices}
             error={error}
             isLoading={isLoading}
+            suspensionAddHandler={suspensionAddHandler}
+            suspensionSelectHandler={suspensionSelectHandler}
         />
     )
 }

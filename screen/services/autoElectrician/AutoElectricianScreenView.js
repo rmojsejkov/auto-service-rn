@@ -3,7 +3,12 @@ import {Text, View, StyleSheet, FlatList, Button, ActivityIndicator } from "reac
 
 import { HeaderToggleButton } from "../../default-options";
 import Colors from '../../../constants/colors';
-import {InputContainer, ServiceBlockItem} from '../../../components'
+import {
+    CustomButtonAdding,
+    CustomButtonSearch,
+    InputContainer,
+    ServiceBlockItem
+} from '../../../components'
 
 const AutoElectricianScreenView = ({navigation, ...props}) => {
 
@@ -11,7 +16,9 @@ const AutoElectricianScreenView = ({navigation, ...props}) => {
         error,
         isLoading,
         loadServices,
-        defaultServicesAutoElectrician
+        defaultServicesAutoElectrician,
+        electricianAddHandler,
+        electricianSelectHandler
     } = props;
 
     if (error) {
@@ -42,10 +49,16 @@ const AutoElectricianScreenView = ({navigation, ...props}) => {
                 data={defaultServicesAutoElectrician}
                 keyExtractor={item => item.id + ''}
                 numColumns={1}
-                renderItem={itemData => <ServiceBlockItem service={itemData.item} onSelect={() => ({})} />}
+                renderItem={itemData => <ServiceBlockItem service={itemData.item} onSelect={electricianSelectHandler.bind(this)} />}
                 refreshing={isLoading}
                 onRefresh={() => loadServices()}
             />
+            <View style={styles.buttonSearch}>
+                <CustomButtonSearch />
+            </View>
+            <View style={styles.buttonAdd}>
+                <CustomButtonAdding onPress={electricianAddHandler}/>
+            </View>
         </View>
     );
 };
@@ -62,6 +75,14 @@ export const autoElectricianScreenOptions = navData => {
 const styles = StyleSheet.create({
     screen: {
         flex: 1
+    },
+    buttonSearch: {
+        bottom: '15%',
+        left: '3%'
+    },
+    buttonAdd: {
+        bottom: '6%',
+        left: '2%'
     }
 });
 

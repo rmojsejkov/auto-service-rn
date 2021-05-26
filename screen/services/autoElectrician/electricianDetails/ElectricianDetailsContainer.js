@@ -1,16 +1,14 @@
 import React, {useCallback, useEffect, useState} from "react";
 
-import ServicesDetails from "./ServicesDetails";
+import ElectricianDetails from "./ElectricianDetails";
 import Colors from '../../../../constants/colors';
 import {HeaderButtons, Item} from "react-navigation-header-buttons";
 import {MaterialHeaderButton} from "../../../../components";
-import {serviceActions} from "../../../../store/actions/servicesActions";
+import {electricianActions} from "../../../../store/actions/servicesActions";
 import {Alert} from "react-native";
 import {useDispatch} from "react-redux";
-import {DeleteService} from "../../../../store/actions/servicesActions/serviceActions";
 
-
-const ServicesDetailsContainer = ({ navigation, route, ...props }) => {
+const ElectricianDetailsContainer = ({ navigation, route, ...props }) => {
 
     const { serviceName, price, id } = route.params;
 
@@ -24,7 +22,7 @@ const ServicesDetailsContainer = ({ navigation, route, ...props }) => {
 
         setIsLoading(true);
         try {
-            await dispatch(serviceActions.DeleteService(id));
+            await dispatch(electricianActions.DeleteServiceElectrician(id));
         } catch (err) {
             Alert.alert('Error', err.message, [{ message: 'Okay' }]);
             setError('Something went wrong during network call');
@@ -70,7 +68,7 @@ const ServicesDetailsContainer = ({ navigation, route, ...props }) => {
         })
     }, [navigation, postServiceDelete]);
     return (
-        <ServicesDetails
+        <ElectricianDetails
             serviceName={serviceName}
             price={price}
             error={error}
@@ -79,4 +77,4 @@ const ServicesDetailsContainer = ({ navigation, route, ...props }) => {
     )
 };
 
-export default ServicesDetailsContainer;
+export default ElectricianDetailsContainer;
