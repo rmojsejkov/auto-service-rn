@@ -2,9 +2,8 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { Alert } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { serviceActions } from '../../../store/actions/servicesActions';
+import { electricianActions } from '../../../store/actions/servicesActions';
 import AutoElectricianScreenView from "./AutoElectricianScreenView";
-import {getDefaultServicesAutoElectrician} from "../../../store/actions/servicesActions/electricianActions";
 
 const AutoElectricianScreenContainer = ({navigation, ...props}) => {
     const {
@@ -19,7 +18,7 @@ const AutoElectricianScreenContainer = ({navigation, ...props}) => {
     const loadServices = useCallback(async () => {
         setIsLoading(true);
         try {
-            await dispatch(serviceActions.getDefaultServicesAutoElectrician());
+            await dispatch(electricianActions.getDefaultServicesAutoElectrician());
         } catch (err) {
             Alert.alert('Error', err.message, [{ message: 'Okay' }]);
             setError('Something went wrong during network call');

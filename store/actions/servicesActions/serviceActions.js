@@ -8,7 +8,7 @@ export const clearServices = () => {
     }
 }
 
-export const DeleteService = id => {
+export const deleteService = id => {
     return async dispatch => {
         const response = await fetch(`${URL}/services/ice/${id}.json`, {
             method: 'DELETE',

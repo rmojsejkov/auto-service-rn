@@ -39,29 +39,41 @@ export const getDefaultEmployees = () => {
 //     }
 // }
 
-// export const setDefaultServiceElectrician = (serviceName, price) => {
-//     return async dispatch => {
-//         const response = await fetch(`${URL}/services/electrician.json`, {
-//             method: 'POST',
-//             headers: {
-//                 'Content-Type': 'application/json'
-//             },
-//             body: JSON.stringify({
-//                 serviceName,
-//                 price
-//             })
-//         });
-//         if (!response.ok) {
-//             throw new Error("Can't post service");
-//         }
-//         const {name} = await response.json();
-//
-//         dispatch({
-//             type: SERVICES.SET_DEFAULT_SERVICE_ELECTRICIAN,
-//             payload: {
-//                 serviceName, price, id: name
-//             }
-//         });
-//     }
-// }
+export const setDefaultEmployee = (lastName, firstName, surName, email, phone, pass, roleId) => {
+    return async dispatch => {
+        const response = await fetch(`${URL}/employees.json`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                lastName,
+                firstName,
+                surName,
+                phone,
+                email,
+                roleId,
+                pass
+            })
+        });
+        if (!response.ok) {
+            throw new Error("Can't post employee");
+        }
+        const {name} = await response.json();
+
+        dispatch({
+            type: EMPLOYEES.SET_DEFAULT_EMPLOYEE,
+            payload: {
+                lastName,
+                firstName,
+                surName,
+                phone,
+                email,
+                roleId,
+                pass,
+                id: name
+            }
+        });
+    }
+}
 

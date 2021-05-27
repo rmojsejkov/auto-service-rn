@@ -36,13 +36,13 @@ const ServicesDetails = ({navigation, ...props}) => {
             <View style={styles.container}>
                 <View style={styles.title}>
                     <Text style={styles.titleText}>Название: </Text>
-                    <View>
+                    <View style={{backgroundColor: Colors.lightgray}}>
                         <Text style={styles.nameText}>{serviceName}</Text>
                     </View>
                 </View>
                 <View style={styles.Price}>
                     <Text style={styles.titlePrice}>Цена: </Text>
-                    <View>
+                    <View style={{marginVertical: 23, width: '130%'}}>
                         <Text style={styles.priceText}>{price}</Text>
                     </View>
                 </View>
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     priceText: {
         fontSize: 20,
         fontWeight: 'bold',
-        marginVertical: '7%',
+        // marginVertical: '7%',
     },
     priceContainer: {
         alignItems: 'center',

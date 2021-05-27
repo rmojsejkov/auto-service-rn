@@ -8,13 +8,22 @@ import {
 import TouchableComponent from '../Blocks/TouchableComponent';
 import Block from './Block';
 import Colors from '../../constants/colors';
-import {Feather, Ionicons} from "@expo/vector-icons";
+import {Feather, FontAwesome5, Ionicons, MaterialCommunityIcons} from "@expo/vector-icons";
 
 const EmployeeBlockItem = ({employee, onSelect, ...props}) => {
     return(
         <Block style={styles.block}>
             <View style={styles.touchable}>
                 <View style={styles.icons}>
+                    <TouchableComponent onPress={() => ({})}>
+                        <View style={styles.edit}>
+                            <FontAwesome5
+                                name="edit"
+                                size={22}
+                                color={Colors.splash}
+                            />
+                        </View>
+                    </TouchableComponent>
                     <View style={styles.human}>
                         <Ionicons
                             name="person-circle-outline"
@@ -24,12 +33,11 @@ const EmployeeBlockItem = ({employee, onSelect, ...props}) => {
                         />
                     </View>
                     <TouchableComponent onPress={() => ({})}>
-                        <View style={styles.add}>
-                            <Feather
-                                name="edit-2"
-                                size={30}
+                        <View style={styles.delete}>
+                            <MaterialCommunityIcons
+                                name="delete"
+                                size={27}
                                 color={Colors.red}
-
                             />
                         </View>
                     </TouchableComponent>
@@ -38,18 +46,33 @@ const EmployeeBlockItem = ({employee, onSelect, ...props}) => {
                     <View>
                         <View style={styles.line}/>
                         <View style={styles.title}>
+                            <View style={styles.iconName}>
+                                <Text style={styles.iconText}>Фамилия:</Text>
+                            </View>
                             <Text style={styles.titleText}>{employee.lastName}</Text>
                         </View>
                         <View style={styles.title}>
+                            <View style={styles.iconName}>
+                                <Text style={styles.iconText}>Имя:</Text>
+                            </View>
                             <Text style={styles.titleText}>{employee.firstName}</Text>
                         </View>
                         <View style={styles.title}>
+                            <View style={styles.iconName}>
+                                <Text style={styles.iconText}>Отчество:</Text>
+                            </View>
                             <Text style={styles.titleText}>{employee.surName}</Text>
                         </View>
                         <View style={styles.title}>
+                            <View style={styles.iconName}>
+                                <Text style={styles.iconText}>Эл. почта:</Text>
+                            </View>
                             <Text style={styles.titleText}>{employee.email}</Text>
                         </View>
                         <View style={styles.title}>
+                            <View style={styles.iconName}>
+                                <Text style={styles.iconText}>Телефон:</Text>
+                            </View>
                             <Text style={styles.titleText}>{employee.phone}</Text>
                         </View>
                     </View>
@@ -79,9 +102,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         padding: 10
     },
-    weather: {
-        paddingVertical: 5
-    },
     priceTextCont: {
         paddingVertical: 5,
 
@@ -97,10 +117,12 @@ const styles = StyleSheet.create({
         flexDirection: 'row'
     },
     titleText: {
-        fontSize: 17,
-        fontWeight: 'bold',
+        fontSize: 15,
+        // fontWeight: 'bold',
         alignItems: 'center',
-        // marginLeft: '30%'
+        marginLeft: '30%',
+        // left: '3%',
+        // position: 'absolute'
     },
     touchable: {
         overflow: 'hidden',
@@ -121,18 +143,38 @@ const styles = StyleSheet.create({
     },
     human: {
         alignItems: 'center',
-        marginLeft: '42%',
+        marginLeft: '33%',
         // borderWidth: 2,
         borderRadius: 80
     },
-    add: {
+    delete: {
         // paddingLeft: '75%',
-        top: '4%',
+        top: '4.5%',
         backgroundColor: Colors.white,
         borderRadius: 6,
-        // borderWidth: 2,
+        // borderWidth: 1,
         marginLeft: '30%',
-        height: 32,
+        height: 25,
+        alignItems: 'center'
+    },
+    iconName: {
+        flexDirection: 'row',
+        right: '75%',
+        alignItems: 'center',
+        position: 'absolute'
+    },
+    iconText: {
+        fontSize: 17,
+        fontWeight: 'bold'
+    },
+    edit: {
+        // paddingLeft: '75%',
+        top: '5%',
+        backgroundColor: Colors.white,
+        borderRadius: 6,
+        // borderWidth: 1,
+        marginLeft: '5%',
+        height: 25,
         alignItems: 'center'
     }
 });

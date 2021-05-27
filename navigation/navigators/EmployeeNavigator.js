@@ -1,11 +1,11 @@
 import React from "react";
 import {createStackNavigator} from "@react-navigation/stack";
-import {Image, StyleSheet, View, Text} from "react-native";
 
-import Colors from '../../constants/colors';
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import Colors from '../../constants/colors';;
 import {EmployeeScreen} from "../../screen/emloyees";
 import {employeeScreenOptions} from "../../screen/emloyees/EmployeeScreenView";
+import {EmployeeAddScreen}  from "../../screen/emloyees/employeeAdd";
+import {employeeAddScreenOptions} from "../../screen/emloyees/employeeAdd/EmployeeAddScreen";
 
 const defaultStackNavOptions = {
     headerStyle: {
@@ -32,6 +32,11 @@ const EmployeeNavigator = () => {
                 name="EmployeeStack"
                 component={EmployeeScreen}
                 options={employeeScreenOptions}
+            />
+            <EmployeeStackNavigator.Screen
+                name="EmployeeAddScreen"
+                component={EmployeeAddScreen}
+                options={employeeAddScreenOptions}
             />
         </EmployeeStackNavigator.Navigator>
     )

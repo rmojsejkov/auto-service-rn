@@ -9,10 +9,10 @@ const handlers = {
         ...state,
         defaultEmployees: payload
     }),
-    // [SERVICES.SET_DEFAULT_SERVICE]: (state, {payload}) => ({
-    //     ...state,
-    //     defaultServicesIce: state.defaultServicesIce.concat(payload)
-    // }),
+    [EMPLOYEES.SET_DEFAULT_EMPLOYEE]: (state, {payload}) => ({
+        ...state,
+        defaultEmployees: state.defaultEmployees.concat(payload)
+    }),
     // [SERVICES.DELETE_SERVICE]: (state, {payload}) => ({
     //     ...state,
     //     defaultServicesIce: state.defaultServicesIce.filter(s => s.id !== payload)

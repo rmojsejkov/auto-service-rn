@@ -28,10 +28,7 @@ const ServicesScreenContainer = ({navigation, ...props}) => {
     }, [dispatch, setIsLoading, setError]);
 
     const iceAddHandler = service => {
-        navigation.navigate('IceAddScreen', {
-            serviceName: service.serviceName,
-            price: service.price
-        })
+        navigation.navigate('IceAddScreen')
     }
 
     const iceSelectHandler = service => {

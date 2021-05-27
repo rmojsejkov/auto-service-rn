@@ -7,7 +7,7 @@ import {MaterialHeaderButton} from "../../../../components";
 import {serviceActions} from "../../../../store/actions/servicesActions";
 import {Alert} from "react-native";
 import {useDispatch} from "react-redux";
-import {DeleteService} from "../../../../store/actions/servicesActions/serviceActions";
+import {deleteService} from "../../../../store/actions/servicesActions/serviceActions";
 
 
 const ServicesDetailsContainer = ({ navigation, route, ...props }) => {
@@ -23,7 +23,7 @@ const ServicesDetailsContainer = ({ navigation, route, ...props }) => {
 
         setIsLoading(true);
         try {
-            await dispatch(serviceActions.DeleteService(id));
+            await dispatch(serviceActions.deleteService(id));
         } catch (err) {
             Alert.alert('Error', err.message, [{ message: 'Okay' }]);
             setError('Something went wrong during network call');
