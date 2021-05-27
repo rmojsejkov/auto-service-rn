@@ -1,3 +1,3 @@
-import EmployeeScreen from "./EmployeeScreenView";
+import EmployeeScreen from "./EmployeeScreenContainer";
 
 export {EmployeeScreen};
