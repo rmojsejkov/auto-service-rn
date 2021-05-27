@@ -4,15 +4,14 @@ import {ActivityIndicator, Button, FlatList, StyleSheet, Text, View} from "react
 import {HeaderToggleButton} from "../default-options";
 import Colors from "../../constants/colors";
 import {CustomButtonAdding, CustomButtonSearch, InputContainer, ServiceBlockItem} from "../../components";
+import EmployeeBlockItem from "../../components/Blocks/EmployeeBlockItem";
 
 const EmployeeScreenView = ({navigation, ...props}) => {
     const {
         error,
         isLoading,
-        loadServices,
-        defaultServicesIce,
-        iceAddHandler,
-        iceSelectHandler
+        loadEmployees,
+        defaultEmployees
     } = props;
 
     if (error) {
@@ -20,7 +19,7 @@ const EmployeeScreenView = ({navigation, ...props}) => {
             <View style={{...styles.screen, justifyContent: 'center', alignItems: 'center'}}>
                 <Text>{error}</Text>
                 <View>
-                    <Button title='Try again' color={Colors.black} onPress={() => loadServices()}/>
+                    <Button title='Try again' color={Colors.black} onPress={() => loadEmployees()}/>
                 </View>
             </View>
         )
@@ -40,26 +39,20 @@ const EmployeeScreenView = ({navigation, ...props}) => {
                 <InputContainer />
             </View>
             <FlatList
-                data={defaultServicesIce}
+                data={defaultEmployees}
                 keyExtractor={item => item.id + ''}
                 numColumns={1}
-                renderItem={itemData => <ServiceBlockItem service={itemData.item} onSelect={iceSelectHandler.bind(this)}/>}
+                renderItem={itemData => <EmployeeBlockItem employee={itemData.item} onSelect={() => ({})}/>}
                 refreshing={isLoading}
-                onRefresh={() => loadServices()}
+                onRefresh={() => loadEmployees()}
             />
-            <View style={styles.buttonSearch}>
-                <CustomButtonSearch />
-            </View>
-            <View style={styles.buttonAdd}>
-                <CustomButtonAdding onPress={iceAddHandler}/>
-            </View>
         </View>
     );
 };
 
 export const employeeScreenOptions = navData => {
     return {
-        headerTitle: 'Employees',
+        headerTitle: 'Сотрудники',
         headerLeft: () => (
             <HeaderToggleButton navData={navData} />
         )

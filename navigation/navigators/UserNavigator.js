@@ -4,8 +4,8 @@ import {Image, StyleSheet, View, Text} from "react-native";
 
 import Colors from '../../constants/colors';
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import {EmployeeScreen} from "../../screen/emloyees";
-import {employeeScreenOptions} from "../../screen/emloyees/EmployeeScreenView";
+import {UserScreen} from "../../screen/users";
+import {userScreenOptions} from "../../screen/users/UserScreenView";
 
 const defaultStackNavOptions = {
     headerStyle: {
@@ -23,18 +23,18 @@ const defaultStackNavOptions = {
     headerTitle: 'Screen'
 };
 
-const EmployeeStackNavigator = createStackNavigator();
+const UserStackNavigator = createStackNavigator();
 
-const EmployeeNavigator = () => {
+const UserNavigator = () => {
     return (
-        <EmployeeStackNavigator.Navigator screenOptions={defaultStackNavOptions}>
-            <EmployeeStackNavigator.Screen
-                name="EmployeeStack"
-                component={EmployeeScreen}
-                options={employeeScreenOptions}
+        <UserStackNavigator.Navigator screenOptions={defaultStackNavOptions}>
+            <UserStackNavigator.Screen
+                name="UserStack"
+                component={UserScreen}
+                options={userScreenOptions}
             />
-        </EmployeeStackNavigator.Navigator>
+        </UserStackNavigator.Navigator>
     )
 };
 
-export default EmployeeNavigator;
+export default UserNavigator;

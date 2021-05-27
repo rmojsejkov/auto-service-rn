@@ -3,7 +3,7 @@ import { Image, SafeAreaView, StyleSheet, View, Text, Button } from "react-nativ
 import { createDrawerNavigator, DrawerItemList } from "@react-navigation/drawer";
 
 import Colors from '../constants/colors';
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import {MaterialCommunityIcons, MaterialIcons} from "@expo/vector-icons";
 import { SignInButton, SignUpButton } from "../components";
 
 import {
@@ -11,7 +11,8 @@ import {
     AboutNavigator,
     EmployeeNavigator,
     PriceNavigator,
-    ServicesNavigator
+    ServicesNavigator,
+    UserNavigator
 } from './navigators';
 
 const AutoServiceDrawerNavigator = createDrawerNavigator();
@@ -88,6 +89,20 @@ export const AutoServiceNavigator = () => {
                     )
                 }}
             />
+            <AutoServiceDrawerNavigator.Screen
+                name="User"
+                component={UserNavigator}
+                options={{
+                    drawerLabel: 'Пользователи',
+                    drawerIcon: props => (
+                        <MaterialIcons
+                            name="person"
+                            size={23}
+                            color={Colors.splash}
+                        />
+                    )
+                }}
+            />
             <AutoServiceDrawerNavigator.Screen 
                 name="About"
                 component={AboutNavigator}
@@ -135,7 +150,7 @@ const styles = StyleSheet.create({
         // paddingTop: '90%',
         // borderWidth: 0.1,
         // borderRadius: 90,
-        top: '90%',
+        top: '65%',
         left: '30%',
         // elevation: 3
     },

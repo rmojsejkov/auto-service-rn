@@ -27,7 +27,7 @@ const InputContainer = ({value, onChangeText = () => '', ...props}) => {
                     style={styles.icon}
                 />
                 <TextInput
-                    placeholder="Enter city here..."
+                    placeholder="Введите название услуги..."
                     style={styles.input}
                     onChangeText={cityInputHandler}
                     value={enteredCity}

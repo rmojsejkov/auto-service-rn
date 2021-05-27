@@ -2,23 +2,23 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { Alert } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 
-// import { serviceActions } from '../../../store/actions/servicesActions';
-import EmployeeScreenView from "./ServicesScreenView";
+import EmployeeScreenView from "./EmployeeScreenView";
+import { employeeActions } from "../../store/actions/employeesActions";
 
 const EmployeeScreenContainer = ({navigation, ...props}) => {
     const {
-        defaultServicesIce
-    } = useSelector(state => state.service);
+        defaultEmployees
+    } = useSelector(state => state.employee);
 
     const [ isLoading, setIsLoading ] = useState(true);
     const [ error, setError ] = useState(null);
 
     const dispatch = useDispatch();
 
-    const loadServices = useCallback(async () => {
+    const loadEmployees = useCallback(async () => {
         setIsLoading(true);
         try {
-            await dispatch(serviceActions.getDefaultServicesIce());
+            await dispatch(employeeActions.getDefaultEmployees());
         } catch (err) {
             Alert.alert('Error', err.message, [{ message: 'Okay' }]);
             setError('Something went wrong during network call');
@@ -27,41 +27,24 @@ const EmployeeScreenContainer = ({navigation, ...props}) => {
 
     }, [dispatch, setIsLoading, setError]);
 
-    const iceAddHandler = service => {
-        navigation.navigate('IceAddScreen', {
-            serviceName: service.serviceName,
-            price: service.price
-        })
-    }
-
-    const iceSelectHandler = service => {
-        navigation.navigate('ServicesDetails', {
-            serviceName: service.serviceName,
-            price: service.price,
-            id: service.id
-        })
-    }
-
     useEffect(() => {
-        loadServices();
-    }, [loadServices]);
+        loadEmployees();
+    }, [loadEmployees]);
 
     useEffect(() => {
         return navigation.dangerouslyGetParent()
             .addListener('focus', () => {
-                loadServices();
+                loadEmployees();
             });
     }, [navigation]);
 
     return (
         <EmployeeScreenView
-            defaultServicesIce={defaultServicesIce}
-            loadServices={loadServices}
+            defaultEmployees={defaultEmployees}
+            loadEmployees={loadEmployees}
             error={error}
             isLoading={isLoading}
             navigation={navigation}
-            iceAddHandler={iceAddHandler}
-            iceSelectHandler={iceSelectHandler}
         />
     )
 }
