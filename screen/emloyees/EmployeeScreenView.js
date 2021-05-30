@@ -3,11 +3,13 @@ import {ActivityIndicator, Button, FlatList, StyleSheet, Text, View} from "react
 
 import {HeaderToggleButton} from "../default-options";
 import Colors from "../../constants/colors";
-import {CustomButtonAdding, CustomButtonSearch, InputContainer, ServiceBlockItem} from "../../components";
+import {CustomButtonAdding, CustomButtonSearch, InputContainer} from "../../components";
 import EmployeeBlockItem from "../../components/Blocks/EmployeeBlockItem";
 
 const EmployeeScreenView = ({navigation, ...props}) => {
     const {
+        deleteHandler,
+        editHandler,
         error,
         isLoading,
         loadEmployees,
@@ -42,7 +44,11 @@ const EmployeeScreenView = ({navigation, ...props}) => {
                 data={defaultEmployees}
                 keyExtractor={item => item.id + ''}
                 numColumns={1}
-                renderItem={itemData => <EmployeeBlockItem employee={itemData.item} onSelect={() => ({})}/>}
+                renderItem={itemData => <EmployeeBlockItem
+                    employee={itemData.item}
+                    deleteHandler={deleteHandler}
+                    editHandler={editHandler}
+                />}
                 refreshing={isLoading}
                 onRefresh={() => loadEmployees()}
             />

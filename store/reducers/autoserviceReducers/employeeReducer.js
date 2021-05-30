@@ -13,10 +13,10 @@ const handlers = {
         ...state,
         defaultEmployees: state.defaultEmployees.concat(payload)
     }),
-    // [SERVICES.DELETE_SERVICE]: (state, {payload}) => ({
-    //     ...state,
-    //     defaultServicesIce: state.defaultServicesIce.filter(s => s.id !== payload)
-    // }),
+    [EMPLOYEES.DELETE_EMPLOYEE]: (state, {payload}) => ({
+        ...state,
+        defaultEmployees: state.defaultEmployees.filter(s => s.id !== payload)
+    }),
     //
     // [SERVICES.GET_DEFAULT_SERVICES_ELECTRICIAN]: (state, {payload}) => ({
     //     ...state,

@@ -10,12 +10,12 @@ import Block from './Block';
 import Colors from '../../constants/colors';
 import {Feather, FontAwesome5, Ionicons, MaterialCommunityIcons} from "@expo/vector-icons";
 
-const EmployeeBlockItem = ({employee, onSelect, ...props}) => {
+const EmployeeBlockItem = ({employee, deleteHandler, editHandler, ...props}) => {
     return(
         <Block style={styles.block}>
             <View style={styles.touchable}>
                 <View style={styles.icons}>
-                    <TouchableComponent onPress={() => ({})}>
+                    <TouchableComponent onPress={() => editHandler(employee)}>
                         <View style={styles.edit}>
                             <FontAwesome5
                                 name="edit"
@@ -29,10 +29,9 @@ const EmployeeBlockItem = ({employee, onSelect, ...props}) => {
                             name="person-circle-outline"
                             size={60}
                             color={Colors.bottomTabIcon}
-
                         />
                     </View>
-                    <TouchableComponent onPress={() => ({})}>
+                    <TouchableComponent onPress={() => deleteHandler(employee.id)}>
                         <View style={styles.delete}>
                             <MaterialCommunityIcons
                                 name="delete"

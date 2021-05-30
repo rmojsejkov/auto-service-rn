@@ -34,6 +34,40 @@ const EmployeeScreenContainer = ({navigation, ...props}) => {
         navigation.navigate('EmployeeAddScreen')
     }
 
+    const employeeEditHandler = employee => {
+        navigation.navigate('EmployeeEditScreen', {
+            employee: employee
+        })
+    }
+
+    const postEmployeeDelete = useCallback( async (id) => {
+        setIsLoading(true);
+        try {
+            await dispatch(employeeActions.deleteEmployee(id));
+        } catch (err) {
+            Alert.alert('Error', err.message, [{ message: 'Okay' }]);
+            setError('Something went wrong during network call');
+        }
+        setIsLoading(false);
+    }, [setIsLoading, dispatch, id]);
+
+    const deleteHandler = id => {
+        Alert.alert('Предупреждение',
+            'Удалить сотрудника?',
+            [
+                {
+                    text: 'Нет',
+                    onPress: () => console.log('Нажали закрыть'),
+                    style: 'cancel'
+                },
+                {
+                    text: 'Да',
+                    onPress: () => postEmployeeDelete(id)
+                }
+            ]
+        );
+    }
+
     useEffect(() => {
         loadEmployees();
     }, [loadEmployees]);
@@ -71,6 +105,8 @@ const EmployeeScreenContainer = ({navigation, ...props}) => {
             error={error}
             isLoading={isLoading}
             navigation={navigation}
+            deleteHandler={deleteHandler}
+            editHandler={employeeEditHandler}
         />
     )
 }

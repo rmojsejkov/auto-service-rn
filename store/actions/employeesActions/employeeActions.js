@@ -23,26 +23,26 @@ export const getDefaultEmployees = () => {
     }
 }
 
-// export const DeleteServiceElectrician = id => {
-//     return async dispatch => {
-//         const response = await fetch(`${URL}/services/electrician/${id}.json`, {
-//             method: 'DELETE',
-//         });
-//         if (!response.ok) {
-//             throw new Error("Can't delete service");
-//         }
-//
-//         dispatch({
-//             type: SERVICES.DELETE_SERVICE_ELECTRICIAN,
-//             payload: id
-//         });
-//     }
-// }
-
-export const setDefaultEmployee = (lastName, firstName, surName, email, phone, pass, roleId) => {
+export const deleteEmployee = id => {
     return async dispatch => {
-        const response = await fetch(`${URL}/employees.json`, {
-            method: 'POST',
+        const response = await fetch(`${URL}/employees/${id}.json`, {
+            method: 'DELETE',
+        });
+        if (!response.ok) {
+            throw new Error("Can't delete employee");
+        }
+
+        dispatch({
+            type: EMPLOYEES.DELETE_EMPLOYEE,
+            payload: id
+        });
+    }
+}
+
+export const editEmployee = (id, lastName, firstName, surName, email, phone, pass) => {
+    return async dispatch => {
+        const response = await fetch(`${URL}/employees/${id}.json`, {
+            method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -52,12 +52,11 @@ export const setDefaultEmployee = (lastName, firstName, surName, email, phone, p
                 surName,
                 phone,
                 email,
-                roleId,
                 pass
             })
         });
         if (!response.ok) {
-            throw new Error("Can't post employee");
+            throw new Error("Can't edit employee");
         }
         const {name} = await response.json();
 
@@ -69,7 +68,6 @@ export const setDefaultEmployee = (lastName, firstName, surName, email, phone, p
                 surName,
                 phone,
                 email,
-                roleId,
                 pass,
                 id: name
             }
