@@ -18,7 +18,9 @@ const ServicesScreenView = (props) => {
         loadServices,
         defaultServicesIce,
         iceAddHandler,
-        iceSelectHandler
+        iceSelectHandler,
+        textInputValue,
+        textHandler,
     } = props;
 
     if (error) {

@@ -1,11 +1,7 @@
 import { SERVICES } from "../../../constants/types";
 
 const initialState = {
-    defaultServicesIce: [],
-    defaultServicesSuspension: [],
-    defaultServicesAutoElectrician: []
-
-
+    defaultServicesIce: []
 }
 
 const handlers = {
@@ -21,6 +17,10 @@ const handlers = {
         ...state,
         defaultServicesIce: state.defaultServicesIce.filter(s => s.id !== payload)
     }),
+    // [SERVICES.GET_SERVICE_BY_NAME]: (state, {payload}) => ({
+    //     ...state,
+    //     defaultServicesIce: payload
+    // }),
 
     [SERVICES.GET_DEFAULT_SERVICES_ELECTRICIAN]: (state, {payload}) => ({
         ...state,

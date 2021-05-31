@@ -1,4 +1,4 @@
-import { SERVICES } from "../../../constants/types";
+import {EMPLOYEES, SERVICES} from "../../../constants/types";
 import { URL } from "../../../constants";
 
 export const clearServices = () => {
@@ -64,3 +64,22 @@ export const getDefaultServicesIce = () => {
         });
     }
 }
+
+// export const getServiceByName = serviceName => {
+//     return async dispatch => {
+//         console.log('by name ' + serviceName)
+//         const response = await fetch(`${URL}/services/ice/find?q=${serviceName}.json`);
+//         if (!response.ok) {
+//             throw new Error("Can't fetch services by name");
+//         }
+//         const fetchServices = await response.json();
+//         const iceArr = Object.keys(fetchServices).map(key => ({
+//             ...fetchServices[key],
+//             id: key})
+//         )
+//         dispatch({
+//             type: SERVICES.GET_SERVICE_BY_NAME,
+//             payload: iceArr
+//         });
+//     }
+// }

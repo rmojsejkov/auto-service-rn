@@ -11,15 +11,23 @@ import {HeaderButtons, Item} from "react-navigation-header-buttons";
 
 const EmployeeEditContainer = ({ navigation, route, ...props }) => {
 
-    const {id} = route.params;
-    console.log(route.params)
+    const {
+        id,
+        lastName,
+        firstName,
+        surName,
+        email,
+        phone,
+        pass
+    } = route.params;
+    // console.log(route.params)
 
-    const [lastNameInputValue, setLastNameInputValue] = useState('');
-    const [firstNameInputValue, setFirstNameInputValue] = useState('');
-    const [surNameInputValue, setSurNameInputValue] = useState('');
-    const [emailInputValue, setEmailInputValue] = useState('');
-    const [phoneInputValue, setPhoneInputValue] = useState('');
-    const [passInputValue, setPassInputValue] = useState('');
+    const [lastNameInputValue, setLastNameInputValue] = useState(lastName);
+    const [firstNameInputValue, setFirstNameInputValue] = useState(firstName);
+    const [surNameInputValue, setSurNameInputValue] = useState(surName);
+    const [emailInputValue, setEmailInputValue] = useState(email);
+    const [phoneInputValue, setPhoneInputValue] = useState(phone);
+    const [passInputValue, setPassInputValue] = useState(pass);
 
     const [ isLoading, setIsLoading ] = useState(false);
     const [ error, setError ] = useState(null);
@@ -32,13 +40,13 @@ const EmployeeEditContainer = ({ navigation, route, ...props }) => {
         setIsLoading(true);
         try {
             await dispatch(employeeActions.editEmployee(
+                id,
                 lastNameInputValue,
                 firstNameInputValue,
                 surNameInputValue,
                 emailInputValue,
                 phoneInputValue,
-                passInputValue,
-                id
+                passInputValue
             ));
         } catch (err) {
             Alert.alert('Error', err.message, [{ message: 'Okay' }]);
@@ -68,8 +76,7 @@ const EmployeeEditContainer = ({ navigation, route, ...props }) => {
                 },
                 {
                     text: 'Да',
-                    onPress: () => ({})
-                    // onPress: () => postEmployeeEdit()
+                    onPress: () => postEmployeeEdit()
                 }
             ]
         );
@@ -77,7 +84,7 @@ const EmployeeEditContainer = ({ navigation, route, ...props }) => {
 
     useEffect(() => {
         navigation.setOptions({
-            headerTitle: 'Добавить сотрудника',
+            headerTitle: 'Редактирование',
             headerTitleAlign: 'center',
             headerTitleStyle: {
                 color: Colors.white,
@@ -97,6 +104,12 @@ const EmployeeEditContainer = ({ navigation, route, ...props }) => {
 
     return (
         <EmployeeEditScreen
+            lastName={lastName}
+            firstName={firstName}
+            surName={surName}
+            email={email}
+            phone={phone}
+            pass={pass}
             error={error}
             isLoading={isLoading}
             lastNameInputValue={lastNameInputValue}

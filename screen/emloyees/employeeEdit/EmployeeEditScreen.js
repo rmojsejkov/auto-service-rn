@@ -6,7 +6,12 @@ import {Icon} from "react-native-elements";
 
 const EmployeeEditScreen = ({navigation, ...props}) => {
     const {
-        employee,
+        lastName,
+        firstName,
+        surName,
+        email,
+        phone,
+        pass,
         firstNameInputValue,
         lastNameInputValue,
         surNameInputValue,
@@ -22,6 +27,8 @@ const EmployeeEditScreen = ({navigation, ...props}) => {
         error,
         isLoading,
     } = props;
+
+    console.log({lastName})
 
     if (error) {
         return (
@@ -58,7 +65,7 @@ const EmployeeEditScreen = ({navigation, ...props}) => {
                     />
                     <TextInput
                         style={{borderBottomColor: Colors.black, borderBottomWidth: 1, width: '80%', fontSize: 18, marginHorizontal: 14}}
-                        placeholder={employee.lastName}
+                        placeholder={lastName}
                         autoCapitalize='words'
                         value={lastNameInputValue}
                         onChangeText={onChangeLastName}
@@ -77,7 +84,7 @@ const EmployeeEditScreen = ({navigation, ...props}) => {
                     />
                     <TextInput
                         style={{borderBottomColor: Colors.black, borderBottomWidth: 1, width: '80%', fontSize: 18, marginHorizontal: 14}}
-                        placeholder={employee.firstName}
+                        placeholder={firstName}
                         autoCapitalize='words'
                         value={firstNameInputValue}
                         onChangeText={onChangeFirstName}
@@ -96,7 +103,7 @@ const EmployeeEditScreen = ({navigation, ...props}) => {
                     />
                     <TextInput
                         style={{borderBottomColor: Colors.black, borderBottomWidth: 1, width: '80%', fontSize: 18, marginHorizontal: 10}}
-                        placeholder={employee.surName}
+                        placeholder={surName}
                         autoCapitalize='words'
                         value={surNameInputValue}
                         onChangeText={onChangeSurName}
@@ -115,7 +122,7 @@ const EmployeeEditScreen = ({navigation, ...props}) => {
                     />
                     <TextInput
                         style={{borderBottomColor: Colors.black, borderBottomWidth: 1, width: '80%', fontSize: 18, marginHorizontal: 10}}
-                        placeholder={employee.email}
+                        placeholder={email}
                         keyboardType="email-address"
                         value={emailInputValue}
                         onChangeText={onChangeEmail}
@@ -134,7 +141,7 @@ const EmployeeEditScreen = ({navigation, ...props}) => {
                     />
                     <TextInput
                         style={{borderBottomColor: Colors.black, borderBottomWidth: 1, width: '80%', fontSize: 18, marginHorizontal: 10}}
-                        placeholder={employee.phone}
+                        placeholder={phone}
                         keyboardType="phone-pad"
                         value={phoneInputValue}
                         onChangeText={onChangePhone}
@@ -153,7 +160,7 @@ const EmployeeEditScreen = ({navigation, ...props}) => {
                     />
                     <TextInput
                         style={{borderBottomColor: Colors.black, borderBottomWidth: 1, width: '80%', fontSize: 18, marginHorizontal: 10}}
-                        placeholder={employee.pass}
+                        placeholder={pass}
                         autoCapitalize='words'
                         value={passInputValue}
                         onChangeText={onChangePass}

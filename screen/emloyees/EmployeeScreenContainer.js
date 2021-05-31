@@ -36,11 +36,17 @@ const EmployeeScreenContainer = ({navigation, ...props}) => {
 
     const employeeEditHandler = employee => {
         navigation.navigate('EmployeeEditScreen', {
-            employee: employee
+            lastName: employee.lastName,
+            firstName: employee.firstName,
+            surName: employee.surName,
+            email: employee.email,
+            phone: employee.phone,
+            pass: employee.pass,
+            id: employee.id
         })
     }
 
-    const postEmployeeDelete = useCallback( async (id) => {
+    const postEmployeeDelete = useCallback( async id => {
         setIsLoading(true);
         try {
             await dispatch(employeeActions.deleteEmployee(id));
@@ -49,7 +55,7 @@ const EmployeeScreenContainer = ({navigation, ...props}) => {
             setError('Something went wrong during network call');
         }
         setIsLoading(false);
-    }, [setIsLoading, dispatch, id]);
+    }, [setIsLoading, dispatch]);
 
     const deleteHandler = id => {
         Alert.alert('Предупреждение',

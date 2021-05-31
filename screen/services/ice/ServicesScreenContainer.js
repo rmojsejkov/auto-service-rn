@@ -7,13 +7,15 @@ import ServicesScreenView from "./ServicesScreenView";
 
 const ServicesScreenContainer = ({navigation, ...props}) => {
     const {
-        defaultServicesIce
+        defaultServicesIce,
     } = useSelector(state => state.service);
 
     const [ isLoading, setIsLoading ] = useState(true);
     const [ error, setError ] = useState(null);
 
+
     const dispatch = useDispatch();
+
 
     const loadServices = useCallback(async () => {
         setIsLoading(true);

@@ -1,7 +1,7 @@
 import { EMPLOYEES } from "../../../constants/types";
 
 const initialState = {
-    defaultEmployees: [],
+    defaultEmployees: []
 }
 
 const handlers = {
@@ -16,6 +16,10 @@ const handlers = {
     [EMPLOYEES.DELETE_EMPLOYEE]: (state, {payload}) => ({
         ...state,
         defaultEmployees: state.defaultEmployees.filter(s => s.id !== payload)
+    }),
+    [EMPLOYEES.EDIT_EMPLOYEE]: (state, {payload}) => ({
+        ...state,
+        defaultEmployees: state.defaultEmployees.filter(s => s.id !== payload.id).concat(payload)
     }),
     //
     // [SERVICES.GET_DEFAULT_SERVICES_ELECTRICIAN]: (state, {payload}) => ({

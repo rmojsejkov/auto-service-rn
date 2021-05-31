@@ -20,7 +20,7 @@ const ServiceBlockItem = ({service, onSelect, ...props}) => {
                         </View>
                         <View style={styles.priceContainer}>
                             <View style={styles.priceTextCont}>
-                                <Text style={styles.priceText}>Цена: {service.price}</Text>
+                                <Text style={styles.priceText}>Цена: {service.price} р.</Text>
                             </View>
                         </View>
                     </View>

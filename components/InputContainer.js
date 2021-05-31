@@ -5,16 +5,15 @@ import { Icon } from "react-native-elements";
 import Colors from '../constants/colors';
 
 const InputContainer = ({value, onChangeText = () => '', ...props}) => {
-    const [enteredCity, setEnteredCity] = useState(value || '');
+    const [enteredText, setEnteredText] = useState(value || '');
 
-    const cityInputHandler = enteredText => {
-        setEnteredCity(enteredText);
+    const textInputHandler = enteredText => {
+        setEnteredText(enteredText);
     };
 
     useEffect(() => {
-        onChangeText(enteredCity);
-    }, [enteredCity]);
-    console.log(value)
+        onChangeText(enteredText);
+    }, [enteredText]);
 
     return(
         <View style={styles.tab}>
@@ -27,14 +26,14 @@ const InputContainer = ({value, onChangeText = () => '', ...props}) => {
                     style={styles.icon}
                 />
                 <TextInput
-                    placeholder="Введите название услуги..."
+                    placeholder="Введите название..."
                     style={styles.input}
-                    onChangeText={cityInputHandler}
-                    value={enteredCity}
+                    onChangeText={textInputHandler}
+                    value={enteredText}
                 />
-                <TouchableWithoutFeedback onPress={() => cityInputHandler('')}>
+                <TouchableWithoutFeedback onPress={() => textInputHandler('')}>
                     <Icon
-                        style={{opacity: enteredCity !== '' ? 1 : 0}}
+                        style={{opacity: enteredText !== '' ? 1 : 0}}
                         name='cancel'
                         size={20}
                         color={Colors.black}

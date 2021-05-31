@@ -28,10 +28,7 @@ const AutoElectricianScreenContainer = ({navigation, ...props}) => {
     }, [dispatch, setIsLoading, setError]);
 
     const electricianAddHandler = service => {
-        navigation.navigate('ElectricianAddScreen', {
-            serviceName: service.serviceName,
-            price: service.price
-        })
+        navigation.navigate('ElectricianAddScreen')
     }
 
     const electricianSelectHandler = service => {
