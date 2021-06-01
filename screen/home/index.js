@@ -1,3 +1,3 @@
-import HomeScreen from "./HomeScreenView";
+import HomeScreen from "./HomeScreenContainer";
 
 export {HomeScreen};

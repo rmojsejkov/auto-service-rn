@@ -11,7 +11,6 @@ import {
 } from '../../../components';
 
 const ServicesScreenView = (props) => {
-
     const {
         error,
         isLoading,
@@ -19,8 +18,6 @@ const ServicesScreenView = (props) => {
         defaultServicesIce,
         iceAddHandler,
         iceSelectHandler,
-        textInputValue,
-        textHandler,
     } = props;
 
     if (error) {
@@ -41,6 +38,8 @@ const ServicesScreenView = (props) => {
             </View>
         )
     }
+
+    console.log(defaultServicesIce.length)
 
     return (
         <View style={styles.screen}>

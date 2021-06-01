@@ -1,7 +1,9 @@
 import { SERVICES } from "../../../constants/types";
 
 const initialState = {
-    defaultServicesIce: []
+    defaultServicesIce: [],
+    defaultServicesSuspension: [],
+    defaultServicesAutoElectrician: []
 }
 
 const handlers = {
