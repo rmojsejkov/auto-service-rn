@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, StyleSheet, Button, ActivityIndicator} from 'react-native';
+import {Text, View, StyleSheet, Button, ActivityIndicator, Image} from 'react-native';
 
 import Colors from '../../../../constants/colors';
 import {HeaderToggleButton} from "../../../default-options";
@@ -26,7 +26,10 @@ const SuspensionDetails = ({navigation, ...props}) => {
     if (isLoading) {
         return (
             <View style={{...styles.screen, justifyContent: 'center', alignItems: 'center'}}>
-                <ActivityIndicator size='large' color={Colors.splash} />
+                <Image
+                    style={{width: 60, height: 60}}
+                    source={require('../../../../assets/Gear.gif')}
+                />
             </View>
         )
     }

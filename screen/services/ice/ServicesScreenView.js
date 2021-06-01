@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import { Text, View, StyleSheet, FlatList, Button, ActivityIndicator } from "react-native";
+import {Text, View, StyleSheet, FlatList, Button, ActivityIndicator, Image} from "react-native";
 
 import { HeaderToggleButton } from "../../default-options";
 import Colors from '../../../constants/colors';
@@ -34,12 +34,13 @@ const ServicesScreenView = (props) => {
     if (isLoading) {
         return (
             <View style={{...styles.screen, justifyContent: 'center', alignItems: 'center'}}>
-                <ActivityIndicator size='large' color={Colors.black} />
+                <Image
+                    style={{width: 60, height: 60}}
+                    source={require('../../../assets/Gear.gif')}
+                />
             </View>
         )
     }
-
-    console.log(defaultServicesIce.length)
 
     return (
         <View style={styles.screen}>
@@ -54,9 +55,6 @@ const ServicesScreenView = (props) => {
                 refreshing={isLoading}
                 onRefresh={() => loadServices()}
             />
-            <View style={styles.buttonSearch}>
-                <CustomButtonSearch />
-            </View>
             <View style={styles.buttonAdd}>
                 <CustomButtonAdding onPress={iceAddHandler}/>
             </View>

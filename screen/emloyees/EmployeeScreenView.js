@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import {ActivityIndicator, Button, FlatList, StyleSheet, Text, View} from "react-native";
+import {ActivityIndicator, Button, FlatList, Image, StyleSheet, Text, View} from "react-native";
 
 import {HeaderToggleButton} from "../default-options";
 import Colors from "../../constants/colors";
@@ -30,7 +30,10 @@ const EmployeeScreenView = ({navigation, ...props}) => {
     if (isLoading) {
         return (
             <View style={{...styles.screen, justifyContent: 'center', alignItems: 'center'}}>
-                <ActivityIndicator size='large' color={Colors.black} />
+                <Image
+                    style={{width: 60, height: 60}}
+                    source={require('../../assets/Gear.gif')}
+                />
             </View>
         )
     }

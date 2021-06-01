@@ -13,9 +13,7 @@ const ServicesScreenContainer = ({navigation, ...props}) => {
     const [ isLoading, setIsLoading ] = useState(true);
     const [ error, setError ] = useState(null);
 
-
     const dispatch = useDispatch();
-
 
     const loadServices = useCallback(async () => {
         setIsLoading(true);
@@ -26,7 +24,6 @@ const ServicesScreenContainer = ({navigation, ...props}) => {
             setError('Something went wrong during network call');
         }
         setIsLoading(false);
-
     }, [dispatch, setIsLoading, setError]);
 
     const iceAddHandler = service => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import {ActivityIndicator, Button, KeyboardAvoidingView, StyleSheet, Text, TextInput, View} from 'react-native';
+import {ActivityIndicator, Button, Image, KeyboardAvoidingView, StyleSheet, Text, TextInput, View} from 'react-native';
 
 import Colors from '../../../constants/colors';
 import {Icon} from "react-native-elements";
@@ -44,7 +44,10 @@ const EmployeeEditScreen = ({navigation, ...props}) => {
     if (isLoading) {
         return (
             <View style={{...styles.screen, justifyContent: 'center', alignItems: 'center'}}>
-                <ActivityIndicator size='large' color={Colors.splash} />
+                <Image
+                    style={{width: 60, height: 60}}
+                    source={require('../../../assets/Gear.gif')}
+                />
             </View>
         )
     }

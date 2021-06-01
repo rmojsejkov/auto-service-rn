@@ -1,20 +1,42 @@
 import React, {useEffect} from "react";
-import {Text, View, StyleSheet, FlatList} from "react-native";
+import {Text, View, StyleSheet, FlatList, Button, ActivityIndicator, Image} from "react-native";
 
 import { HeaderToggleButton } from "../default-options";
 import { SwiperData }  from '../../components';
 import Colors from '../../constants/colors';
-import { RecommendHome } from "../../components";
 
 const HomeScreenView = ({navigation, ...props}) => {
 
     const {
+        error,
+        isLoading,
         defaultServicesIce,
         defaultServicesSuspension,
-        defaultServicesAutoElectrician
+        defaultServicesAutoElectrician,
+        defaultEmployees
     } = props;
 
-    console.log(defaultServicesIce.length)
+    if (error) {
+        return (
+            <View style={{...styles.screen, justifyContent: 'center', alignItems: 'center'}}>
+                <Text>{error}</Text>
+                <View>
+                    <Button title='Try again' color={Colors.black} onPress={() => loadServices()}/>
+                </View>
+            </View>
+        )
+    }
+
+    if (isLoading) {
+        return (
+            <View style={{...styles.screen, justifyContent: 'center', alignItems: 'center'}}>
+                <Image
+                    style={{width: 60, height: 60}}
+                    source={require('../../assets/Gear.gif')}
+                />
+            </View>
+        )
+    }
 
     return (
         <View style={styles.screen}>
@@ -26,18 +48,17 @@ const HomeScreenView = ({navigation, ...props}) => {
                     <Text style={{fontSize: 25, fontWeight: "bold"}}>Услуги</Text>
                 </View>
                 <View style={styles.aboutService}>
-                    <Text style={{fontSize: 20, fontWeight: "bold"}}>Количество услуг по ДВС: {defaultServicesIce.length}</Text>
-                    <Text style={{fontSize: 14, fontWeight: "bold"}}>Количество услуг по подвеске: {defaultServicesSuspension.length}</Text>
-                    <Text style={{fontSize: 14, fontWeight: "bold"}}>Количество услуг по электрике: {defaultServicesAutoElectrician.length}</Text>
+                    <Text style={{fontSize: 19, fontWeight: "bold", margin: 5}}>Количество услуг по ДВС: {defaultServicesIce.length}</Text>
+                    <Text style={{fontSize: 19, fontWeight: "bold"}}>Количество услуг по подвеске: {defaultServicesSuspension.length}</Text>
+                    <Text style={{fontSize: 19, fontWeight: "bold", margin: 5}}>Количество услуг по электрике: {defaultServicesAutoElectrician.length}</Text>
                 </View>
-                {/*<FlatList*/}
-                {/*    // data={citiesWeather}*/}
-                {/*    keyExtractor={item => item.id + ''}*/}
-                {/*    numColumns={1}*/}
-                {/*    renderItem={itemData => <RecommendHome city={itemData.item} onSelect={() => ({})} />}*/}
-                {/*    // refreshing={isLoading}*/}
-                {/*    // onRefresh={() => loadCities()}*/}
-                {/*/>*/}
+                <View style={styles.users}>
+                    <Text style={{fontSize: 25, fontWeight: "bold"}}>Пользователи</Text>
+                </View>
+                <View style={styles.aboutUsers}>
+                    <Text style={{fontSize: 19, fontWeight: "bold", margin: 5}}>Количество сотрудников: {defaultEmployees.length}</Text>
+                    <Text style={{fontSize: 19, fontWeight: "bold"}}>Количество пользователей: 4</Text>
+                </View>
             </View>
         </View>
     )
@@ -82,17 +103,46 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.lightgray
     },
     services: {
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.lightgray,
         alignItems: 'center',
         borderWidth: 2,
         bottom: 400,
-        marginHorizontal: '7%'
+        marginHorizontal: '7%',
+        borderColor: Colors.splash,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 3,
+        },
+        shadowOpacity: 0.27,
+        shadowRadius: 4.65,
+        elevation: 6
     },
     aboutService: {
         alignItems: 'center',
+        // borderWidth: 2,
+        bottom: 390,
+        // marginHorizontal: '3%'
+    },
+    users: {
+        backgroundColor: Colors.lightgray,
+        alignItems: 'center',
         borderWidth: 2,
-        bottom: 100,
-        marginHorizontal: '7%'
+        bottom: 380,
+        marginHorizontal: '7%',
+        borderColor: Colors.splash,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 3,
+        },
+        shadowOpacity: 0.27,
+        shadowRadius: 4.65,
+        elevation: 6
+    },
+    aboutUsers: {
+        alignItems: 'center',
+        bottom: 370,
     }
 });
 
