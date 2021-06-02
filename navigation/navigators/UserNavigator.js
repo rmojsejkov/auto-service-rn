@@ -1,11 +1,11 @@
 import React from "react";
 import {createStackNavigator} from "@react-navigation/stack";
-import {Image, StyleSheet, View, Text} from "react-native";
 
 import Colors from '../../constants/colors';
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import {UserScreen} from "../../screen/users";
 import {userScreenOptions} from "../../screen/users/UserScreenView";
+import {UserEditScreen} from "../../screen/users/userEdit";
+import {userEditScreenOptions} from "../../screen/users/userEdit/UserEditScreen";
 
 const defaultStackNavOptions = {
     headerStyle: {
@@ -32,6 +32,11 @@ const UserNavigator = () => {
                 name="UserStack"
                 component={UserScreen}
                 options={userScreenOptions}
+            />
+            <UserStackNavigator.Screen
+                name="UserEditScreen"
+                component={UserEditScreen}
+                options={userEditScreenOptions}
             />
         </UserStackNavigator.Navigator>
     )

@@ -3,11 +3,11 @@ import { Alert } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 
 import {electricianActions, serviceActions, suspensionActions} from '../../store/actions/servicesActions';
-import HomeScreenView from "./HomeScreenView";
+import OrderScreenView from "./OrderScreenView";
 import {employeeActions} from "../../store/actions/employeesActions";
 import {userActions} from "../../store/actions/usersActions";
 
-const HomeScreenContainer = ({navigation, ...props}) => {
+const OrderScreenContainer = ({navigation, ...props}) => {
 
     const [ isLoading, setIsLoading ] = useState(true);
     const [ error, setError ] = useState(null);
@@ -49,7 +49,7 @@ const HomeScreenContainer = ({navigation, ...props}) => {
     } = useSelector(state => state.user);
 
     return (
-        <HomeScreenView
+        <OrderScreenView
             error={error}
             isLoading={isLoading}
             defaultServicesIce={defaultServicesIce}
@@ -61,4 +61,4 @@ const HomeScreenContainer = ({navigation, ...props}) => {
     )
 }
 
-export default HomeScreenContainer;
+export default OrderScreenContainer;

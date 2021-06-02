@@ -3,7 +3,7 @@ import { Image, SafeAreaView, StyleSheet, View, Text, Button } from "react-nativ
 import { createDrawerNavigator, DrawerItemList } from "@react-navigation/drawer";
 
 import Colors from '../constants/colors';
-import {MaterialCommunityIcons, MaterialIcons} from "@expo/vector-icons";
+import {AntDesign, Entypo, FontAwesome, MaterialCommunityIcons, MaterialIcons} from "@expo/vector-icons";
 import { SignInButton, SignUpButton } from "../components";
 
 import {
@@ -12,7 +12,8 @@ import {
     EmployeeNavigator,
     PriceNavigator,
     ServicesNavigator,
-    UserNavigator
+    UserNavigator,
+    OrderNavigator
 } from './navigators';
 
 const AutoServiceDrawerNavigator = createDrawerNavigator();
@@ -125,6 +126,20 @@ export const AutoServiceNavigator = () => {
                     drawerIcon: props => (
                         <MaterialCommunityIcons
                             name="cash-multiple"
+                            size={23}
+                            color={Colors.splash}
+                        />
+                    )
+                }}
+            />
+            <AutoServiceDrawerNavigator.Screen
+                name="Orders"
+                component={OrderNavigator}
+                options={{
+                    drawerLabel: 'Заказы',
+                    drawerIcon: props => (
+                        <Entypo
+                            name="shopping-cart"
                             size={23}
                             color={Colors.splash}
                         />

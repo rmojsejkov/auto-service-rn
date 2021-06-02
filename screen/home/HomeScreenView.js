@@ -13,7 +13,8 @@ const HomeScreenView = ({navigation, ...props}) => {
         defaultServicesIce,
         defaultServicesSuspension,
         defaultServicesAutoElectrician,
-        defaultEmployees
+        defaultEmployees,
+        defaultUsers
     } = props;
 
     if (error) {
@@ -57,7 +58,7 @@ const HomeScreenView = ({navigation, ...props}) => {
                 </View>
                 <View style={styles.aboutUsers}>
                     <Text style={{fontSize: 19, fontWeight: "bold", margin: 5}}>Количество сотрудников: {defaultEmployees.length}</Text>
-                    <Text style={{fontSize: 19, fontWeight: "bold"}}>Количество пользователей: 4</Text>
+                    <Text style={{fontSize: 19, fontWeight: "bold"}}>Количество пользователей: {defaultUsers.length}</Text>
                 </View>
             </View>
         </View>

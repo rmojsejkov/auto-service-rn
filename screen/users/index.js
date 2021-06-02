@@ -1,3 +1,3 @@
-import UserScreen from "./UserScreenView";
+import UserScreen from "./UserScreenContainer";
 
 export {UserScreen};
