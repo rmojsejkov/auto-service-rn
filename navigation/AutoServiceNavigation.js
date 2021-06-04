@@ -165,7 +165,7 @@ const styles = StyleSheet.create({
         // paddingTop: '90%',
         // borderWidth: 0.1,
         // borderRadius: 90,
-        top: '65%',
+        top: '40%',
         left: '30%',
         // elevation: 3
     },

@@ -6,6 +6,8 @@ import Colors from '../../constants/colors';
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import {OrderScreen} from "../../screen/orders";
 import {orderScreenOptions} from "../../screen/orders/OrderScreenView";
+import {OrderAddScreen} from "../../screen/orders/orderAdd";
+import {orderAddScreenOptions} from "../../screen/orders/orderAdd/OrderAddScreen";
 
 const defaultStackNavOptions = {
     headerStyle: {
@@ -32,6 +34,11 @@ const OrderNavigator = () => {
                 name="OrderStack"
                 component={OrderScreen}
                 options={orderScreenOptions}
+            />
+            <OrderStackNavigator.Screen
+                name="OrderAddScreen"
+                component={OrderAddScreen}
+                options={orderAddScreenOptions}
             />
         </OrderStackNavigator.Navigator>
     )

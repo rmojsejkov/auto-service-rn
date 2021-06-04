@@ -22,7 +22,11 @@ export const getDefaultUsers = () => {
         });
     }
 }
-
+/**
+ *
+ * @param id
+ * @returns {(function(*): Promise<void>)|*}
+ */
 export const deleteUser = id => {
     return async dispatch => {
         const response = await fetch(`${URL}/users/${id}.json`, {

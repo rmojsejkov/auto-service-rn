@@ -6,57 +6,88 @@ import {electricianActions, serviceActions, suspensionActions} from '../../store
 import OrderScreenView from "./OrderScreenView";
 import {employeeActions} from "../../store/actions/employeesActions";
 import {userActions} from "../../store/actions/usersActions";
+import ServicesScreenView from "../services/ice/ServicesScreenView";
+import {orderActions} from "../../store/actions/ordersActions";
+import Colors from "../../constants/colors";
+import {HeaderButtons, Item} from "react-navigation-header-buttons";
+import {OrderButton} from "../../components/UI";
 
 const OrderScreenContainer = ({navigation, ...props}) => {
+    const {
+        defaultOrders,
+    } = useSelector(state => state.order);
 
     const [ isLoading, setIsLoading ] = useState(true);
     const [ error, setError ] = useState(null);
 
     const dispatch = useDispatch();
 
-    const loadAllDates = useCallback(async () => {
+    const loadOrders = useCallback(async () => {
         setIsLoading(true);
         try {
-            await dispatch(serviceActions.getDefaultServicesIce());
-            await dispatch(suspensionActions.getDefaultServicesSuspension());
-            await dispatch(electricianActions.getDefaultServicesAutoElectrician());
-            await dispatch(employeeActions.getDefaultEmployees());
-            await dispatch(userActions.getDefaultUsers());
+            await dispatch(orderActions.getDefaultOrders());
         } catch (err) {
             Alert.alert('Error', err.message, [{ message: 'Okay' }]);
             setError('Something went wrong during network call');
         }
         setIsLoading(false);
-    }, [dispatch]);
+    }, [dispatch, setIsLoading, setError]);
+
+    const orderAddHandler = order => {
+        navigation.navigate('OrderAddScreen')
+    }
+
+    const orderSelectHandler = order => {
+        navigation.navigate('OrderDetails', {
+            orderDate: order.orderDate,
+            duration: order.duration,
+            detail: order.detail,
+            service: order.service,
+            employee: order.employee,
+            user: order.user,
+            id: order.id
+        })
+    }
 
     useEffect(() => {
-        loadAllDates();
-    }, [loadAllDates]);
+        loadOrders();
+    }, [loadOrders]);
 
+    useEffect(() => {
+        return navigation.dangerouslyGetParent()
+            .addListener('focus', () => {
+                loadOrders();
+            });
+    }, [navigation]);
 
-    const {
-        defaultServicesIce,
-        defaultServicesSuspension,
-        defaultServicesAutoElectrician
-    } = useSelector(state => state.service);
-
-    const {
-        defaultEmployees
-    } = useSelector(state => state.employee);
-
-    const {
-        defaultUsers
-    } = useSelector(state => state.user);
+    useEffect(() => {
+        navigation.setOptions({
+            headerTitle: 'Заказы',
+            headerTitleAlign: 'center',
+            headerTitleStyle: {
+                color: Colors.white,
+                fontSize: 24
+            },
+            headerRight: () => (
+                <HeaderButtons HeaderButtonComponent={OrderButton}>
+                    <Item
+                        title="Add"
+                        iconName="cart-plus"
+                        onPress={orderAddHandler}
+                    />
+                </HeaderButtons>
+            )
+        })
+    }, [navigation]);
 
     return (
         <OrderScreenView
+            defaultOrders={defaultOrders}
+            loadOrders={loadOrders}
             error={error}
             isLoading={isLoading}
-            defaultServicesIce={defaultServicesIce}
-            defaultServicesSuspension={defaultServicesSuspension}
-            defaultServicesAutoElectrician={defaultServicesAutoElectrician}
-            defaultEmployees={defaultEmployees}
-            defaultUsers={defaultUsers}
+            navigation={navigation}
+            orderSelectHandler={orderSelectHandler}
         />
     )
 }
