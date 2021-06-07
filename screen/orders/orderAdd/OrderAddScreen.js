@@ -1,23 +1,23 @@
 import React from 'react';
 import {Button, FlatList, Image, KeyboardAvoidingView, Platform, StyleSheet, Text, TextInput, View} from 'react-native';
 import {Icon} from "react-native-elements";
-import ModalSelector from 'react-native-modal-selector-searchable'
+import ModalSelector from 'react-native-modal-selector-searchable';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 import Colors from '../../../constants/colors';
 import {ServiceBlockItem} from "../../../components";
 
 const OrderAddScreen = ({navigation, ...props}) => {
     const {
+        dateValue,
         loadAllDates,
         defaultServicesIce,
-        firstNameInputValue,
-        lastNameInputValue,
         surNameInputValue,
         emailInputValue,
         phoneInputValue,
         passInputValue,
-        onChangeFirstName,
-        onChangeLastName,
+        onChangeDate,
+        onChangeService,
         onChangeSurName,
         onChangeEmail,
         onChangePhone,
@@ -26,13 +26,7 @@ const OrderAddScreen = ({navigation, ...props}) => {
         isLoading,
     } = props;
 
-    console.log(defaultServicesIce.map(service => service))
-
-    let index = 0;
-    const data = [
-        { key: defaultServicesIce.map(service => service.id), label: defaultServicesIce.map(service => service.serviceName)},
-        //{ key: index++, label: 'Cherries' },
-    ];
+    const data = defaultServicesIce.map(service => ({key: service.id, label: service.serviceName}))
 
     if (error) {
         return (
@@ -70,35 +64,10 @@ const OrderAddScreen = ({navigation, ...props}) => {
                         size={21}
                         style={styles.icon}
                     />
-                    {/*<FlatList*/}
-                    {/*    data={defaultServicesIce}*/}
-                    {/*    keyExtractor={item => item.id + ''}*/}
-                    {/*    numColumns={1}*/}
-                    {/*    renderItem={itemData => <ServiceBlockItem service={itemData.item} onSelect={iceSelectHandler.bind(this)}/>*/}
-                    {/*    }*/}
-                    {/*    refreshing={isLoading}*/}
-                    {/*    onRefresh={() => loadServices()}*/}
-                    {/*/>*/}
-                    {/*<TextInput*/}
-                    {/*    style={{borderBottomColor: Colors.black, borderBottomWidth: 1, width: '80%', fontSize: 18, marginHorizontal: 14}}*/}
-                    {/*    placeholder="Введите фамилию"*/}
-                    {/*    autoCapitalize='words'*/}
-                    {/*    value={lastNameInputValue}*/}
-                    {/*    onChangeText={onChangeLastName}*/}
-                    {/*/>*/}
-                    {/*<Picker*/}
-                    {/*    // style={{marginVertical: 10}}*/}
-                    {/*    selectedValue={0}*/}
-                    {/*    // onValueChange={(itemVal) => {*/}
-                    {/*    //     onChangeLastName(itemVal)*/}
-                    {/*    // }}*/}
-                    {/*>*/}
-                    {/*    <Picker.item label={'service.serviceName'} value={'service.id'} />*/}
-                    {/*</Picker>*/}
                     <ModalSelector
-                        data={defaultServicesIce}
+                        data={data}
                         initValue="Выберите услугу"
-                        onChange={(service)=>{ alert(`${service.ser} (${service.key})`) }}
+                        onChange={(service)=> onChangeService}
                     />
                 </KeyboardAvoidingView>
                 <KeyboardAvoidingView
@@ -112,12 +81,13 @@ const OrderAddScreen = ({navigation, ...props}) => {
                         size={21}
                         style={styles.icon}
                     />
-                    <TextInput
-                        style={{borderBottomColor: Colors.black, borderBottomWidth: 1, width: '80%', fontSize: 18, marginHorizontal: 14}}
-                        placeholder="Введите имя"
-                        autoCapitalize='words'
-                        value={firstNameInputValue}
-                        onChangeText={onChangeFirstName}
+                    <DateTimePicker
+                        testID='dateTimePicker'
+                        value={dateValue}
+                        mode='date'
+                        is24Hour={true}
+                        display="default"
+                        onChange={onChangeDate}
                     />
                 </KeyboardAvoidingView>
                 <KeyboardAvoidingView
@@ -244,7 +214,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width: '100%',
         marginBottom: '6%',
-        flexDirection: 'row',
+        // flexDirection: 'row',
         bottom: '15%'
     },
     titleText: {

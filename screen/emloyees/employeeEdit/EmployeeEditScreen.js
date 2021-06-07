@@ -28,7 +28,6 @@ const EmployeeEditScreen = ({navigation, ...props}) => {
         isLoading,
     } = props;
 
-    console.log({lastName})
 
     if (error) {
         return (

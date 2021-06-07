@@ -2,7 +2,7 @@ import React, {useCallback, useEffect, useState} from "react";
 
 import OrderAddScreen from "./OrderAddScreen";
 import Colors from '../../../constants/colors';
-import {StyleSheet, Alert} from "react-native";
+import {StyleSheet, Alert, Platform} from "react-native";
 
 import {useDispatch, useSelector} from "react-redux";
 import {employeeActions} from "../../../store/actions/employeesActions";
@@ -14,8 +14,8 @@ import {userActions} from "../../../store/actions/usersActions";
 
 const OrderAddContainer = ({ navigation, route, ...props }) => {
 
-    const [lastNameInputValue, setLastNameInputValue] = useState('');
-    const [firstNameInputValue, setFirstNameInputValue] = useState('');
+    const [serviceInputValue, setServiceInputValue] = useState('');
+    const [dateValue, setDateValue] = useState(new Date(1598051730000));
     const [surNameInputValue, setSurNameInputValue] = useState('');
     const [emailInputValue, setEmailInputValue] = useState('');
     const [phoneInputValue, setPhoneInputValue] = useState('');
@@ -24,6 +24,29 @@ const OrderAddContainer = ({ navigation, route, ...props }) => {
     const [ isLoading, setIsLoading ] = useState(false);
     const [ error, setError ] = useState(null);
     const roleId = 3;
+
+    const [mode, setMode] = useState('date');
+    const [show, setShow] = useState(false);
+
+    const onChange = (event, selectedDate) => {
+        const currentDate = selectedDate || dateValue;
+        setShow(Platform.OS === 'ios');
+        setDateValue(currentDate);
+    };
+
+    const showMode = (currentMode) => {
+        setShow(true);
+        setMode(currentMode);
+    };
+
+    const showDatepicker = () => {
+        showMode('date');
+    };
+
+    const showTimepicker = () => {
+        showMode('time');
+    };
+
 
     const dispatch = useDispatch();
 
@@ -83,8 +106,6 @@ const OrderAddContainer = ({ navigation, route, ...props }) => {
         setIsLoading(false);
         navigation.goBack();
     }, [
-        lastNameInputValue,
-        firstNameInputValue,
         surNameInputValue,
         emailInputValue,
         phoneInputValue,
@@ -95,7 +116,7 @@ const OrderAddContainer = ({ navigation, route, ...props }) => {
 
     const addHandler = () => {
         Alert.alert('Предупреждение',
-            'Добавить сотрудника?',
+            'Добавить заказ?',
             [
                 {
                     text: 'Нет',
@@ -134,14 +155,13 @@ const OrderAddContainer = ({ navigation, route, ...props }) => {
         <OrderAddScreen
             error={error}
             isLoading={isLoading}
-            lastNameInputValue={lastNameInputValue}
-            firstNameInputValue={firstNameInputValue}
+            dateValue={dateValue}
             surNameInputValue={surNameInputValue}
             emailInputValue={emailInputValue}
             phoneInputValue={phoneInputValue}
             passInputValue={passInputValue}
-            onChangeLastName={setLastNameInputValue}
-            onChangeFirstName={setFirstNameInputValue}
+            onChangeService={setServiceInputValue}
+            onChangeDate={setDateValue}
             onChangeSurName={setSurNameInputValue}
             onChangeEmail={setEmailInputValue}
             onChangePhone={setPhoneInputValue}
