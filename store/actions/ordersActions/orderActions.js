@@ -1,13 +1,20 @@
 import { ORDERS } from "../../../constants/types";
 import { URL } from "../../../constants";
 
+/**
+ * Функция, позволяющая очистить список заказов в состоянии
+ * @returns {{payload: *[], type: string}}
+ */
 export const clearOrders = () => {
     return {
         type: ORDERS.GET_DEFAULT_ORDERS,
         payload: []
     }
 }
-
+/**
+ * Запрос в базу данных для получения всех заказов
+ * @returns {(function(*): Promise<void>)|*}
+ */
 export const getDefaultOrders = () => {
     return async dispatch => {
         const response = await fetch(`${URL}/orders.json`);
@@ -22,7 +29,11 @@ export const getDefaultOrders = () => {
         });
     }
 }
-
+/**
+ * Запрос в базу данных для удаления заказа
+ * @param id
+ * @returns {(function(*): Promise<void>)|*}
+ */
 export const deleteOrder = id => {
     return async dispatch => {
         const response = await fetch(`${URL}/orders/${id}.json`, {
@@ -38,7 +49,16 @@ export const deleteOrder = id => {
         });
     }
 }
-
+/**
+ * Запрос в базу данных для добавления нового заказа
+ * @param orderDate
+ * @param duration
+ * @param detail
+ * @param service
+ * @param employee
+ * @param user
+ * @returns {(function(*): Promise<void>)|*}
+ */
 export const setDefaultOrder = (orderDate, duration, detail, service, employee, user) => {
     return async dispatch => {
         const response = await fetch(`${URL}/employees.json`, {
@@ -74,7 +94,17 @@ export const setDefaultOrder = (orderDate, duration, detail, service, employee, 
         });
     }
 }
-
+/**
+ * Запрос в базу данных для изменения данных о заказе
+ * @param id
+ * @param orderDate
+ * @param duration
+ * @param detail
+ * @param service
+ * @param employee
+ * @param user
+ * @returns {(function(*): Promise<void>)|*}
+ */
 export const editOrder = (id, orderDate, duration, detail, service, employee, user) => {
     return async dispatch => {
         const response = await fetch(`${URL}/orders/${id}.json`, {

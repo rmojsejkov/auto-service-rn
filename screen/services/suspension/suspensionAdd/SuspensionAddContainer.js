@@ -8,6 +8,14 @@ import {suspensionActions} from "../../../../store/actions/servicesActions";
 import {MaterialHeaderButton} from "../../../../components";
 import {HeaderButtons, Item} from "react-navigation-header-buttons";
 
+/**
+ * Функция, содержащая все функции экрана добавления услуги по подвеске
+ * @param navigation
+ * @param route
+ * @param props
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const SuspensionAddContainer = ({ navigation, route, ...props }) => {
 
     const [serviceInputValue, setServiceInputValue] = useState('');
@@ -17,7 +25,10 @@ const SuspensionAddContainer = ({ navigation, route, ...props }) => {
     const [ error, setError ] = useState(null);
 
     const dispatch = useDispatch();
-
+    /**
+     * Функция, вызывающая функцию запроса в базу данных для добавления услуги
+     * @type {(function(): Promise<void>)|*}
+     */
     const postServiceAdd = useCallback( async () => {
         console.log('click save');
         console.log(serviceInputValue);
@@ -33,7 +44,9 @@ const SuspensionAddContainer = ({ navigation, route, ...props }) => {
         setIsLoading(false);
         navigation.goBack();
     }, [serviceInputValue, setIsLoading, dispatch, priceInputValue]);
-
+    /**
+     * Предупреждение добавления услуги
+     */
     const addHandler = () => {
         Alert.alert('Предупреждение',
             'Добавить услугу?',
@@ -82,7 +95,10 @@ const SuspensionAddContainer = ({ navigation, route, ...props }) => {
         />
     )
 };
-
+/**
+ * Стили экрана
+ * @type {{button: {paddingVertical: number, marginHorizontal: number, borderColor: string, borderRadius: number, paddingHorizontal: number}}}
+ */
 const styles = StyleSheet.create({
     button: {
         paddingVertical: 6,

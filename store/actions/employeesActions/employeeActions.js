@@ -1,13 +1,20 @@
 import { EMPLOYEES } from "../../../constants/types";
 import { URL } from "../../../constants";
 
+/**
+ * Функция, позволяющая очистить список сотрудников в состоянии
+ * @returns {{payload: *[], type: string}}
+ */
 export const clearEmployees = () => {
     return {
         type: EMPLOYEES.GET_DEFAULT_EMPLOYEES,
         payload: []
     }
 }
-
+/**
+ * Запрос в базу данных для получения всех сотрудников
+ * @returns {(function(*): Promise<void>)|*}
+ */
 export const getDefaultEmployees = () => {
     return async dispatch => {
         const response = await fetch(`${URL}/employees.json`);
@@ -22,7 +29,11 @@ export const getDefaultEmployees = () => {
         });
     }
 }
-
+/**
+ * Запрос в базу данных для удаления сотрудника
+ * @param id
+ * @returns {(function(*): Promise<void>)|*}
+ */
 export const deleteEmployee = id => {
     return async dispatch => {
         const response = await fetch(`${URL}/employees/${id}.json`, {
@@ -38,7 +49,17 @@ export const deleteEmployee = id => {
         });
     }
 }
-
+/**
+ * Запрос в базу данных для добавления нового сотрудника
+ * @param lastName
+ * @param firstName
+ * @param surName
+ * @param email
+ * @param phone
+ * @param pass
+ * @param roleId
+ * @returns {(function(*): Promise<void>)|*}
+ */
 export const setDefaultEmployee = (lastName, firstName, surName, email, phone, pass, roleId) => {
     return async dispatch => {
         const response = await fetch(`${URL}/employees.json`, {
@@ -76,7 +97,17 @@ export const setDefaultEmployee = (lastName, firstName, surName, email, phone, p
         });
     }
 }
-
+/**
+ * Запрос в базу данных для изменения данных о сотруднике
+ * @param id
+ * @param lastName
+ * @param firstName
+ * @param surName
+ * @param email
+ * @param phone
+ * @param pass
+ * @returns {(function(*): Promise<void>)|*}
+ */
 export const editEmployee = (id, lastName, firstName, surName, email, phone, pass) => {
     return async dispatch => {
         const response = await fetch(`${URL}/employees/${id}.json`, {

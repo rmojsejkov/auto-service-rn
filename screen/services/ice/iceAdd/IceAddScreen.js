@@ -4,6 +4,13 @@ import {ActivityIndicator, Button, Image, KeyboardAvoidingView, StyleSheet, Text
 import Colors from '../../../../constants/colors';
 import {Icon} from "react-native-elements";
 
+/**
+ * Компонент, отвечающий за отображение экрана добавления услуг по ДВС
+ * @param navigation
+ * @param props
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const IceAddScreen = ({navigation, ...props}) => {
     const {
         serviceInputValue,
@@ -84,13 +91,21 @@ const IceAddScreen = ({navigation, ...props}) => {
         </View>
     );
 };
-
+/**
+ * Функция, отображающая заголовок хэдера экрана добавления услуг по ДВС
+ * @param navData
+ * @returns {{headerTitle: string}}
+ * @constructor
+ */
 export const IceAddScreenOptions = navData => {
     return {
         headerTitle: 'Добавление услуги',
     }
 }
-
+/**
+ * Стили экрана
+ * @type {{container: {paddingVertical: string, backgroundColor: string, alignItems: string, marginTop: string}, nameTitle: {alignItems: string, bottom: string, flexDirection: string, width: string, marginBottom: string, paddingLeft: string}, priceTitle: {alignItems: string, flexDirection: string, bottom: string, width: string, marginBottom: string, paddingLeft: string}, titleText: {left: string, fontSize: number, fontWeight: string}, screen: {backgroundColor: string, flex: number}, weatherContainer: {alignItems: string, justifyContent: string}, weatherText: {fontSize: number, fontWeight: string}}}
+ */
 const styles = StyleSheet.create({
     screen: {
         backgroundColor: Colors.white,

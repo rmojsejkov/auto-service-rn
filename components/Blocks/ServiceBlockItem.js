@@ -9,7 +9,7 @@ import TouchableComponent from '../Blocks/TouchableComponent';
 import Block from './Block';
 import Colors from '../../constants/colors';
 
-const ServiceBlockItem = ({service, onSelect, ...props}) => {
+const ServiceBlockItem = ({service, onSelect, servicesList, ...props}) => {
     return(
         <Block style={styles.block}>
             <View style={styles.touchable}>

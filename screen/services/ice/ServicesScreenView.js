@@ -10,6 +10,12 @@ import {
     CustomButtonAdding
 } from '../../../components';
 
+/**
+ * Компонент, отвечающий за отображение экрана услуг по ДВС
+ * @param props
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const ServicesScreenView = (props) => {
     const {
         error,
@@ -51,7 +57,13 @@ const ServicesScreenView = (props) => {
                 data={defaultServicesIce}
                 keyExtractor={item => item.id + ''}
                 numColumns={1}
-                renderItem={itemData => <ServiceBlockItem service={itemData.item} onSelect={iceSelectHandler.bind(this)}/>}
+                renderItem={itemData =>
+                    <ServiceBlockItem
+                        // servicesList={servicesList}
+                        service={itemData.item}
+                        onSelect={iceSelectHandler.bind(this)}
+                    />
+                }
                 refreshing={isLoading}
                 onRefresh={() => loadServices()}
             />
@@ -61,7 +73,11 @@ const ServicesScreenView = (props) => {
         </View>
     );
 };
-
+/**
+ * Функция, отображающая заголовок хэдера экрана услуг по ДВС
+ * @param navData
+ * @returns {{headerLeft: (function()), headerTitle: string}}
+ */
 export const servicesScreenOptions = navData => {
     return {
         headerTitle: 'Работа с ДВС',

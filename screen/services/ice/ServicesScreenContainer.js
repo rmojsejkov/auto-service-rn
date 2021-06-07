@@ -5,16 +5,30 @@ import { useSelector, useDispatch } from 'react-redux';
 import { serviceActions } from '../../../store/actions/servicesActions';
 import ServicesScreenView from "./ServicesScreenView";
 
+/**
+ * Функция, содержащая все функции экрана услуг по ДВС
+ * @param navigation
+ * @param props
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const ServicesScreenContainer = ({navigation, ...props}) => {
+
+    // const servicesList = [];
+
     const {
         defaultServicesIce,
     } = useSelector(state => state.service);
 
+    console.log(defaultServicesIce)
     const [ isLoading, setIsLoading ] = useState(true);
     const [ error, setError ] = useState(null);
 
     const dispatch = useDispatch();
-
+    /**
+     * Функция, вызывающая функция запроса в базу данных для получения всех услуг по ДВС
+     * @type {(function(): Promise<void>)|*}
+     */
     const loadServices = useCallback(async () => {
         setIsLoading(true);
         try {
@@ -25,11 +39,17 @@ const ServicesScreenContainer = ({navigation, ...props}) => {
         }
         setIsLoading(false);
     }, [dispatch, setIsLoading, setError]);
-
+    /**
+     * Обработчик события при нажатии на кнопку, перенаправляющий пользователя на экран добавления услуги
+     * @param service
+     */
     const iceAddHandler = service => {
         navigation.navigate('IceAddScreen')
     }
-
+    /**
+     * Обработчик события при нажатии на кнопку, перенаправляющий пользователя на экран доп. информации об услуге
+     * @param service
+     */
     const iceSelectHandler = service => {
         navigation.navigate('ServicesDetails', {
             serviceName: service.serviceName,
@@ -51,6 +71,7 @@ const ServicesScreenContainer = ({navigation, ...props}) => {
 
     return (
         <ServicesScreenView
+            // servicesList={servicesList}
             defaultServicesIce={defaultServicesIce}
             loadServices={loadServices}
             error={error}

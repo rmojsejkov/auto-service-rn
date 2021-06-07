@@ -1,12 +1,15 @@
 import React from 'react';
-import {Button, Image, KeyboardAvoidingView, Picker, StyleSheet, Text, TextInput, View} from 'react-native';
+import {Button, FlatList, Image, KeyboardAvoidingView, Platform, StyleSheet, Text, TextInput, View} from 'react-native';
+import {Icon} from "react-native-elements";
+import ModalSelector from 'react-native-modal-selector-searchable'
 
 import Colors from '../../../constants/colors';
-import {Icon} from "react-native-elements";
+import {ServiceBlockItem} from "../../../components";
 
 const OrderAddScreen = ({navigation, ...props}) => {
     const {
-        defaultEmployees,
+        loadAllDates,
+        defaultServicesIce,
         firstNameInputValue,
         lastNameInputValue,
         surNameInputValue,
@@ -22,6 +25,14 @@ const OrderAddScreen = ({navigation, ...props}) => {
         error,
         isLoading,
     } = props;
+
+    console.log(defaultServicesIce.map(service => service))
+
+    let index = 0;
+    const data = [
+        { key: defaultServicesIce.map(service => service.id), label: defaultServicesIce.map(service => service.serviceName)},
+        //{ key: index++, label: 'Cherries' },
+    ];
 
     if (error) {
         return (
@@ -59,6 +70,15 @@ const OrderAddScreen = ({navigation, ...props}) => {
                         size={21}
                         style={styles.icon}
                     />
+                    {/*<FlatList*/}
+                    {/*    data={defaultServicesIce}*/}
+                    {/*    keyExtractor={item => item.id + ''}*/}
+                    {/*    numColumns={1}*/}
+                    {/*    renderItem={itemData => <ServiceBlockItem service={itemData.item} onSelect={iceSelectHandler.bind(this)}/>*/}
+                    {/*    }*/}
+                    {/*    refreshing={isLoading}*/}
+                    {/*    onRefresh={() => loadServices()}*/}
+                    {/*/>*/}
                     {/*<TextInput*/}
                     {/*    style={{borderBottomColor: Colors.black, borderBottomWidth: 1, width: '80%', fontSize: 18, marginHorizontal: 14}}*/}
                     {/*    placeholder="Введите фамилию"*/}
@@ -67,18 +87,19 @@ const OrderAddScreen = ({navigation, ...props}) => {
                     {/*    onChangeText={onChangeLastName}*/}
                     {/*/>*/}
                     {/*<Picker*/}
-                    {/*    style={{marginVertical: 10}}*/}
-                    {/*    selectedValue={lastNameInputValue}*/}
-                    {/*    onValueChange={(itemVal) => {*/}
-                    {/*        onChangeLastName(itemVal)*/}
-                    {/*    }}*/}
+                    {/*    // style={{marginVertical: 10}}*/}
+                    {/*    selectedValue={0}*/}
+                    {/*    // onValueChange={(itemVal) => {*/}
+                    {/*    //     onChangeLastName(itemVal)*/}
+                    {/*    // }}*/}
                     {/*>*/}
-                    {/*    {*/}
-                    {/*        defaultEmployees.lastName.map((l) => (*/}
-                    {/*        <Picker.item label={l} value={l} />*/}
-                    {/*        ))*/}
-                    {/*    }*/}
+                    {/*    <Picker.item label={'service.serviceName'} value={'service.id'} />*/}
                     {/*</Picker>*/}
+                    <ModalSelector
+                        data={defaultServicesIce}
+                        initValue="Выберите услугу"
+                        onChange={(service)=>{ alert(`${service.ser} (${service.key})`) }}
+                    />
                 </KeyboardAvoidingView>
                 <KeyboardAvoidingView
                     behavior={Platform.OS === "ios" ? "padding" : "height"}

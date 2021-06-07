@@ -10,6 +10,13 @@ import {
     ServiceBlockItem
 } from '../../../components'
 
+/**
+ * Компонент, отвечающий за отображение главного экрана услуг по электрике
+ * @param navigation
+ * @param props
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const AutoElectricianScreenView = ({navigation, ...props}) => {
 
     const {
@@ -62,7 +69,11 @@ const AutoElectricianScreenView = ({navigation, ...props}) => {
         </View>
     );
 };
-
+/**
+ * Функция, отображающая заголовок хэдера экрана услуг по электрике
+ * @param navData
+ * @returns {{headerLeft: (function()), headerTitle: string}}
+ */
 export const autoElectricianScreenOptions = navData => {
     return {
         headerTitle: 'Автоэлектрика / тормоза',
@@ -71,7 +82,10 @@ export const autoElectricianScreenOptions = navData => {
         )
     }
 }
-
+/**
+ * Стили экрана
+ * @type {{buttonSearch: {left: string, bottom: string}, screen: {flex: number}, buttonAdd: {left: string, bottom: string}}}
+ */
 const styles = StyleSheet.create({
     screen: {
         flex: 1

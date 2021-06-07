@@ -1,13 +1,20 @@
 import { USERS } from "../../../constants/types";
 import { URL } from "../../../constants";
 
+/**
+ * Функция, позволяющая очистить список пользователей в состоянии
+ * @returns {{payload: *[], type: string}}
+ */
 export const clearUsers = () => {
     return {
         type: USERS.GET_DEFAULT_USERS,
         payload: []
     }
 }
-
+/**
+ * Запрос в базу данных для получения всех пользователей
+ * @returns {(function(*): Promise<void>)|*}
+ */
 export const getDefaultUsers = () => {
     return async dispatch => {
         const response = await fetch(`${URL}/users.json`);
@@ -23,7 +30,7 @@ export const getDefaultUsers = () => {
     }
 }
 /**
- *
+ *Запрос в базу данных на удаление пользователя
  * @param id
  * @returns {(function(*): Promise<void>)|*}
  */
@@ -42,8 +49,17 @@ export const deleteUser = id => {
         });
     }
 }
-
-
+/**
+ * Запрос в базу данных на изменение данных пользователя
+ * @param id
+ * @param lastName
+ * @param firstName
+ * @param surName
+ * @param email
+ * @param phone
+ * @param pass
+ * @returns {(function(*): Promise<void>)|*}
+ */
 export const editUser = (id, lastName, firstName, surName, email, phone, pass) => {
     return async dispatch => {
         const response = await fetch(`${URL}/users/${id}.json`, {

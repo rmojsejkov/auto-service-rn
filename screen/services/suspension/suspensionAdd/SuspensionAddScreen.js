@@ -4,6 +4,13 @@ import {ActivityIndicator, Button, Image, KeyboardAvoidingView, StyleSheet, Text
 import Colors from '../../../../constants/colors';
 import {Icon} from "react-native-elements";
 
+/**
+ * Компонент, отвечающий за отображение экрана добавления услуг по электрике
+ * @param navigation
+ * @param props
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const SuspensionAddScreen = ({navigation, ...props}) => {
     const {
         serviceInputValue,
@@ -84,7 +91,12 @@ const SuspensionAddScreen = ({navigation, ...props}) => {
         </View>
     );
 };
-
+/**
+ * Функция, отображающая заголовок хэдера экрана добавления услуг по электрике
+ * @param navData
+ * @returns {{headerTitle: string}}
+ * @constructor
+ */
 export const SuspensionAddScreenOptions = navData => {
     return {
         headerTitle: 'Добавление услуги',

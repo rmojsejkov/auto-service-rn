@@ -5,6 +5,13 @@ import { HeaderToggleButton } from "../../default-options";
 import Colors from '../../../constants/colors';
 import {CustomButtonAdding, CustomButtonSearch, InputContainer, ServiceBlockItem} from '../../../components'
 
+/**
+ * Компонент, отвечающий за отображение главного экрана услуг по электрике
+ * @param navigation
+ * @param props
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const SuspensionScreenView = ({navigation, ...props}) => {
 
     const {
@@ -44,6 +51,7 @@ const SuspensionScreenView = ({navigation, ...props}) => {
                 <InputContainer />
             </View>
             <FlatList
+
                 data={defaultServicesSuspension}
                 keyExtractor={item => item.id + ''}
                 numColumns={1}
@@ -62,7 +70,11 @@ const SuspensionScreenView = ({navigation, ...props}) => {
         </View>
     );
 };
-
+/**
+ * Функция, отображающая заголовок хэдера экрана услуг по электрике
+ * @param navData
+ * @returns {{headerLeft: (function()), headerTitle: string}}
+ */
 export const suspensionScreenOptions = navData => {
     return {
         headerTitle: 'Работа с подвеской',

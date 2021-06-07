@@ -8,6 +8,14 @@ import {suspensionActions} from "../../../../store/actions/servicesActions";
 import {Alert} from "react-native";
 import {useDispatch} from "react-redux";
 
+/**
+ * Функция, содержащая все функции экрана подробной информации по услуге
+ * @param navigation
+ * @param route
+ * @param props
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const SuspensionDetailsContainer = ({ navigation, route, ...props }) => {
 
     const { serviceName, price, id } = route.params;
@@ -16,7 +24,10 @@ const SuspensionDetailsContainer = ({ navigation, route, ...props }) => {
     const [ error, setError ] = useState(null);
 
     const dispatch = useDispatch();
-
+    /**
+     * Функция, вызывающая функция запроса в базу данных для удаления услуги
+     * @type {(function(): Promise<void>)|*}
+     */
     const postServiceDelete = useCallback( async () => {
         console.log('click delete');
 
@@ -30,7 +41,9 @@ const SuspensionDetailsContainer = ({ navigation, route, ...props }) => {
         setIsLoading(false);
         navigation.goBack();
     }, [setIsLoading, dispatch, id]);
-
+    /**
+     * Подтверждение удаления услуги
+     */
     const deleteHandler = () => {
         Alert.alert('Предупреждение',
             'Удалить услугу?',

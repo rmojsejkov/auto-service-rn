@@ -4,6 +4,13 @@ import {Text, View, StyleSheet, Button, ActivityIndicator, Image} from 'react-na
 import Colors from '../../../../constants/colors';
 import {HeaderToggleButton} from "../../../default-options";
 
+/**
+ * Компонент, отвечающий за отображение экрана дополнительной информации об услуге по электрике
+ * @param navigation
+ * @param props
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const SuspensionDetails = ({navigation, ...props}) => {
     const {
         serviceName,
@@ -53,7 +60,11 @@ const SuspensionDetails = ({navigation, ...props}) => {
         </View>
     );
 };
-
+/**
+ * Функция, отображающая заголовок хэдера экрана дополнительной информации об услуге по электрике.
+ * @param navData
+ * @returns {{headerLeft: (function()), headerTitle: string}}
+ */
 export const suspensionDetailsOptions = navData => {
     return {
         headerTitle: 'Подробнее',
@@ -62,7 +73,10 @@ export const suspensionDetailsOptions = navData => {
         )
     }
 }
-
+/**
+ * Стили экрана
+ * @type {{container: {alignItems: string, paddingTop: string}, priceContainer: {alignItems: string, justifyContent: string}, Price: {marginHorizontal: string, alignItems: string, bottom: string, justifyContent: string}, titleText: {marginVertical: string, fontSize: number, fontWeight: string}, screen: {backgroundColor: string, flex: number}, titlePrice: {alignItems: string, fontSize: number, fontWeight: string}, title: {marginHorizontal: string, alignItems: string, bottom: string, justifyContent: string}, nameText: {marginHorizontal: string, fontSize: number, fontWeight: string}, priceText: {marginVertical: string, fontSize: number, fontWeight: string}}}
+ */
 const styles = StyleSheet.create({
     screen: {
         backgroundColor: Colors.white,

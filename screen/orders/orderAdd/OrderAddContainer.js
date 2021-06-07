@@ -146,7 +146,8 @@ const OrderAddContainer = ({ navigation, route, ...props }) => {
             onChangeEmail={setEmailInputValue}
             onChangePhone={setPhoneInputValue}
             onChangePass={setPassInputValue}
-            defaultEmployees={defaultEmployees}
+            defaultServicesIce={defaultServicesIce}
+            loadAllDates={loadAllDates}
         />
     )
 };

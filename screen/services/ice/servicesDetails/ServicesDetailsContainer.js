@@ -7,9 +7,15 @@ import {MaterialHeaderButton} from "../../../../components";
 import {serviceActions} from "../../../../store/actions/servicesActions";
 import {Alert} from "react-native";
 import {useDispatch} from "react-redux";
-import {deleteService} from "../../../../store/actions/servicesActions/serviceActions";
 
-
+/**
+ * Функция, содержащая все функции экрана подробной информации по услуге
+ * @param navigation
+ * @param route
+ * @param props
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const ServicesDetailsContainer = ({ navigation, route, ...props }) => {
 
     const { serviceName, price, id } = route.params;
@@ -18,7 +24,10 @@ const ServicesDetailsContainer = ({ navigation, route, ...props }) => {
     const [ error, setError ] = useState(null);
 
     const dispatch = useDispatch();
-
+    /**
+     * Функция, вызывающая функция запроса в базу данных для удаления услуги
+     * @type {(function(): Promise<void>)|*}
+     */
     const postServiceDelete = useCallback( async () => {
 
         setIsLoading(true);
@@ -31,7 +40,9 @@ const ServicesDetailsContainer = ({ navigation, route, ...props }) => {
         setIsLoading(false);
         navigation.goBack();
     }, [setIsLoading, dispatch, id]);
-
+    /**
+     * Подтверждение удаления услуги
+     */
     const deleteHandler = () => {
         Alert.alert('Предупреждение',
             'Удалить услугу?',
