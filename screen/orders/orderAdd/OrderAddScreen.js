@@ -3,6 +3,7 @@ import {Button, FlatList, Image, KeyboardAvoidingView, Platform, StyleSheet, Tex
 import {Icon} from "react-native-elements";
 import ModalSelector from 'react-native-modal-selector-searchable';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import DatePicker from 'react-native-datepicker'
 
 import Colors from '../../../constants/colors';
 import {ServiceBlockItem} from "../../../components";
@@ -10,6 +11,9 @@ import {ServiceBlockItem} from "../../../components";
 const OrderAddScreen = ({navigation, ...props}) => {
     const {
         dateValue,
+        show,
+        mode,
+        showDatepicker,
         loadAllDates,
         defaultServicesIce,
         surNameInputValue,
@@ -68,6 +72,8 @@ const OrderAddScreen = ({navigation, ...props}) => {
                         data={data}
                         initValue="Выберите услугу"
                         onChange={(service)=> onChangeService}
+                        searchText='Поиск услуги'
+                        cancelText='Закрыть'
                     />
                 </KeyboardAvoidingView>
                 <KeyboardAvoidingView
@@ -80,15 +86,22 @@ const OrderAddScreen = ({navigation, ...props}) => {
                         type='ionicon'
                         size={21}
                         style={styles.icon}
+                        onPress={showDatepicker}
                     />
-                    <DateTimePicker
-                        testID='dateTimePicker'
-                        value={dateValue}
-                        mode='date'
-                        is24Hour={true}
-                        display="default"
-                        onChange={onChangeDate}
-                    />
+                    <View>
+                        {show && (
+                            <DateTimePicker
+                                testID="dateTimePicker"
+                                value={dateValue}
+                                mode='datetime'
+                                is24Hour={true}
+                                display="default"
+                                onChange={onChangeDate}
+                                minimumDate={new Date()}
+                            />
+                        )}
+                        <Text styles={{fontSize: '13'}}>{dateValue.toLocaleDateString()}</Text>
+                    </View>
                 </KeyboardAvoidingView>
                 <KeyboardAvoidingView
                     style={styles.employeeTitle}
@@ -126,44 +139,6 @@ const OrderAddScreen = ({navigation, ...props}) => {
                         keyboardType="email-address"
                         value={emailInputValue}
                         onChangeText={onChangeEmail}
-                    />
-                </KeyboardAvoidingView>
-                <KeyboardAvoidingView
-                    style={styles.employeeTitle}
-                    behavior={Platform.OS === "ios" ? "padding" : "height"}
-                >
-                    <Icon
-                        color={Colors.black}
-                        name='phone'
-                        type='font-awesome'
-                        size={21}
-                        style={styles.icon}
-                    />
-                    <TextInput
-                        style={{borderBottomColor: Colors.black, borderBottomWidth: 1, width: '80%', fontSize: 18, marginHorizontal: 10}}
-                        placeholder="Введите телефон"
-                        keyboardType="phone-pad"
-                        value={phoneInputValue}
-                        onChangeText={onChangePhone}
-                    />
-                </KeyboardAvoidingView>
-                <KeyboardAvoidingView
-                    style={styles.employeeTitle}
-                    behavior={Platform.OS === "ios" ? "padding" : "height"}
-                >
-                    <Icon
-                        color={Colors.black}
-                        name='lock'
-                        type='Entypo'
-                        size={21}
-                        style={styles.icon}
-                    />
-                    <TextInput
-                        style={{borderBottomColor: Colors.black, borderBottomWidth: 1, width: '80%', fontSize: 18, marginHorizontal: 10}}
-                        placeholder="Введите пароль"
-                        autoCapitalize='words'
-                        value={passInputValue}
-                        onChangeText={onChangePass}
                     />
                 </KeyboardAvoidingView>
             </View>

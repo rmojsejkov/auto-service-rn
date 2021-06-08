@@ -2,13 +2,13 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { Alert } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 
-import EmployeeScreenView from "./EmployeeScreenView";
+import RepairScreenView from "./RepairScreenView";
 import { employeeActions } from "../../store/actions/employeesActions";
 import Colors from "../../constants/colors";
 import {HeaderButtons, Item} from "react-navigation-header-buttons";
 import {MaterialHeaderButton} from "../../components";
 
-const EmployeeScreenContainer = ({navigation, ...props}) => {
+const RepairScreenContainer = ({navigation, ...props}) => {
     const {
         defaultEmployees
     } = useSelector(state => state.employee);
@@ -105,7 +105,7 @@ const EmployeeScreenContainer = ({navigation, ...props}) => {
         })
     }, [navigation]);
     return (
-        <EmployeeScreenView
+        <RepairScreenView
             defaultEmployees={defaultEmployees}
             loadEmployees={loadEmployees}
             error={error}
@@ -117,4 +117,4 @@ const EmployeeScreenContainer = ({navigation, ...props}) => {
     )
 }
 
-export default EmployeeScreenContainer;
+export default RepairScreenContainer;

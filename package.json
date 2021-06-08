@@ -9,7 +9,6 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^12.0.0",
-    "@react-native-community/datetimepicker": "^3.5.2",
     "@react-navigation/bottom-tabs": "^5.11.10",
     "@react-navigation/drawer": "^5.12.5",
     "@react-navigation/native": "^5.9.4",
@@ -20,6 +19,7 @@
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-41.0.0.tar.gz",
+    "react-native-datepicker": "^1.7.2",
     "react-native-elements": "^3.4.1",
     "react-native-gesture-handler": "~1.10.2",
     "react-native-modal-selector-searchable": "^2.1.4",
@@ -34,7 +34,8 @@
     "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.9.0"
+    "@babel/core": "^7.9.0",
+    "@react-native-community/datetimepicker": "^3.5.2"
   },
   "private": true
 }

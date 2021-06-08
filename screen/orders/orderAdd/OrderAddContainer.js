@@ -16,6 +16,7 @@ const OrderAddContainer = ({ navigation, route, ...props }) => {
 
     const [serviceInputValue, setServiceInputValue] = useState('');
     const [dateValue, setDateValue] = useState(new Date(1598051730000));
+
     const [surNameInputValue, setSurNameInputValue] = useState('');
     const [emailInputValue, setEmailInputValue] = useState('');
     const [phoneInputValue, setPhoneInputValue] = useState('');
@@ -41,6 +42,7 @@ const OrderAddContainer = ({ navigation, route, ...props }) => {
 
     const showDatepicker = () => {
         showMode('date');
+        showTimepicker;
     };
 
     const showTimepicker = () => {
@@ -161,13 +163,16 @@ const OrderAddContainer = ({ navigation, route, ...props }) => {
             phoneInputValue={phoneInputValue}
             passInputValue={passInputValue}
             onChangeService={setServiceInputValue}
-            onChangeDate={setDateValue}
+            onChangeDate={onChange}
             onChangeSurName={setSurNameInputValue}
             onChangeEmail={setEmailInputValue}
             onChangePhone={setPhoneInputValue}
             onChangePass={setPassInputValue}
             defaultServicesIce={defaultServicesIce}
             loadAllDates={loadAllDates}
+            showDatepicker={showDatepicker}
+            mode={mode}
+            show={show}
         />
     )
 };

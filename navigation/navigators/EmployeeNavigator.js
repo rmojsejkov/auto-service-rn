@@ -2,12 +2,12 @@ import React from "react";
 import {createStackNavigator} from "@react-navigation/stack";
 
 import Colors from '../../constants/colors';;
-import {EmployeeScreen} from "../../screen/emloyees";
-import {employeeScreenOptions} from "../../screen/emloyees/EmployeeScreenView";
-import {EmployeeAddScreen}  from "../../screen/emloyees/employeeAdd";
-import {employeeAddScreenOptions} from "../../screen/emloyees/employeeAdd/EmployeeAddScreen";
-import {EmployeeEditScreen} from "../../screen/emloyees/employeeEdit";
-import {employeeEditScreenOptions} from '../../screen/emloyees/employeeEdit/EmployeeEditScreen';
+import {EmployeeScreen} from "../../screen/repairs";
+import {employeeScreenOptions} from "../../screen/repairs/RepairScreenView";
+import {EmployeeAddScreen}  from "../../screen/repairs/employeeAdd";
+import {employeeAddScreenOptions} from "../../screen/repairs/employeeAdd/EmployeeAddScreen";
+import {EmployeeEditScreen} from "../../screen/repairs/employeeEdit";
+import {employeeEditScreenOptions} from '../../screen/repairs/employeeEdit/EmployeeEditScreen';
 
 const defaultStackNavOptions = {
     headerStyle: {

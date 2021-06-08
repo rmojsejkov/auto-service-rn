@@ -6,7 +6,7 @@ import Colors from "../../constants/colors";
 import {CustomButtonAdding, CustomButtonSearch, InputContainer} from "../../components";
 import EmployeeBlockItem from "../../components/Blocks/EmployeeBlockItem";
 
-const EmployeeScreenView = ({navigation, ...props}) => {
+const RepairScreenView = ({navigation, ...props}) => {
     const {
         deleteHandler,
         editHandler,
@@ -85,4 +85,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default EmployeeScreenView;
+export default RepairScreenView;
