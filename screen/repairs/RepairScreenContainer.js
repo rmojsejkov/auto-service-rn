@@ -3,25 +3,25 @@ import { Alert } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 
 import RepairScreenView from "./RepairScreenView";
-import { employeeActions } from "../../store/actions/employeesActions";
 import Colors from "../../constants/colors";
 import {HeaderButtons, Item} from "react-navigation-header-buttons";
 import {MaterialHeaderButton} from "../../components";
+import {repairActions} from "../../store/actions/repairsActions";
 
 const RepairScreenContainer = ({navigation, ...props}) => {
     const {
-        defaultEmployees
-    } = useSelector(state => state.employee);
+        defaultRepairs
+    } = useSelector(state => state.repair);
 
     const [ isLoading, setIsLoading ] = useState(true);
     const [ error, setError ] = useState(null);
 
     const dispatch = useDispatch();
 
-    const loadEmployees = useCallback(async () => {
+    const loadRepairs = useCallback(async () => {
         setIsLoading(true);
         try {
-            await dispatch(employeeActions.getDefaultEmployees());
+            await dispatch(repairActions.getDefaultRepairs());
         } catch (err) {
             Alert.alert('Error', err.message, [{ message: 'Okay' }]);
             setError('Something went wrong during network call');
@@ -30,26 +30,23 @@ const RepairScreenContainer = ({navigation, ...props}) => {
 
     }, [dispatch, setIsLoading, setError]);
 
-    const employeeAddHandler = employee => {
-        navigation.navigate('EmployeeAddScreen')
+    const repairAddHandler = repair => {
+        navigation.navigate('RepairAddScreen')
     }
 
-    const employeeEditHandler = employee => {
-        navigation.navigate('EmployeeEditScreen', {
-            lastName: employee.lastName,
-            firstName: employee.firstName,
-            surName: employee.surName,
-            email: employee.email,
-            phone: employee.phone,
-            pass: employee.pass,
-            id: employee.id
+    const repairEditHandler = repair => {
+        navigation.navigate('RepairEditScreen', {
+            detailName: repair.detailName,
+            price: repair.price,
+            counts: repair.counts,
+            carType: repair.carType
         })
     }
 
-    const postEmployeeDelete = useCallback( async id => {
+    const postRepairDelete = useCallback( async id => {
         setIsLoading(true);
         try {
-            await dispatch(employeeActions.deleteEmployee(id));
+            await dispatch(repairActions.deleteRepair(id));
         } catch (err) {
             Alert.alert('Error', err.message, [{ message: 'Okay' }]);
             setError('Something went wrong during network call');
@@ -59,7 +56,7 @@ const RepairScreenContainer = ({navigation, ...props}) => {
 
     const deleteHandler = id => {
         Alert.alert('Предупреждение',
-            'Удалить сотрудника?',
+            'Удалить деталь со склада?',
             [
                 {
                     text: 'Нет',
@@ -68,26 +65,26 @@ const RepairScreenContainer = ({navigation, ...props}) => {
                 },
                 {
                     text: 'Да',
-                    onPress: () => postEmployeeDelete(id)
+                    onPress: () => postRepairDelete(id)
                 }
             ]
         );
     }
 
     useEffect(() => {
-        loadEmployees();
-    }, [loadEmployees]);
+        loadRepairs();
+    }, [loadRepairs]);
 
     useEffect(() => {
         return navigation.dangerouslyGetParent()
             .addListener('focus', () => {
-                loadEmployees();
+                loadRepairs();
             });
     }, [navigation]);
 
     useEffect(() => {
         navigation.setOptions({
-            headerTitle: 'Сотрудники',
+            headerTitle: 'Детали',
             headerTitleAlign: 'center',
             headerTitleStyle: {
                 color: Colors.white,
@@ -97,8 +94,8 @@ const RepairScreenContainer = ({navigation, ...props}) => {
                 <HeaderButtons HeaderButtonComponent={MaterialHeaderButton}>
                     <Item
                         title="Delete"
-                        iconName="person-add-alt-1"
-                        onPress={employeeAddHandler}
+                        iconName="add"
+                        onPress={repairAddHandler}
                     />
                 </HeaderButtons>
             )
@@ -106,13 +103,13 @@ const RepairScreenContainer = ({navigation, ...props}) => {
     }, [navigation]);
     return (
         <RepairScreenView
-            defaultEmployees={defaultEmployees}
-            loadEmployees={loadEmployees}
+            defaultRepairs={defaultRepairs}
+            loadRepairs={loadRepairs}
             error={error}
             isLoading={isLoading}
             navigation={navigation}
             deleteHandler={deleteHandler}
-            editHandler={employeeEditHandler}
+            editHandler={repairEditHandler}
         />
     )
 }

@@ -4,7 +4,7 @@ import {ActivityIndicator, Button, FlatList, Image, StyleSheet, Text, View} from
 import {HeaderToggleButton} from "../default-options";
 import Colors from "../../constants/colors";
 import {CustomButtonAdding, CustomButtonSearch, InputContainer} from "../../components";
-import EmployeeBlockItem from "../../components/Blocks/EmployeeBlockItem";
+import RepairBlockItem from "../../components/Blocks/RepairBlockItem";
 
 const RepairScreenView = ({navigation, ...props}) => {
     const {
@@ -12,8 +12,8 @@ const RepairScreenView = ({navigation, ...props}) => {
         editHandler,
         error,
         isLoading,
-        loadEmployees,
-        defaultEmployees
+        defaultRepairs,
+        loadRepairs
     } = props;
 
     if (error) {
@@ -21,7 +21,7 @@ const RepairScreenView = ({navigation, ...props}) => {
             <View style={{...styles.screen, justifyContent: 'center', alignItems: 'center'}}>
                 <Text>{error}</Text>
                 <View>
-                    <Button title='Try again' color={Colors.black} onPress={() => loadEmployees()}/>
+                    <Button title='Try again' color={Colors.black} onPress={() => loadRepairs()}/>
                 </View>
             </View>
         )
@@ -44,24 +44,24 @@ const RepairScreenView = ({navigation, ...props}) => {
                 <InputContainer />
             </View>
             <FlatList
-                data={defaultEmployees}
+                data={defaultRepairs}
                 keyExtractor={item => item.id + ''}
                 numColumns={1}
-                renderItem={itemData => <EmployeeBlockItem
-                    employee={itemData.item}
+                renderItem={itemData => <RepairBlockItem
+                    repair={itemData.item}
                     deleteHandler={deleteHandler}
                     editHandler={editHandler}
                 />}
                 refreshing={isLoading}
-                onRefresh={() => loadEmployees()}
+                onRefresh={() => loadRepairs()}
             />
         </View>
     );
 };
 
-export const employeeScreenOptions = navData => {
+export const repairScreenOptions = navData => {
     return {
-        headerTitle: 'Сотрудники',
+        headerTitle: 'Детали',
         headerLeft: () => (
             <HeaderToggleButton navData={navData} />
         )

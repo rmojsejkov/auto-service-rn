@@ -4,20 +4,16 @@ import {ActivityIndicator, Button, Image, KeyboardAvoidingView, StyleSheet, Text
 import Colors from '../../../constants/colors';
 import {Icon} from "react-native-elements";
 
-const EmployeeAddScreen = ({navigation, ...props}) => {
+const RepairAddScreen = ({navigation, ...props}) => {
     const {
-        firstNameInputValue,
-        lastNameInputValue,
-        surNameInputValue,
-        emailInputValue,
-        phoneInputValue,
-        passInputValue,
-        onChangeFirstName,
-        onChangeLastName,
-        onChangeSurName,
-        onChangeEmail,
-        onChangePhone,
-        onChangePass,
+        detailNameInputValue,
+        priceInputValue,
+        countsInputValue,
+        carTypeInputValue,
+        onChangeDetailName,
+        onChangePrice,
+        onChangeCounts,
+        onChangeCarType,
         error,
         isLoading,
     } = props;
@@ -60,10 +56,10 @@ const EmployeeAddScreen = ({navigation, ...props}) => {
                     />
                     <TextInput
                         style={{borderBottomColor: Colors.black, borderBottomWidth: 1, width: '80%', fontSize: 18, marginHorizontal: 14}}
-                        placeholder="Введите фамилию"
+                        placeholder="Введите наименование детали"
                         autoCapitalize='words'
-                        value={lastNameInputValue}
-                        onChangeText={onChangeLastName}
+                        value={detailNameInputValue}
+                        onChangeText={onChangeDetailName}
                     />
                 </KeyboardAvoidingView>
                 <KeyboardAvoidingView
@@ -79,10 +75,10 @@ const EmployeeAddScreen = ({navigation, ...props}) => {
                     />
                     <TextInput
                         style={{borderBottomColor: Colors.black, borderBottomWidth: 1, width: '80%', fontSize: 18, marginHorizontal: 14}}
-                        placeholder="Введите имя"
-                        autoCapitalize='words'
-                        value={firstNameInputValue}
-                        onChangeText={onChangeFirstName}
+                        placeholder="Введите цену"
+                        keyboardType='numeric'
+                        value={priceInputValue}
+                        onChangeText={onChangePrice}
                     />
                 </KeyboardAvoidingView>
                 <KeyboardAvoidingView
@@ -98,10 +94,10 @@ const EmployeeAddScreen = ({navigation, ...props}) => {
                     />
                     <TextInput
                         style={{borderBottomColor: Colors.black, borderBottomWidth: 1, width: '80%', fontSize: 18, marginHorizontal: 10}}
-                        placeholder="Введите отчество"
-                        autoCapitalize='words'
-                        value={surNameInputValue}
-                        onChangeText={onChangeSurName}
+                        placeholder="Введите количество"
+                        keyboardType='numeric'
+                        value={countsInputValue}
+                        onChangeText={onChangeCounts}
                     />
                 </KeyboardAvoidingView>
                 <KeyboardAvoidingView
@@ -117,48 +113,10 @@ const EmployeeAddScreen = ({navigation, ...props}) => {
                     />
                     <TextInput
                         style={{borderBottomColor: Colors.black, borderBottomWidth: 1, width: '80%', fontSize: 18, marginHorizontal: 10}}
-                        placeholder="Введите электронную почту"
-                        keyboardType="email-address"
-                        value={emailInputValue}
-                        onChangeText={onChangeEmail}
-                    />
-                </KeyboardAvoidingView>
-                <KeyboardAvoidingView
-                    style={styles.employeeTitle}
-                    behavior={Platform.OS === "ios" ? "padding" : "height"}
-                >
-                    <Icon
-                        color={Colors.black}
-                        name='phone'
-                        type='font-awesome'
-                        size={21}
-                        style={styles.icon}
-                    />
-                    <TextInput
-                        style={{borderBottomColor: Colors.black, borderBottomWidth: 1, width: '80%', fontSize: 18, marginHorizontal: 10}}
-                        placeholder="Введите телефон"
-                        keyboardType="phone-pad"
-                        value={phoneInputValue}
-                        onChangeText={onChangePhone}
-                    />
-                </KeyboardAvoidingView>
-                <KeyboardAvoidingView
-                    style={styles.employeeTitle}
-                    behavior={Platform.OS === "ios" ? "padding" : "height"}
-                >
-                    <Icon
-                        color={Colors.black}
-                        name='lock'
-                        type='Entypo'
-                        size={21}
-                        style={styles.icon}
-                    />
-                    <TextInput
-                        style={{borderBottomColor: Colors.black, borderBottomWidth: 1, width: '80%', fontSize: 18, marginHorizontal: 10}}
-                        placeholder="Введите пароль"
+                        placeholder="Введите тип автомобиля"
                         autoCapitalize='words'
-                        value={passInputValue}
-                        onChangeText={onChangePass}
+                        value={carTypeInputValue}
+                        onChangeText={onChangeCarType}
                     />
                 </KeyboardAvoidingView>
             </View>
@@ -166,9 +124,9 @@ const EmployeeAddScreen = ({navigation, ...props}) => {
     );
 };
 
-export const employeeAddScreenOptions = navData => {
+export const repairAddScreenOptions = navData => {
     return {
-        headerTitle: 'Добавление сотрудника',
+        headerTitle: 'Добавление детали',
     }
 }
 
@@ -220,4 +178,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default EmployeeAddScreen;
+export default RepairAddScreen;

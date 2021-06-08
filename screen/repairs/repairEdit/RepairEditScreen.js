@@ -1,29 +1,33 @@
 import React from 'react';
-import {ActivityIndicator, Button, Image, KeyboardAvoidingView, StyleSheet, Text, TextInput, View} from 'react-native';
+import {
+    ActivityIndicator,
+    Button,
+    Image,
+    KeyboardAvoidingView,
+    Platform,
+    StyleSheet,
+    Text,
+    TextInput,
+    View
+} from 'react-native';
 
 import Colors from '../../../constants/colors';
 import {Icon} from "react-native-elements";
 
-const EmployeeEditScreen = ({navigation, ...props}) => {
+const RepairEditScreen = ({navigation, ...props}) => {
     const {
-        lastName,
-        firstName,
-        surName,
-        email,
-        phone,
-        pass,
-        firstNameInputValue,
-        lastNameInputValue,
-        surNameInputValue,
-        emailInputValue,
-        phoneInputValue,
-        passInputValue,
-        onChangeFirstName,
-        onChangeLastName,
-        onChangeSurName,
-        onChangeEmail,
-        onChangePhone,
-        onChangePass,
+        detailName,
+        price,
+        counts,
+        carType,
+        detailNameInputValue,
+        priceInputValue,
+        countsInputValue,
+        carTypeInputValue,
+        onChangeDetailName,
+        onChangePrice,
+        onChangeCounts,
+        onChangeCarType,
         error,
         isLoading,
     } = props;
@@ -67,10 +71,10 @@ const EmployeeEditScreen = ({navigation, ...props}) => {
                     />
                     <TextInput
                         style={{borderBottomColor: Colors.black, borderBottomWidth: 1, width: '80%', fontSize: 18, marginHorizontal: 14}}
-                        placeholder={lastName}
+                        placeholder={detailName}
                         autoCapitalize='words'
-                        value={lastNameInputValue}
-                        onChangeText={onChangeLastName}
+                        value={detailNameInputValue}
+                        onChangeText={onChangeDetailName}
                     />
                 </KeyboardAvoidingView>
                 <KeyboardAvoidingView
@@ -86,10 +90,10 @@ const EmployeeEditScreen = ({navigation, ...props}) => {
                     />
                     <TextInput
                         style={{borderBottomColor: Colors.black, borderBottomWidth: 1, width: '80%', fontSize: 18, marginHorizontal: 14}}
-                        placeholder={firstName}
-                        autoCapitalize='words'
-                        value={firstNameInputValue}
-                        onChangeText={onChangeFirstName}
+                        placeholder={price}
+                        keyboardType="numeric"
+                        value={priceInputValue}
+                        onChangeText={onChangePrice}
                     />
                 </KeyboardAvoidingView>
                 <KeyboardAvoidingView
@@ -105,10 +109,10 @@ const EmployeeEditScreen = ({navigation, ...props}) => {
                     />
                     <TextInput
                         style={{borderBottomColor: Colors.black, borderBottomWidth: 1, width: '80%', fontSize: 18, marginHorizontal: 10}}
-                        placeholder={surName}
-                        autoCapitalize='words'
-                        value={surNameInputValue}
-                        onChangeText={onChangeSurName}
+                        placeholder={counts}
+                        keyboardType="numeric"
+                        value={countsInputValue}
+                        onChangeText={onChangeCounts}
                     />
                 </KeyboardAvoidingView>
                 <KeyboardAvoidingView
@@ -124,48 +128,10 @@ const EmployeeEditScreen = ({navigation, ...props}) => {
                     />
                     <TextInput
                         style={{borderBottomColor: Colors.black, borderBottomWidth: 1, width: '80%', fontSize: 18, marginHorizontal: 10}}
-                        placeholder={email}
-                        keyboardType="email-address"
-                        value={emailInputValue}
-                        onChangeText={onChangeEmail}
-                    />
-                </KeyboardAvoidingView>
-                <KeyboardAvoidingView
-                    style={styles.employeeTitle}
-                    behavior={Platform.OS === "ios" ? "padding" : "height"}
-                >
-                    <Icon
-                        color={Colors.black}
-                        name='phone'
-                        type='font-awesome'
-                        size={21}
-                        style={styles.icon}
-                    />
-                    <TextInput
-                        style={{borderBottomColor: Colors.black, borderBottomWidth: 1, width: '80%', fontSize: 18, marginHorizontal: 10}}
-                        placeholder={phone}
-                        keyboardType="phone-pad"
-                        value={phoneInputValue}
-                        onChangeText={onChangePhone}
-                    />
-                </KeyboardAvoidingView>
-                <KeyboardAvoidingView
-                    style={styles.employeeTitle}
-                    behavior={Platform.OS === "ios" ? "padding" : "height"}
-                >
-                    <Icon
-                        color={Colors.black}
-                        name='lock'
-                        type='Entypo'
-                        size={21}
-                        style={styles.icon}
-                    />
-                    <TextInput
-                        style={{borderBottomColor: Colors.black, borderBottomWidth: 1, width: '80%', fontSize: 18, marginHorizontal: 10}}
-                        placeholder={pass}
+                        placeholder={carType}
                         autoCapitalize='words'
-                        value={passInputValue}
-                        onChangeText={onChangePass}
+                        value={carTypeInputValue}
+                        onChangeText={onChangeCarType}
                     />
                 </KeyboardAvoidingView>
             </View>
@@ -173,9 +139,9 @@ const EmployeeEditScreen = ({navigation, ...props}) => {
     );
 };
 
-export const employeeEditScreenOptions = navData => {
+export const repairEditScreenOptions = navData => {
     return {
-        headerTitle: 'Редактировать данные',
+        headerTitle: 'Редактирование',
     }
 }
 
@@ -227,4 +193,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default EmployeeEditScreen;
+export default RepairEditScreen;

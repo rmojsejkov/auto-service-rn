@@ -5,6 +5,7 @@ import PriceNavigator from "./PriceNavigator";
 import ServicesNavigator from "./servicesScreensNavigators/ServicesNavigator";
 import UserNavigator from "./UserNavigator";
 import OrderNavigator from './OrderNavigator';
+import RepairNavigator from "./RepairNavigator";
 
 export {
     AboutNavigator,
@@ -13,5 +14,6 @@ export {
     HomeNavigator,
     ServicesNavigator,
     UserNavigator,
-    OrderNavigator
+    OrderNavigator,
+    RepairNavigator
 };

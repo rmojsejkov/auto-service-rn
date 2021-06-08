@@ -13,7 +13,8 @@ import {
     PriceNavigator,
     ServicesNavigator,
     UserNavigator,
-    OrderNavigator
+    OrderNavigator,
+    RepairNavigator
 } from './navigators';
 
 const AutoServiceDrawerNavigator = createDrawerNavigator();
@@ -70,6 +71,20 @@ export const AutoServiceNavigator = () => {
                     drawerIcon: props => (
                         <MaterialCommunityIcons
                             name="wrench"
+                            size={23}
+                            color={Colors.splash}
+                        />
+                    )
+                }}
+            />
+            <AutoServiceDrawerNavigator.Screen
+                name="Repairs"
+                component={RepairNavigator}
+                options={{
+                    drawerLabel: 'Детали',
+                    drawerIcon: props => (
+                        <FontAwesome
+                            name="gears"
                             size={23}
                             color={Colors.splash}
                         />

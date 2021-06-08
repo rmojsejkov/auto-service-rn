@@ -1,42 +1,38 @@
 import React, {useCallback, useEffect, useState} from "react";
 
-import EmployeeAddScreen from "./EmployeeAddScreen";
+import RepairAddScreen from "./RepairAddScreen";
 import Colors from '../../../constants/colors';
 import {StyleSheet, Alert} from "react-native";
 
 import {useDispatch} from "react-redux";
-import {employeeActions} from "../../../store/actions/employeesActions";
 import {MaterialHeaderButton} from "../../../components";
 import {HeaderButtons, Item} from "react-navigation-header-buttons";
+import {repairActions} from "../../../store/actions/repairsActions";
 
-const EmployeeAddContainer = ({ navigation, route, ...props }) => {
+const RepairAddContainer = ({ navigation, route, ...props }) => {
 
-    const [lastNameInputValue, setLastNameInputValue] = useState('');
-    const [firstNameInputValue, setFirstNameInputValue] = useState('');
-    const [surNameInputValue, setSurNameInputValue] = useState('');
-    const [emailInputValue, setEmailInputValue] = useState('');
-    const [phoneInputValue, setPhoneInputValue] = useState('');
-    const [passInputValue, setPassInputValue] = useState('');
+    const [detailNameInputValue, setDetailNameInputValue] = useState('');
+    const [priceInputValue, setPriceInputValue] = useState('');
+    const [countsInputValue, setCountsInputValue] = useState('');
+    const [carTypeInputValue, setCarTypeInputValue] = useState('');
 
     const [ isLoading, setIsLoading ] = useState(false);
     const [ error, setError ] = useState(null);
-    const roleId = 3;
+    const warehouseId = 1;
 
     const dispatch = useDispatch();
 
-    const postEmployeeAdd = useCallback( async () => {
+    const postRepairAdd = useCallback( async () => {
         console.log('click save');
 
         setIsLoading(true);
         try {
-            await dispatch(employeeActions.setDefaultEmployee(
-                lastNameInputValue,
-                firstNameInputValue,
-                surNameInputValue,
-                emailInputValue,
-                phoneInputValue,
-                passInputValue,
-                roleId
+            await dispatch(repairActions.setDefaultRepair(
+                detailNameInputValue,
+                priceInputValue,
+                countsInputValue,
+                carTypeInputValue,
+                warehouseId
             ));
         } catch (err) {
             Alert.alert('Error', err.message, [{ message: 'Okay' }]);
@@ -45,19 +41,16 @@ const EmployeeAddContainer = ({ navigation, route, ...props }) => {
         setIsLoading(false);
         navigation.goBack();
     }, [
-        lastNameInputValue,
-        firstNameInputValue,
-        surNameInputValue,
-        emailInputValue,
-        phoneInputValue,
-        passInputValue,
-        setIsLoading,
+        detailNameInputValue,
+        priceInputValue,
+        countsInputValue,
+        carTypeInputValue,
         dispatch
     ]);
 
     const addHandler = () => {
         Alert.alert('Предупреждение',
-            'Добавить сотрудника?',
+            'Добавить деталь?',
             [
                 {
                     text: 'Нет',
@@ -66,7 +59,7 @@ const EmployeeAddContainer = ({ navigation, route, ...props }) => {
                 },
                 {
                     text: 'Да',
-                    onPress: () => postEmployeeAdd()
+                    onPress: () => postRepairAdd()
                 }
             ]
         );
@@ -74,7 +67,7 @@ const EmployeeAddContainer = ({ navigation, route, ...props }) => {
 
     useEffect(() => {
         navigation.setOptions({
-            headerTitle: 'Добавить сотрудника',
+            headerTitle: 'Добавить деталь',
             headerTitleAlign: 'center',
             headerTitleStyle: {
                 color: Colors.white,
@@ -90,24 +83,20 @@ const EmployeeAddContainer = ({ navigation, route, ...props }) => {
                 </HeaderButtons>
             )
         })
-    }, [navigation, postEmployeeAdd]);
+    }, [navigation, postRepairAdd]);
 
     return (
-        <EmployeeAddScreen
+        <RepairAddScreen
             error={error}
             isLoading={isLoading}
-            lastNameInputValue={lastNameInputValue}
-            firstNameInputValue={firstNameInputValue}
-            surNameInputValue={surNameInputValue}
-            emailInputValue={emailInputValue}
-            phoneInputValue={phoneInputValue}
-            passInputValue={passInputValue}
-            onChangeLastName={setLastNameInputValue}
-            onChangeFirstName={setFirstNameInputValue}
-            onChangeSurName={setSurNameInputValue}
-            onChangeEmail={setEmailInputValue}
-            onChangePhone={setPhoneInputValue}
-            onChangePass={setPassInputValue}
+            detailNameInputValue={detailNameInputValue}
+            priceInputValue={priceInputValue}
+            countsInputValue={countsInputValue}
+            carTypeInputValue={carTypeInputValue}
+            onChangeDetailName={setDetailNameInputValue}
+            onChangePrice={setPriceInputValue}
+            onChangeCounts={setCountsInputValue}
+            onChangeCarType={setCarTypeInputValue}
         />
     )
 };
@@ -122,4 +111,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default EmployeeAddContainer;
+export default RepairAddContainer;
