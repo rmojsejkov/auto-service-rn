@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-    ActivityIndicator,
     Button,
     Image,
     KeyboardAvoidingView,
@@ -71,7 +70,7 @@ const RepairEditScreen = ({navigation, ...props}) => {
                     />
                     <TextInput
                         style={{borderBottomColor: Colors.black, borderBottomWidth: 1, width: '80%', fontSize: 18, marginHorizontal: 14}}
-                        placeholder={detailName}
+                        placeholder='Наименование детали'
                         autoCapitalize='words'
                         value={detailNameInputValue}
                         onChangeText={onChangeDetailName}
@@ -90,8 +89,8 @@ const RepairEditScreen = ({navigation, ...props}) => {
                     />
                     <TextInput
                         style={{borderBottomColor: Colors.black, borderBottomWidth: 1, width: '80%', fontSize: 18, marginHorizontal: 14}}
-                        placeholder={price}
-                        keyboardType="numeric"
+                        placeholder='Цена'
+                        keyboardType='number-pad'
                         value={priceInputValue}
                         onChangeText={onChangePrice}
                     />
@@ -109,7 +108,7 @@ const RepairEditScreen = ({navigation, ...props}) => {
                     />
                     <TextInput
                         style={{borderBottomColor: Colors.black, borderBottomWidth: 1, width: '80%', fontSize: 18, marginHorizontal: 10}}
-                        placeholder={counts}
+                        placeholder='Количество'
                         keyboardType="numeric"
                         value={countsInputValue}
                         onChangeText={onChangeCounts}
@@ -128,7 +127,7 @@ const RepairEditScreen = ({navigation, ...props}) => {
                     />
                     <TextInput
                         style={{borderBottomColor: Colors.black, borderBottomWidth: 1, width: '80%', fontSize: 18, marginHorizontal: 10}}
-                        placeholder={carType}
+                        placeholder='Тип автомобиля'
                         autoCapitalize='words'
                         value={carTypeInputValue}
                         onChangeText={onChangeCarType}

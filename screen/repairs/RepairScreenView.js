@@ -9,7 +9,7 @@ import RepairBlockItem from "../../components/Blocks/RepairBlockItem";
 const RepairScreenView = ({navigation, ...props}) => {
     const {
         deleteHandler,
-        editHandler,
+        repairEditHandler,
         error,
         isLoading,
         defaultRepairs,
@@ -50,7 +50,7 @@ const RepairScreenView = ({navigation, ...props}) => {
                 renderItem={itemData => <RepairBlockItem
                     repair={itemData.item}
                     deleteHandler={deleteHandler}
-                    editHandler={editHandler}
+                    repairEditHandler={repairEditHandler}
                 />}
                 refreshing={isLoading}
                 onRefresh={() => loadRepairs()}

@@ -10,12 +10,12 @@ import Block from './Block';
 import Colors from '../../constants/colors';
 import {Feather, FontAwesome5, Ionicons, MaterialCommunityIcons, MaterialIcons, Octicons} from "@expo/vector-icons";
 
-const RepairBlockItem = ({repair, deleteHandler, editHandler, ...props}) => {
+const RepairBlockItem = ({repair, deleteHandler, repairEditHandler, ...props}) => {
     return(
         <Block style={styles.block}>
             <View style={styles.touchable}>
                 <View style={styles.icons}>
-                    <TouchableComponent onPress={() => editHandler(repair)}>
+                    <TouchableComponent onPress={() => repairEditHandler(repair)}>
                         <View style={styles.edit}>
                             <MaterialIcons
                                 name="mode-edit"

@@ -2,10 +2,9 @@ import React, {useCallback, useEffect, useState} from "react";
 
 import RepairEditScreen from "./RepairEditScreen";
 import Colors from '../../../constants/colors';
-import {StyleSheet, Alert} from "react-native";
+import {Alert} from "react-native";
 
 import {useDispatch} from "react-redux";
-import {employeeActions} from "../../../store/actions/employeesActions";
 import {MaterialHeaderButton} from "../../../components";
 import {HeaderButtons, Item} from "react-navigation-header-buttons";
 import {repairActions} from "../../../store/actions/repairsActions";

@@ -30,17 +30,24 @@ const RepairScreenContainer = ({navigation, ...props}) => {
 
     }, [dispatch, setIsLoading, setError]);
 
-    const repairAddHandler = repair => {
-        navigation.navigate('RepairAddScreen')
+    const repairEditHandler = repair => {
+        try {
+            navigation.navigate('RepairEditScreen', {
+                detailName: repair.detailName,
+                price: repair.price,
+                counts: repair.counts,
+                carType: repair.carType,
+                id: repair.id
+            })
+        }
+        catch (err) {
+            Alert.alert('Error', err.message, [{ message: 'Okay' }]);
+            setError('Something went wrong during network call');
+        }
     }
 
-    const repairEditHandler = repair => {
-        navigation.navigate('RepairEditScreen', {
-            detailName: repair.detailName,
-            price: repair.price,
-            counts: repair.counts,
-            carType: repair.carType
-        })
+    const repairAddHandler = repair => {
+        navigation.navigate('RepairAddScreen')
     }
 
     const postRepairDelete = useCallback( async id => {
@@ -109,7 +116,7 @@ const RepairScreenContainer = ({navigation, ...props}) => {
             isLoading={isLoading}
             navigation={navigation}
             deleteHandler={deleteHandler}
-            editHandler={repairEditHandler}
+            repairEditHandler={repairEditHandler}
         />
     )
 }

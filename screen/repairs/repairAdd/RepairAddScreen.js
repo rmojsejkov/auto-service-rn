@@ -1,5 +1,5 @@
 import React from 'react';
-import {ActivityIndicator, Button, Image, KeyboardAvoidingView, StyleSheet, Text, TextInput, View} from 'react-native';
+import {Button, Image, KeyboardAvoidingView, StyleSheet, Text, TextInput, View} from 'react-native';
 
 import Colors from '../../../constants/colors';
 import {Icon} from "react-native-elements";
