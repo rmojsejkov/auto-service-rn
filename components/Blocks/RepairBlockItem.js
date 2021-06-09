@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
     },
     delete: {
         // paddingLeft: '75%',
-        top: '4.5%',
+        top: '4%',
         backgroundColor: Colors.white,
         borderRadius: 6,
         // borderWidth: 1,
@@ -164,7 +164,7 @@ const styles = StyleSheet.create({
     },
     edit: {
         // paddingLeft: '75%',
-        top: '5%',
+        top: '4.5%',
         backgroundColor: Colors.white,
         borderRadius: 6,
         // borderWidth: 1,

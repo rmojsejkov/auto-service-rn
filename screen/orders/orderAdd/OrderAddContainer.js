@@ -11,11 +11,14 @@ import {HeaderButtons, Item} from "react-navigation-header-buttons";
 import {orderActions} from "../../../store/actions/ordersActions";
 import {electricianActions, serviceActions, suspensionActions} from "../../../store/actions/servicesActions";
 import {userActions} from "../../../store/actions/usersActions";
+import {repairActions} from "../../../store/actions/repairsActions";
 
 const OrderAddContainer = ({ navigation, route, ...props }) => {
 
     const [serviceInputValue, setServiceInputValue] = useState('');
-    const [dateValue, setDateValue] = useState(new Date(1598051730000));
+    const [dateValue, setDateValue] = useState(new Date(2021, 5, 9));
+
+    const [serviceType, setServiceType] = useState([]);
 
     const [surNameInputValue, setSurNameInputValue] = useState('');
     const [emailInputValue, setEmailInputValue] = useState('');
@@ -42,13 +45,7 @@ const OrderAddContainer = ({ navigation, route, ...props }) => {
 
     const showDatepicker = () => {
         showMode('date');
-        showTimepicker;
     };
-
-    const showTimepicker = () => {
-        showMode('time');
-    };
-
 
     const dispatch = useDispatch();
 
@@ -78,28 +75,16 @@ const OrderAddContainer = ({ navigation, route, ...props }) => {
         defaultServicesAutoElectrician
     } = useSelector(state => state.service);
 
-    const {
-        defaultEmployees
-    } = useSelector(state => state.employee);
-
-    console.log(defaultEmployees.item + '  sshhs')
-
-    const {
-        defaultUsers
-    } = useSelector(state => state.user);
-
-    const postEmployeeAdd = useCallback( async () => {
+    const postRepairAdd = useCallback( async () => {
         console.log('click save');
 
         setIsLoading(true);
         try {
-            await dispatch(orderActions.setDefaultOrder(
+            await dispatch(repairActions.setDefaultRepair(
                 orderDateInputValue,
                 durationInputValue,
                 detailInputValue,
-                serviceInputValue,
-                employeeInputValue,
-                userInputValue
+                serviceInputValue
             ));
         } catch (err) {
             Alert.alert('Error', err.message, [{ message: 'Okay' }]);
@@ -127,7 +112,7 @@ const OrderAddContainer = ({ navigation, route, ...props }) => {
                 },
                 {
                     text: 'Да',
-                    onPress: () => postEmployeeAdd()
+                    onPress: () => postRepairAdd()
                 }
             ]
         );
@@ -151,7 +136,7 @@ const OrderAddContainer = ({ navigation, route, ...props }) => {
                 </HeaderButtons>
             )
         })
-    }, [navigation, postEmployeeAdd]);
+    }, [navigation, postRepairAdd]);
 
     return (
         <OrderAddScreen
@@ -162,13 +147,20 @@ const OrderAddContainer = ({ navigation, route, ...props }) => {
             emailInputValue={emailInputValue}
             phoneInputValue={phoneInputValue}
             passInputValue={passInputValue}
+            serviceInputValue={serviceInputValue}
+
             onChangeService={setServiceInputValue}
             onChangeDate={onChange}
             onChangeSurName={setSurNameInputValue}
             onChangeEmail={setEmailInputValue}
             onChangePhone={setPhoneInputValue}
             onChangePass={setPassInputValue}
+
             defaultServicesIce={defaultServicesIce}
+            defaultServicesSuspension={defaultServicesSuspension}
+            defaultServicesAutoElectrician={defaultServicesAutoElectrician}
+            serviceType={serviceType}
+            setServiceType={setServiceType}
             loadAllDates={loadAllDates}
             showDatepicker={showDatepicker}
             mode={mode}

@@ -70,7 +70,7 @@ const RepairEditScreen = ({navigation, ...props}) => {
                     />
                     <TextInput
                         style={{borderBottomColor: Colors.black, borderBottomWidth: 1, width: '80%', fontSize: 18, marginHorizontal: 14}}
-                        placeholder='Наименование детали'
+                        placeholder={detailName}
                         autoCapitalize='words'
                         value={detailNameInputValue}
                         onChangeText={onChangeDetailName}
@@ -89,9 +89,9 @@ const RepairEditScreen = ({navigation, ...props}) => {
                     />
                     <TextInput
                         style={{borderBottomColor: Colors.black, borderBottomWidth: 1, width: '80%', fontSize: 18, marginHorizontal: 14}}
-                        placeholder='Цена'
+                        placeholder={'' + price}
                         keyboardType='number-pad'
-                        value={priceInputValue}
+                        value={'' + priceInputValue}
                         onChangeText={onChangePrice}
                     />
                 </KeyboardAvoidingView>
@@ -108,9 +108,9 @@ const RepairEditScreen = ({navigation, ...props}) => {
                     />
                     <TextInput
                         style={{borderBottomColor: Colors.black, borderBottomWidth: 1, width: '80%', fontSize: 18, marginHorizontal: 10}}
-                        placeholder='Количество'
+                        placeholder={'' + counts}
                         keyboardType="numeric"
-                        value={countsInputValue}
+                        value={'' + countsInputValue}
                         onChangeText={onChangeCounts}
                     />
                 </KeyboardAvoidingView>
@@ -127,7 +127,7 @@ const RepairEditScreen = ({navigation, ...props}) => {
                     />
                     <TextInput
                         style={{borderBottomColor: Colors.black, borderBottomWidth: 1, width: '80%', fontSize: 18, marginHorizontal: 10}}
-                        placeholder='Тип автомобиля'
+                        placeholder={carType}
                         autoCapitalize='words'
                         value={carTypeInputValue}
                         onChangeText={onChangeCarType}

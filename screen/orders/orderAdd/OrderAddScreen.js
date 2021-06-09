@@ -3,19 +3,24 @@ import {Button, FlatList, Image, KeyboardAvoidingView, Platform, StyleSheet, Tex
 import {Icon} from "react-native-elements";
 import ModalSelector from 'react-native-modal-selector-searchable';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import DatePicker from 'react-native-datepicker'
 
 import Colors from '../../../constants/colors';
-import {ServiceBlockItem} from "../../../components";
+
+const toSelectorItem = service => (({key: service.id, label: service.serviceName}));
 
 const OrderAddScreen = ({navigation, ...props}) => {
     const {
+        serviceType,
+        setServiceType,
         dateValue,
         show,
+        serviceInputValue,
         mode,
         showDatepicker,
         loadAllDates,
         defaultServicesIce,
+        defaultServicesSuspension,
+        defaultServicesAutoElectrician,
         surNameInputValue,
         emailInputValue,
         phoneInputValue,
@@ -30,7 +35,21 @@ const OrderAddScreen = ({navigation, ...props}) => {
         isLoading,
     } = props;
 
-    const data = defaultServicesIce.map(service => ({key: service.id, label: service.serviceName}))
+    const selector = {
+        ['ДВС']: () => defaultServicesIce.map(service => toSelectorItem(service)),
+        ['Подвеска']: () => defaultServicesSuspension.map(service => toSelectorItem(service)),
+        ['Электрика']: () => defaultServicesAutoElectrician.map(service => toSelectorItem(service)),
+        DEFAULT: () => console.log('Not service case')
+    }
+
+
+    let index = 0;
+    const chooseService = [
+        { key: index++, section: true, label: 'Направления услуг' },
+        { key: index++, label: 'ДВС' },
+        { key: index++, label: 'Подвеска' },
+        { key: index++, label: 'Электрика'}
+    ];
 
     if (error) {
         return (
@@ -59,26 +78,69 @@ const OrderAddScreen = ({navigation, ...props}) => {
             <View style={styles.container}>
                 <KeyboardAvoidingView
                     behavior={Platform.OS === "ios" ? "padding" : "height"}
-                    style={styles.employeeTitle}
+                    style={styles.repairTitle}
                 >
                     <Icon
                         color={Colors.black}
-                        name='person-circle'
-                        type='ionicon'
-                        size={21}
+                        name='wrench'
+                        type='foundation'
+                        size={40}
                         style={styles.icon}
                     />
                     <ModalSelector
-                        data={data}
+                        data={chooseService}
+                        initValue="Выберите направление"
+                        onChange={(option)=> {
+                            setServiceType(selector[option.label] || selector.DEFAULT);
+                            onChangeService(option.label);
+                        }}
+                        searchText='Поиск'
+                        cancelText='Закрыть'
+                        style={{width: '80%', marginBottom: '3%'}}
+                    >
+                        <TextInput
+                            style={{
+                                borderWidth: 1,
+                                borderColor: '#ccc',
+                                padding: 10,
+                                height: 40,
+                                borderRadius: 6
+                            }}
+                            value={serviceInputValue}
+                        />
+                    </ModalSelector>
+                    <ModalSelector
+                        data={serviceType}
                         initValue="Выберите услугу"
                         onChange={(service)=> onChangeService}
                         searchText='Поиск услуги'
                         cancelText='Закрыть'
+                        style={{width: '80%'}}
                     />
                 </KeyboardAvoidingView>
                 <KeyboardAvoidingView
                     behavior={Platform.OS === "ios" ? "padding" : "height"}
-                    style={styles.employeeTitle}
+                    style={styles.repairTitle}
+                >
+                    <Icon
+                        color={Colors.black}
+                        name='gear'
+                        type='font-awesome'
+                        size={40}
+                        style={styles.icon}
+                    />
+                    {/*<ModalSelector*/}
+                    {/*    data={data}*/}
+                    {/*    initValue="Выберите деталь"*/}
+                    {/*    onChange={(service)=> onChangeService}*/}
+                    {/*    searchText='Поиск услуги'*/}
+                    {/*    cancelText='Закрыть'*/}
+                    {/*    style={{width: '80%'}}*/}
+                    {/*/>*/}
+                </KeyboardAvoidingView>
+                <KeyboardAvoidingView
+                    behavior={Platform.OS === "ios" ? "padding" : "height"}
+                    style={styles.repairTitle}
                 >
                     <Icon
                         color={Colors.black}
@@ -104,7 +166,7 @@ const OrderAddScreen = ({navigation, ...props}) => {
                     </View>
                 </KeyboardAvoidingView>
                 <KeyboardAvoidingView
-                    style={styles.employeeTitle}
+                    style={styles.repairTitle}
                     behavior={Platform.OS === "ios" ? "padding" : "height"}
                 >
                     <Icon
@@ -123,7 +185,7 @@ const OrderAddScreen = ({navigation, ...props}) => {
                     />
                 </KeyboardAvoidingView>
                 <KeyboardAvoidingView
-                    style={styles.employeeTitle}
+                    style={styles.repairTitle}
                     behavior={Platform.OS === "ios" ? "padding" : "height"}
                 >
                     <Icon
@@ -184,8 +246,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         paddingLeft: '7%',
     },
-    employeeTitle: {
-        paddingLeft: '6%',
+    repairTitle: {
+        // paddingLeft: '6%',
         alignItems: 'center',
         width: '100%',
         marginBottom: '6%',
@@ -197,6 +259,9 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         left: '5%'
 
+    },
+    icon: {
+        padding: '3%'
     }
 });
 
