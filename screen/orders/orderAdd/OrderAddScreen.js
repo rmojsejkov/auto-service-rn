@@ -13,20 +13,27 @@ const OrderAddScreen = ({navigation, ...props}) => {
         serviceType,
         setServiceType,
         dateValue,
+        durationValue,
         show,
         serviceInputValue,
+        selectedServiceInputValue,
+        repairInputValue,
         mode,
         showDatepicker,
         loadAllDates,
         defaultServicesIce,
         defaultServicesSuspension,
         defaultServicesAutoElectrician,
+        defaultRepairs,
         surNameInputValue,
         emailInputValue,
         phoneInputValue,
         passInputValue,
         onChangeDate,
+        onChangeDuration,
         onChangeService,
+        onChangeSelected,
+        onChangeRepair,
         onChangeSurName,
         onChangeEmail,
         onChangePhone,
@@ -42,6 +49,7 @@ const OrderAddScreen = ({navigation, ...props}) => {
         DEFAULT: () => console.log('Not service case')
     }
 
+    const repairs = defaultRepairs.map(repair => ({key: repair.id, label: repair.detailName}))
 
     let index = 0;
     const chooseService = [
@@ -78,7 +86,7 @@ const OrderAddScreen = ({navigation, ...props}) => {
             <View style={styles.container}>
                 <KeyboardAvoidingView
                     behavior={Platform.OS === "ios" ? "padding" : "height"}
-                    style={styles.repairTitle}
+                    style={styles.serviceTitle}
                 >
                     <Icon
                         color={Colors.black}
@@ -104,19 +112,34 @@ const OrderAddScreen = ({navigation, ...props}) => {
                                 borderColor: '#ccc',
                                 padding: 10,
                                 height: 40,
-                                borderRadius: 6
+                                borderRadius: 6,
+                                paddingHorizontal: '22%'
                             }}
                             value={serviceInputValue}
+                            placeholder="Выберите направление"
                         />
                     </ModalSelector>
                     <ModalSelector
                         data={serviceType}
                         initValue="Выберите услугу"
-                        onChange={(service)=> onChangeService}
+                        onChange={(service)=> onChangeSelected(service.label)}
                         searchText='Поиск услуги'
                         cancelText='Закрыть'
                         style={{width: '80%'}}
-                    />
+                    >
+                        <TextInput
+                            style={{
+                                borderWidth: 1,
+                                borderColor: '#ccc',
+                                padding: 10,
+                                height: 40,
+                                borderRadius: 6,
+                                paddingHorizontal: '31%'
+                            }}
+                            placeholder="Выберите услугу"
+                            value={selectedServiceInputValue}
+                        />
+                    </ModalSelector>
                 </KeyboardAvoidingView>
                 <KeyboardAvoidingView
                     behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -129,24 +152,37 @@ const OrderAddScreen = ({navigation, ...props}) => {
                         size={40}
                         style={styles.icon}
                     />
-                    {/*<ModalSelector*/}
-                    {/*    data={data}*/}
-                    {/*    initValue="Выберите деталь"*/}
-                    {/*    onChange={(service)=> onChangeService}*/}
-                    {/*    searchText='Поиск услуги'*/}
-                    {/*    cancelText='Закрыть'*/}
-                    {/*    style={{width: '80%'}}*/}
-                    {/*/>*/}
+                    <ModalSelector
+                        data={repairs}
+                        initValue="Выберите деталь"
+                        onChange={(repair)=> onChangeRepair(repair.label)}
+                        searchText='Поиск услуги'
+                        cancelText='Закрыть'
+                        style={{width: '80%'}}
+                    >
+                        <TextInput
+                            style={{
+                                borderWidth: 1,
+                                borderColor: '#ccc',
+                                padding: 10,
+                                height: 40,
+                                borderRadius: 6,
+                                paddingHorizontal: '30%'
+                            }}
+                            placeholder="Выберите деталь"
+                            value={repairInputValue}
+                        />
+                    </ModalSelector>
                 </KeyboardAvoidingView>
                 <KeyboardAvoidingView
                     behavior={Platform.OS === "ios" ? "padding" : "height"}
-                    style={styles.repairTitle}
+                    style={styles.calendar}
                 >
                     <Icon
                         color={Colors.black}
-                        name='person-circle'
-                        type='ionicon'
-                        size={21}
+                        name='calendar'
+                        type='entypo'
+                        size={40}
                         style={styles.icon}
                         onPress={showDatepicker}
                     />
@@ -162,7 +198,38 @@ const OrderAddScreen = ({navigation, ...props}) => {
                                 minimumDate={new Date()}
                             />
                         )}
-                        <Text styles={{fontSize: '13'}}>{dateValue.toLocaleDateString()}</Text>
+                        <TextInput
+                            style={{
+                                borderWidth: 1,
+                                borderColor: '#ccc',
+                                padding: 10,
+                                height: 40,
+                                borderRadius: 6,
+                                paddingHorizontal: '20%',
+                                marginTop: '4%',
+                                // width: '40%'
+                            }}
+                            placeholder="Дата заказа"
+                            value={'Дата заказа: ' + dateValue.toLocaleDateString()}
+                            editable={false}
+                        />
+                        <TextInput
+                            style={{
+                                borderWidth: 1,
+                                borderColor: '#ccc',
+                                padding: 10,
+                                height: 40,
+                                borderRadius: 6,
+                                paddingHorizontal: '20%',
+                                marginTop: '4%',
+                                // width: '40%'
+                            }}
+                            placeholder="Дата выполнения заказа"
+                            value={durationValue}
+                            editable={false}
+                            onChange={onChangeDuration('Дата выполнения заказа: ' + dateValue.toLocaleDateString())}
+                        />
+                        {/*<Text styles={{fontSize: '13'}}>{dateValue.toLocaleDateString()}</Text>*/}
                     </View>
                 </KeyboardAvoidingView>
                 <KeyboardAvoidingView
@@ -246,7 +313,23 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         paddingLeft: '7%',
     },
+    calendar: {
+        // paddingLeft: '6%',
+        alignItems: 'center',
+        width: '100%',
+        // marginBottom: '6%',
+        // flexDirection: 'row',
+        bottom: '21%'
+    },
     repairTitle: {
+        // paddingLeft: '6%',
+        alignItems: 'center',
+        width: '100%',
+        marginBottom: '6%',
+        // flexDirection: 'row',
+        bottom: '19%'
+    },
+    serviceTitle: {
         // paddingLeft: '6%',
         alignItems: 'center',
         width: '100%',

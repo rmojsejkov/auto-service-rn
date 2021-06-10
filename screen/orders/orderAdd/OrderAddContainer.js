@@ -16,9 +16,13 @@ import {repairActions} from "../../../store/actions/repairsActions";
 const OrderAddContainer = ({ navigation, route, ...props }) => {
 
     const [serviceInputValue, setServiceInputValue] = useState('');
-    const [dateValue, setDateValue] = useState(new Date(2021, 5, 9));
-
     const [serviceType, setServiceType] = useState([]);
+    const [selectedServiceInputValue, setSelectedServiceInputValue] = useState('');
+    const [repairInputValue, setRepairInputValue] = useState('');
+    const [dateValue, setDateValue] = useState(new Date(2021, 5, 9));
+    const [durationValue, setDurationValue] = useState(null);
+
+
 
     const [surNameInputValue, setSurNameInputValue] = useState('');
     const [emailInputValue, setEmailInputValue] = useState('');
@@ -57,6 +61,7 @@ const OrderAddContainer = ({ navigation, route, ...props }) => {
             await dispatch(electricianActions.getDefaultServicesAutoElectrician());
             await dispatch(employeeActions.getDefaultEmployees());
             await dispatch(userActions.getDefaultUsers());
+            await dispatch(repairActions.getDefaultRepairs());
         } catch (err) {
             Alert.alert('Error', err.message, [{ message: 'Okay' }]);
             setError('Something went wrong during network call');
@@ -74,6 +79,10 @@ const OrderAddContainer = ({ navigation, route, ...props }) => {
         defaultServicesSuspension,
         defaultServicesAutoElectrician
     } = useSelector(state => state.service);
+
+    const {
+        defaultRepairs
+    } = useSelector(state => state.repair)
 
     const postRepairAdd = useCallback( async () => {
         console.log('click save');
@@ -143,14 +152,20 @@ const OrderAddContainer = ({ navigation, route, ...props }) => {
             error={error}
             isLoading={isLoading}
             dateValue={dateValue}
+            durationValue={durationValue}
             surNameInputValue={surNameInputValue}
             emailInputValue={emailInputValue}
             phoneInputValue={phoneInputValue}
             passInputValue={passInputValue}
             serviceInputValue={serviceInputValue}
+            repairInputValue={repairInputValue}
+            selectedServiceInputValue={selectedServiceInputValue}
 
+            onChangeSelected={setSelectedServiceInputValue}
             onChangeService={setServiceInputValue}
+            onChangeRepair={setRepairInputValue}
             onChangeDate={onChange}
+            onChangeDuration={setDurationValue}
             onChangeSurName={setSurNameInputValue}
             onChangeEmail={setEmailInputValue}
             onChangePhone={setPhoneInputValue}
@@ -159,6 +174,7 @@ const OrderAddContainer = ({ navigation, route, ...props }) => {
             defaultServicesIce={defaultServicesIce}
             defaultServicesSuspension={defaultServicesSuspension}
             defaultServicesAutoElectrician={defaultServicesAutoElectrician}
+            defaultRepairs={defaultRepairs}
             serviceType={serviceType}
             setServiceType={setServiceType}
             loadAllDates={loadAllDates}
