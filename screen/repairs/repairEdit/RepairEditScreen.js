@@ -59,12 +59,12 @@ const RepairEditScreen = ({navigation, ...props}) => {
             <View style={styles.container}>
                 <KeyboardAvoidingView
                     behavior={Platform.OS === "ios" ? "padding" : "height"}
-                    style={styles.employeeTitle}
+                    style={styles.repairTitle}
                 >
                     <Icon
                         color={Colors.black}
-                        name='person-circle'
-                        type='ionicon'
+                        name='gear'
+                        type='font-awesome'
                         size={21}
                         style={styles.icon}
                     />
@@ -78,11 +78,11 @@ const RepairEditScreen = ({navigation, ...props}) => {
                 </KeyboardAvoidingView>
                 <KeyboardAvoidingView
                     behavior={Platform.OS === "ios" ? "padding" : "height"}
-                    style={styles.employeeTitle}
+                    style={styles.repairTitle}
                 >
                     <Icon
                         color={Colors.black}
-                        name='person-circle'
+                        name='pricetags'
                         type='ionicon'
                         size={21}
                         style={styles.icon}
@@ -96,13 +96,13 @@ const RepairEditScreen = ({navigation, ...props}) => {
                     />
                 </KeyboardAvoidingView>
                 <KeyboardAvoidingView
-                    style={styles.employeeTitle}
+                    style={styles.repairTitle}
                     behavior={Platform.OS === "ios" ? "padding" : "height"}
                 >
                     <Icon
                         color={Colors.black}
-                        name='person-circle'
-                        type='ionicon'
+                        name='list-alt'
+                        type='material-icon'
                         size={21}
                         style={styles.icon}
                     />
@@ -115,13 +115,13 @@ const RepairEditScreen = ({navigation, ...props}) => {
                     />
                 </KeyboardAvoidingView>
                 <KeyboardAvoidingView
-                    style={styles.employeeTitle}
+                    style={styles.repairTitle}
                     behavior={Platform.OS === "ios" ? "padding" : "height"}
                 >
                     <Icon
                         color={Colors.black}
-                        name='email'
-                        type='MaterialCommunityIcon'
+                        name='car'
+                        type='ionicon'
                         size={21}
                         style={styles.icon}
                     />
@@ -176,7 +176,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         paddingLeft: '7%',
     },
-    employeeTitle: {
+    repairTitle: {
         paddingLeft: '6%',
         alignItems: 'center',
         width: '100%',

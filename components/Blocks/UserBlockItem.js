@@ -85,7 +85,6 @@ const styles = StyleSheet.create({
     },
     priceTextCont: {
         paddingVertical: 5,
-
     },
     logo: {
         width: 50,
@@ -99,11 +98,8 @@ const styles = StyleSheet.create({
     },
     titleText: {
         fontSize: 15,
-        // fontWeight: 'bold',
         alignItems: 'center',
         marginLeft: '30%',
-        // left: '3%',
-        // position: 'absolute'
     },
     touchable: {
         overflow: 'hidden',
@@ -115,27 +111,23 @@ const styles = StyleSheet.create({
     line: {
         flex: 1,
         height: 1,
-        // paddingTop: '15%',
         borderBottomWidth: 3,
         borderBottomColor: Colors.lightgray,
         backgroundColor: Colors.white
-    }, icons: {
-        flexDirection: 'row'
+    },
+    icons: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingHorizontal: '5%'
     },
     human: {
         alignItems: 'center',
-        marginLeft: '33%',
-        // borderWidth: 2,
         borderRadius: 80
     },
     delete: {
-        // paddingLeft: '75%',
-        top: '3.5%',
         backgroundColor: Colors.white,
         borderRadius: 6,
-        // borderWidth: 1,
-        marginLeft: '30%',
-        height: 25,
         alignItems: 'center'
     },
     iconName: {
@@ -149,13 +141,8 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     edit: {
-        // paddingLeft: '75%',
-        top: '4%',
         backgroundColor: Colors.white,
         borderRadius: 6,
-        // borderWidth: 1,
-        marginLeft: '5%',
-        height: 25,
         alignItems: 'center'
     }
 });
