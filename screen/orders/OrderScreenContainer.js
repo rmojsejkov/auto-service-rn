@@ -2,11 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { Alert } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 
-import {electricianActions, serviceActions, suspensionActions} from '../../store/actions/servicesActions';
 import OrderScreenView from "./OrderScreenView";
-import {employeeActions} from "../../store/actions/employeesActions";
-import {userActions} from "../../store/actions/usersActions";
-import ServicesScreenView from "../services/ice/ServicesScreenView";
 import {orderActions} from "../../store/actions/ordersActions";
 import Colors from "../../constants/colors";
 import {HeaderButtons, Item} from "react-navigation-header-buttons";
@@ -36,17 +32,45 @@ const OrderScreenContainer = ({navigation, ...props}) => {
     const orderAddHandler = order => {
         navigation.navigate('OrderAddScreen')
     }
+    //
+    // const orderSelectHandler = order => {
+    //     navigation.navigate('OrderDetails', {
+    //         orderDate: order.orderDate,
+    //         duration: order.duration,
+    //         detail: order.detail,
+    //         service: order.service,
+    //         employee: order.employee,
+    //         user: order.user,
+    //         id: order.id
+    //     })
+    // }
 
-    const orderSelectHandler = order => {
-        navigation.navigate('OrderDetails', {
-            orderDate: order.orderDate,
-            duration: order.duration,
-            detail: order.detail,
-            service: order.service,
-            employee: order.employee,
-            user: order.user,
-            id: order.id
-        })
+    const postOrderDelete = useCallback( async id => {
+        setIsLoading(true);
+        try {
+            await dispatch(orderActions.deleteOrder(id));
+        } catch (err) {
+            Alert.alert('Error', err.message, [{ message: 'Okay' }]);
+            setError('Something went wrong during network call');
+        }
+        setIsLoading(false);
+    }, [setIsLoading, dispatch]);
+
+    const deleteHandler = id => {
+        Alert.alert('Предупреждение',
+            'Удалить заказ?',
+            [
+                {
+                    text: 'Нет',
+                    onPress: () => console.log('Нажали закрыть'),
+                    style: 'cancel'
+                },
+                {
+                    text: 'Да',
+                    onPress: () => postOrderDelete(id)
+                }
+            ]
+        );
     }
 
     useEffect(() => {
@@ -87,7 +111,8 @@ const OrderScreenContainer = ({navigation, ...props}) => {
             error={error}
             isLoading={isLoading}
             navigation={navigation}
-            orderSelectHandler={orderSelectHandler}
+            // orderSelectHandler={orderSelectHandler}
+            deleteHandler={deleteHandler}
         />
     )
 }

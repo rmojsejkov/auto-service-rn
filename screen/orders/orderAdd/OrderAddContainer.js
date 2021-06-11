@@ -19,19 +19,11 @@ const OrderAddContainer = ({ navigation, route, ...props }) => {
     const [serviceType, setServiceType] = useState([]);
     const [selectedServiceInputValue, setSelectedServiceInputValue] = useState('');
     const [repairInputValue, setRepairInputValue] = useState('');
-    const [dateValue, setDateValue] = useState(new Date(2021, 5, 9));
-    const [durationValue, setDurationValue] = useState(null);
-
-
-
-    const [surNameInputValue, setSurNameInputValue] = useState('');
-    const [emailInputValue, setEmailInputValue] = useState('');
-    const [phoneInputValue, setPhoneInputValue] = useState('');
-    const [passInputValue, setPassInputValue] = useState('');
+    const [dateValue, setDateValue] = useState(new Date(2021, 5, 11));
+    const [durationValue, setDurationValue] = useState(new Date(2021, 5, 18));
 
     const [ isLoading, setIsLoading ] = useState(false);
     const [ error, setError ] = useState(null);
-    const roleId = 3;
 
     const [mode, setMode] = useState('date');
     const [show, setShow] = useState(false);
@@ -56,6 +48,7 @@ const OrderAddContainer = ({ navigation, route, ...props }) => {
     const loadAllDates = useCallback(async () => {
         setIsLoading(true);
         try {
+            await dispatch(orderActions.getDefaultOrders());
             await dispatch(serviceActions.getDefaultServicesIce());
             await dispatch(suspensionActions.getDefaultServicesSuspension());
             await dispatch(electricianActions.getDefaultServicesAutoElectrician());
@@ -73,7 +66,6 @@ const OrderAddContainer = ({ navigation, route, ...props }) => {
         loadAllDates();
     }, [loadAllDates]);
 
-
     const {
         defaultServicesIce,
         defaultServicesSuspension,
@@ -84,16 +76,47 @@ const OrderAddContainer = ({ navigation, route, ...props }) => {
         defaultRepairs
     } = useSelector(state => state.repair)
 
-    const postRepairAdd = useCallback( async () => {
-        console.log('click save');
+    const {
+        defaultOrders
+    } = useSelector(state => state.order)
 
+    const {
+        defaultEmployees
+    } = useSelector(state => state.employee)
+
+    const {
+        defaultUsers
+    } = useSelector(state => state.user)
+
+    let employeeValue = 'Иванов';
+        // defaultEmployees.getRandomPosition.map(employee => employee.lastName)
+
+    let userValue = 'roma.moiseikov@mail.ru';
+        // defaultUsers.getRandomPosition.map(user => user.email)
+
+    let price = 0;
+
+    const postRepairAdd = useCallback( async () => {
+        if (selectedServiceInputValue && selectedServiceInputValue.trim().length !== 0) {
+            price += defaultServicesIce.concat(defaultServicesSuspension)
+                .concat(defaultServicesAutoElectrician)
+                .find(service => service.serviceName === selectedServiceInputValue)
+                .price;
+        }
+        if (repairInputValue && repairInputValue.trim().length !== 0) {
+            price += +defaultRepairs.find(repair => repair.detailName === repairInputValue)
+                .price;
+        }
         setIsLoading(true);
         try {
-            await dispatch(repairActions.setDefaultRepair(
-                orderDateInputValue,
-                durationInputValue,
-                detailInputValue,
-                serviceInputValue
+            await dispatch(orderActions.setDefaultOrder(
+                dateValue,
+                durationValue,
+                repairInputValue,
+                selectedServiceInputValue,
+                employeeValue,
+                userValue,
+                price
             ));
         } catch (err) {
             Alert.alert('Error', err.message, [{ message: 'Okay' }]);
@@ -102,10 +125,13 @@ const OrderAddContainer = ({ navigation, route, ...props }) => {
         setIsLoading(false);
         navigation.goBack();
     }, [
-        surNameInputValue,
-        emailInputValue,
-        phoneInputValue,
-        passInputValue,
+        dateValue,
+        durationValue,
+        repairInputValue,
+        selectedServiceInputValue,
+        employeeValue,
+        userValue,
+        price,
         setIsLoading,
         dispatch
     ]);
@@ -153,24 +179,19 @@ const OrderAddContainer = ({ navigation, route, ...props }) => {
             isLoading={isLoading}
             dateValue={dateValue}
             durationValue={durationValue}
-            surNameInputValue={surNameInputValue}
-            emailInputValue={emailInputValue}
-            phoneInputValue={phoneInputValue}
-            passInputValue={passInputValue}
+
             serviceInputValue={serviceInputValue}
             repairInputValue={repairInputValue}
             selectedServiceInputValue={selectedServiceInputValue}
+            price={price}
 
             onChangeSelected={setSelectedServiceInputValue}
             onChangeService={setServiceInputValue}
             onChangeRepair={setRepairInputValue}
             onChangeDate={onChange}
             onChangeDuration={setDurationValue}
-            onChangeSurName={setSurNameInputValue}
-            onChangeEmail={setEmailInputValue}
-            onChangePhone={setPhoneInputValue}
-            onChangePass={setPassInputValue}
 
+            defaultOrders={defaultOrders}
             defaultServicesIce={defaultServicesIce}
             defaultServicesSuspension={defaultServicesSuspension}
             defaultServicesAutoElectrician={defaultServicesAutoElectrician}

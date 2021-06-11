@@ -18,29 +18,28 @@ const OrderAddScreen = ({navigation, ...props}) => {
         serviceInputValue,
         selectedServiceInputValue,
         repairInputValue,
-        mode,
         showDatepicker,
-        loadAllDates,
+
         defaultServicesIce,
         defaultServicesSuspension,
         defaultServicesAutoElectrician,
         defaultRepairs,
-        surNameInputValue,
-        emailInputValue,
-        phoneInputValue,
-        passInputValue,
+
         onChangeDate,
         onChangeDuration,
         onChangeService,
         onChangeSelected,
         onChangeRepair,
-        onChangeSurName,
-        onChangeEmail,
-        onChangePhone,
-        onChangePass,
+
         error,
         isLoading,
     } = props;
+
+    const year = dateValue.getFullYear();
+    const month = dateValue.getMonth();
+    const day = dateValue.getDate();
+
+    const addedDate = new Date(year, month, day  + 7)
 
     const selector = {
         ['ДВС']: () => defaultServicesIce.map(service => toSelectorItem(service)),
@@ -81,6 +80,20 @@ const OrderAddScreen = ({navigation, ...props}) => {
         )
     }
 
+    let price = 0;
+
+    if (selectedServiceInputValue && selectedServiceInputValue.trim().length !== 0) {
+        price += defaultServicesIce.concat(defaultServicesSuspension)
+            .concat(defaultServicesAutoElectrician)
+            .find(service => service.serviceName === selectedServiceInputValue)
+            .price;
+    }
+
+    if (repairInputValue && repairInputValue.trim().length !== 0) {
+        price += +defaultRepairs.find(repair => repair.detailName === repairInputValue)
+            .price;
+    }
+
     return(
         <View style={styles.screen}>
             <View style={styles.container}>
@@ -113,7 +126,7 @@ const OrderAddScreen = ({navigation, ...props}) => {
                                 padding: 10,
                                 height: 40,
                                 borderRadius: 6,
-                                paddingHorizontal: '22%'
+                                textAlign: 'center'
                             }}
                             value={serviceInputValue}
                             placeholder="Выберите направление"
@@ -134,7 +147,7 @@ const OrderAddScreen = ({navigation, ...props}) => {
                                 padding: 10,
                                 height: 40,
                                 borderRadius: 6,
-                                paddingHorizontal: '31%'
+                                textAlign: 'center'
                             }}
                             placeholder="Выберите услугу"
                             value={selectedServiceInputValue}
@@ -167,7 +180,7 @@ const OrderAddScreen = ({navigation, ...props}) => {
                                 padding: 10,
                                 height: 40,
                                 borderRadius: 6,
-                                paddingHorizontal: '30%'
+                                textAlign: 'center'
                             }}
                             placeholder="Выберите деталь"
                             value={repairInputValue}
@@ -205,71 +218,42 @@ const OrderAddScreen = ({navigation, ...props}) => {
                                 padding: 10,
                                 height: 40,
                                 borderRadius: 6,
-                                paddingHorizontal: '20%',
+                                textAlign: 'center',
                                 marginTop: '4%',
-                                // width: '40%'
+                                paddingHorizontal: '20%',
+                                // width: '80%'
                             }}
                             placeholder="Дата заказа"
                             value={'Дата заказа: ' + dateValue.toLocaleDateString()}
                             editable={false}
                         />
-                        <TextInput
-                            style={{
-                                borderWidth: 1,
-                                borderColor: '#ccc',
-                                padding: 10,
-                                height: 40,
-                                borderRadius: 6,
-                                paddingHorizontal: '20%',
-                                marginTop: '4%',
-                                // width: '40%'
-                            }}
-                            placeholder="Дата выполнения заказа"
-                            value={durationValue}
-                            editable={false}
-                            onChange={onChangeDuration('Дата выполнения заказа: ' + dateValue.toLocaleDateString())}
-                        />
-                        {/*<Text styles={{fontSize: '13'}}>{dateValue.toLocaleDateString()}</Text>*/}
                     </View>
                 </KeyboardAvoidingView>
                 <KeyboardAvoidingView
-                    style={styles.repairTitle}
                     behavior={Platform.OS === "ios" ? "padding" : "height"}
+                    style={styles.calendar}
                 >
-                    <Icon
-                        color={Colors.black}
-                        name='person-circle'
-                        type='ionicon'
-                        size={21}
-                        style={styles.icon}
-                    />
                     <TextInput
-                        style={{borderBottomColor: Colors.black, borderBottomWidth: 1, width: '80%', fontSize: 18, marginHorizontal: 10}}
-                        placeholder="Введите отчество"
-                        autoCapitalize='words'
-                        value={surNameInputValue}
-                        onChangeText={onChangeSurName}
+                        style={{
+                            borderWidth: 1,
+                            borderColor: '#ccc',
+                            // padding: 10,
+                            height: 40,
+                            borderRadius: 6,
+                            marginTop: '4%',
+                            textAlign: 'center',
+                            width: '80%'
+                            // paddingHorizontal: '20%',
+                        }}
+                        placeholder={"Дата выполнения заказа: " + addedDate.toLocaleDateString()}
+                        value={durationValue.toLocaleDateString()}
+                        editable={false}
+                        onChange={onChangeDuration}
                     />
                 </KeyboardAvoidingView>
-                <KeyboardAvoidingView
-                    style={styles.repairTitle}
-                    behavior={Platform.OS === "ios" ? "padding" : "height"}
-                >
-                    <Icon
-                        color={Colors.black}
-                        name='email'
-                        type='MaterialCommunityIcon'
-                        size={21}
-                        style={styles.icon}
-                    />
-                    <TextInput
-                        style={{borderBottomColor: Colors.black, borderBottomWidth: 1, width: '80%', fontSize: 18, marginHorizontal: 10}}
-                        placeholder="Введите электронную почту"
-                        keyboardType="email-address"
-                        value={emailInputValue}
-                        onChangeText={onChangeEmail}
-                    />
-                </KeyboardAvoidingView>
+                <View style={styles.priceContainer}>
+                    <Text style={{fontSize: 20}}>Цена заказа: {price} р.</Text>
+                </View>
             </View>
         </View>
     );
@@ -345,6 +329,9 @@ const styles = StyleSheet.create({
     },
     icon: {
         padding: '3%'
+    },
+    priceContainer: {
+        // marginVertical: '30%'
     }
 });
 

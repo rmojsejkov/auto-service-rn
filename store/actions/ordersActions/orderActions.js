@@ -59,9 +59,9 @@ export const deleteOrder = id => {
  * @param user
  * @returns {(function(*): Promise<void>)|*}
  */
-export const setDefaultOrder = (orderDate, duration, detail, service, employee, user) => {
+export const setDefaultOrder = (orderDate, duration, detail, service, employee, user, price) => {
     return async dispatch => {
-        const response = await fetch(`${URL}/employees.json`, {
+        const response = await fetch(`${URL}/orders.json`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -72,7 +72,8 @@ export const setDefaultOrder = (orderDate, duration, detail, service, employee, 
                 detail,
                 service,
                 employee,
-                user
+                user,
+                price
             })
         });
         if (!response.ok) {
@@ -89,6 +90,7 @@ export const setDefaultOrder = (orderDate, duration, detail, service, employee, 
                 service,
                 employee,
                 user,
+                price,
                 id: name
             }
         });

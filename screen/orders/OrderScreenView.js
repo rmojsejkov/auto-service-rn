@@ -13,7 +13,7 @@ const OrderScreenView = ({navigation, ...props}) => {
         isLoading,
         loadOrders,
         defaultOrders,
-        orderSelectHandler,
+        deleteHandler,
     } = props;
 
     if (error) {
@@ -44,7 +44,7 @@ const OrderScreenView = ({navigation, ...props}) => {
                 data={defaultOrders}
                 keyExtractor={item => item.id + ''}
                 numColumns={1}
-                renderItem={itemData => <OrderBlockItem order={itemData.item} onSelect={orderSelectHandler.bind(this)}/>}
+                renderItem={itemData => <OrderBlockItem deleteHandler={deleteHandler} order={itemData.item} />}
                 refreshing={isLoading}
                 onRefresh={() => loadOrders()}
             />
