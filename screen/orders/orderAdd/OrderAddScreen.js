@@ -245,8 +245,8 @@ const OrderAddScreen = ({navigation, ...props}) => {
                             width: '80%'
                             // paddingHorizontal: '20%',
                         }}
-                        placeholder={"Дата выполнения заказа: " + addedDate.toLocaleDateString()}
-                        value={durationValue.toLocaleDateString()}
+                        placeholder={"Дата выполнения заказа: "}
+                        value={"Дата выполнения заказа: " + addedDate.toLocaleDateString()}
                         editable={false}
                         onChange={onChangeDuration}
                     />

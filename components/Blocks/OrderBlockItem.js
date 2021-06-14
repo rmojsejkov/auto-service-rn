@@ -43,7 +43,7 @@ const OrderBlockItem = ({order, deleteHandler, ...props}) => {
                         <View style={styles.iconName}>
                             <Text style={styles.iconText}>Цена:</Text>
                         </View>
-                        <Text style={styles.titleText}>{order.price}</Text>
+                        <Text style={styles.titleText}>{order.price} руб.</Text>
                     </View>
                 </View>
                 <View style={styles.line}/>
@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
         fontSize: 15,
         // fontWeight: 'bold',
         alignItems: 'center',
-        marginLeft: '30%',
+        marginLeft: '43%',
         // left: '3%',
         // position: 'absolute'
     },
@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
     },
     iconName: {
         flexDirection: 'row',
-        right: '64%',
+        right: '68%',
         alignItems: 'center',
         position: 'absolute'
     },

@@ -108,10 +108,12 @@ const OrderAddContainer = ({ navigation, route, ...props }) => {
                 .price;
         }
         setIsLoading(true);
+
+
         try {
             await dispatch(orderActions.setDefaultOrder(
-                dateValue,
-                durationValue,
+                dateValue.toLocaleDateString(),
+                durationValue.toLocaleDateString(),
                 repairInputValue,
                 selectedServiceInputValue,
                 employeeValue,
