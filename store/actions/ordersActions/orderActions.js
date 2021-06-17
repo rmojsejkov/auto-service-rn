@@ -57,6 +57,7 @@ export const deleteOrder = id => {
  * @param service
  * @param employee
  * @param user
+ * @param price
  * @returns {(function(*): Promise<void>)|*}
  */
 export const setDefaultOrder = (orderDate, duration, detail, service, employee, user, price) => {

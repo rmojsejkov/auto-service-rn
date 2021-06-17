@@ -220,8 +220,7 @@ const OrderAddScreen = ({navigation, ...props}) => {
                                 borderRadius: 6,
                                 textAlign: 'center',
                                 marginTop: '4%',
-                                paddingHorizontal: '20%',
-                                // width: '80%'
+                                paddingHorizontal: '20%'
                             }}
                             placeholder="Дата заказа"
                             value={'Дата заказа: ' + dateValue.toLocaleDateString()}

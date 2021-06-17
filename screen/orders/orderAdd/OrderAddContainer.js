@@ -20,7 +20,7 @@ const OrderAddContainer = ({ navigation, route, ...props }) => {
     const [selectedServiceInputValue, setSelectedServiceInputValue] = useState('');
     const [repairInputValue, setRepairInputValue] = useState('');
     const [dateValue, setDateValue] = useState(new Date(2021, 5, 11));
-    const [durationValue, setDurationValue] = useState(new Date(2021, 5, 18));
+    const [durationValue, setDurationValue] = useState(dateValue);
 
     const [ isLoading, setIsLoading ] = useState(false);
     const [ error, setError ] = useState(null);
@@ -96,24 +96,31 @@ const OrderAddContainer = ({ navigation, route, ...props }) => {
 
     let price = 0;
 
-    const postRepairAdd = useCallback( async () => {
+    const year = dateValue.getFullYear();
+    const month = dateValue.getMonth();
+    const day = dateValue.getDate();
+
+    const addedDate = new Date(year, month, day  + 7)
+
+    const postOrderAdd = useCallback( async () => {
+        console.log(durationValue.toLocaleDateString())
         if (selectedServiceInputValue && selectedServiceInputValue.trim().length !== 0) {
             price += defaultServicesIce.concat(defaultServicesSuspension)
                 .concat(defaultServicesAutoElectrician)
                 .find(service => service.serviceName === selectedServiceInputValue)
                 .price;
         }
+        else {}
         if (repairInputValue && repairInputValue.trim().length !== 0) {
             price += +defaultRepairs.find(repair => repair.detailName === repairInputValue)
                 .price;
         }
         setIsLoading(true);
 
-
         try {
             await dispatch(orderActions.setDefaultOrder(
                 dateValue.toLocaleDateString(),
-                durationValue.toLocaleDateString(),
+                addedDate.toLocaleDateString(),
                 repairInputValue,
                 selectedServiceInputValue,
                 employeeValue,
@@ -149,7 +156,7 @@ const OrderAddContainer = ({ navigation, route, ...props }) => {
                 },
                 {
                     text: 'Да',
-                    onPress: () => postRepairAdd()
+                    onPress: () => postOrderAdd()
                 }
             ]
         );
@@ -173,7 +180,7 @@ const OrderAddContainer = ({ navigation, route, ...props }) => {
                 </HeaderButtons>
             )
         })
-    }, [navigation, postRepairAdd]);
+    }, [navigation, postOrderAdd]);
 
     return (
         <OrderAddScreen

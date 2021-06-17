@@ -32,18 +32,6 @@ const OrderScreenContainer = ({navigation, ...props}) => {
     const orderAddHandler = order => {
         navigation.navigate('OrderAddScreen')
     }
-    //
-    // const orderSelectHandler = order => {
-    //     navigation.navigate('OrderDetails', {
-    //         orderDate: order.orderDate,
-    //         duration: order.duration,
-    //         detail: order.detail,
-    //         service: order.service,
-    //         employee: order.employee,
-    //         user: order.user,
-    //         id: order.id
-    //     })
-    // }
 
     const postOrderDelete = useCallback( async id => {
         setIsLoading(true);
@@ -111,7 +99,6 @@ const OrderScreenContainer = ({navigation, ...props}) => {
             error={error}
             isLoading={isLoading}
             navigation={navigation}
-            // orderSelectHandler={orderSelectHandler}
             deleteHandler={deleteHandler}
         />
     )
