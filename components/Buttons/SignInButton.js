@@ -4,11 +4,15 @@ import {Text, StyleSheet, Alert, TouchableOpacity} from 'react-native';
 import Colors from '../../constants/colors';
 import {FontAwesome5, MaterialCommunityIcons} from "@expo/vector-icons";
 
-const SignInButton = (onPress, ...props) => {
+const SignInButton = (onPress,navigation, ...props) => {
+
+    const singInSelectHandler = () => {
+        navigation.navigate('AuthScreen')
+    }
     return (
         <TouchableOpacity
             style={styles.signInButton}
-            onPress={() => onPress}
+            onPress={() => singInSelectHandler}
         >
             {/*<Text style={styles.buttonText}>*/}
             {/*    Войти*/}
