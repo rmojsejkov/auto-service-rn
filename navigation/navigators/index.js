@@ -6,6 +6,7 @@ import ServicesNavigator from "./servicesScreensNavigators/ServicesNavigator";
 import UserNavigator from "./UserNavigator";
 import OrderNavigator from './OrderNavigator';
 import RepairNavigator from "./RepairNavigator";
+import AuthNavigator from "./AuthNavigator";
 
 export {
     AboutNavigator,
@@ -15,5 +16,6 @@ export {
     ServicesNavigator,
     UserNavigator,
     OrderNavigator,
-    RepairNavigator
+    RepairNavigator,
+    AuthNavigator
 };

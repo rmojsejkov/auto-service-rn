@@ -2,16 +2,8 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { Alert } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 
-
 import AuthScreenView from "./AuthScreenView";
 
-/**
- * Функция, содержащая все функции экрана услуг по ДВС
- * @param navigation
- * @param props
- * @returns {JSX.Element}
- * @constructor
- */
 const AuthScreenContainer = ({navigation, ...props}) => {
 
     const {
@@ -71,7 +63,7 @@ const AuthScreenContainer = ({navigation, ...props}) => {
         <AuthScreenView
             // servicesList={servicesList}
             defaultServicesIce={defaultServicesIce}
-            loadServices={loadServices}
+            // loadServices={loadServices}
             error={error}
             isLoading={isLoading}
             navigation={navigation}

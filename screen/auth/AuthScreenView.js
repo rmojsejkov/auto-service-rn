@@ -10,13 +10,7 @@ import {
     CustomButtonAdding
 } from '../../components';
 
-/**
- * Компонент, отвечающий за отображение экрана услуг по ДВС
- * @param props
- * @returns {JSX.Element}
- * @constructor
- */
-const AuthScreenView = (props) => {
+const AuthScreenView = ({navigation, ...props}) => {
     const {
         error,
         isLoading,
@@ -42,7 +36,7 @@ const AuthScreenView = (props) => {
             <View style={{...styles.screen, justifyContent: 'center', alignItems: 'center'}}>
                 <Image
                     style={{width: 60, height: 60}}
-                    source={require('../../../assets/Gear.gif')}
+                    source={require('../../assets/Gear.gif')}
                 />
             </View>
         )

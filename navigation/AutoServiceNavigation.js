@@ -14,12 +14,20 @@ import {
     ServicesNavigator,
     UserNavigator,
     OrderNavigator,
-    RepairNavigator
+    RepairNavigator,
+    AuthNavigator
 } from './navigators';
 
 const AutoServiceDrawerNavigator = createDrawerNavigator();
 
+
 export const AutoServiceNavigator = () => {
+
+    // const singInSelectHandler = () =>
+    // {
+    //     navigation.navigate('AuthScreenView')
+    // }
+
     return (
         <AutoServiceDrawerNavigator.Navigator
             drawerContent={props => {
