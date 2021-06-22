@@ -4,7 +4,7 @@ import {Text, StyleSheet, Alert, TouchableOpacity} from 'react-native';
 import Colors from '../../constants/colors';
 import {FontAwesome5, MaterialCommunityIcons} from "@expo/vector-icons";
 
-const SignInButton = (props) => {
+const SignInButton = ({onPress, ...props}) => {
 
     // const singInSelectHandler = () =>
     // {
@@ -14,7 +14,7 @@ const SignInButton = (props) => {
     return (
         <TouchableOpacity
             style={styles.signInButton}
-            onPress={() => ({})}
+            onPress={onPress}
         >
             {/*<Text style={styles.buttonText}>*/}
             {/*    Войти*/}

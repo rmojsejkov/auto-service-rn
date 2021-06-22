@@ -19,51 +19,51 @@ const AuthScreenView = ({navigation, ...props}) => {
         iceAddHandler,
         iceSelectHandler,
     } = props;
-
-    if (error) {
-        return (
-            <View style={{...styles.screen, justifyContent: 'center', alignItems: 'center'}}>
-                <Text>{error}</Text>
-                <View>
-                    <Button title='Try again' color={Colors.black} onPress={() => loadServices()}/>
-                </View>
-            </View>
-        )
-    }
-
-    if (isLoading) {
-        return (
-            <View style={{...styles.screen, justifyContent: 'center', alignItems: 'center'}}>
-                <Image
-                    style={{width: 60, height: 60}}
-                    source={require('../../assets/Gear.gif')}
-                />
-            </View>
-        )
-    }
+    //
+    // if (error) {
+    //     return (
+    //         <View style={{...styles.screen, justifyContent: 'center', alignItems: 'center'}}>
+    //             <Text>{error}</Text>
+    //             <View>
+    //                 <Button title='Try again' color={Colors.black} onPress={() => loadServices()}/>
+    //             </View>
+    //         </View>
+    //     )
+    // }
+    //
+    // if (isLoading) {
+    //     return (
+    //         <View style={{...styles.screen, justifyContent: 'center', alignItems: 'center'}}>
+    //             <Image
+    //                 style={{width: 60, height: 60}}
+    //                 source={require('../../assets/Gear.gif')}
+    //             />
+    //         </View>
+    //     )
+    // }
 
     return (
         <View style={styles.screen}>
-            <View>
-                <InputContainer />
-            </View>
-            <FlatList
-                data={defaultServicesIce}
-                keyExtractor={item => item.id + ''}
-                numColumns={1}
-                renderItem={itemData =>
-                    <ServiceBlockItem
-                        // servicesList={servicesList}
-                        service={itemData.item}
-                        onSelect={iceSelectHandler.bind(this)}
-                    />
-                }
-                refreshing={isLoading}
-                onRefresh={() => loadServices()}
-            />
-            <View style={styles.buttonAdd}>
-                <CustomButtonAdding onPress={iceAddHandler}/>
-            </View>
+            {/*<View>*/}
+            {/*    <InputContainer />*/}
+            {/*</View>*/}
+            {/*<FlatList*/}
+            {/*    data={defaultServicesIce}*/}
+            {/*    keyExtractor={item => item.id + ''}*/}
+            {/*    numColumns={1}*/}
+            {/*    renderItem={itemData =>*/}
+            {/*        <ServiceBlockItem*/}
+            {/*            // servicesList={servicesList}*/}
+            {/*            service={itemData.item}*/}
+            {/*            onSelect={iceSelectHandler.bind(this)}*/}
+            {/*        />*/}
+            {/*    }*/}
+            {/*    refreshing={isLoading}*/}
+            {/*    onRefresh={() => loadServices()}*/}
+            {/*/>*/}
+            {/*<View style={styles.buttonAdd}>*/}
+            {/*    <CustomButtonAdding onPress={iceAddHandler}/>*/}
+            {/*</View>*/}
         </View>
     );
 };

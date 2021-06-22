@@ -30,7 +30,7 @@ const AuthNavigator = () => {
             screenOptions={defaultStackNavOptions}
         >
             <AuthStackNavigator.Screen
-                name="AuthScreenView"
+                name="AuthScreen"
                 component={AuthScreen}
                 options={authScreenOptions}
             />

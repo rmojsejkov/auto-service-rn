@@ -1,5 +1,6 @@
 import React, {useEffect} from "react";
 import {Text, View, StyleSheet} from "react-native";
+import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
 
 import {HeaderToggleButton} from "../default-options";
 
@@ -57,10 +58,37 @@ const AboutScreenView = ({navigation, ...props}) => {
                     <Text style={styles.text}>
                         Наш автосервис оснащен современным, оборудованием европейского и американского производства.
                         Мы производим качественные работы в следующих направлениях:
-                        <Text style={{fontWeight: 'bold'}}> Работа с ДВС</Text>,
+                        <Text style={{fontWeight: 'bold'}}> работа с ДВС</Text>,
                         <Text style={{fontWeight: 'bold'}}> работа с подвеской</Text> и
                         <Text style={{fontWeight: 'bold'}}> работа по электрике автомобиля!</Text>
                     </Text>
+                </View>
+                <View style={{
+                    // backgroundColor: Colors.white,
+                    // borderRadius: 20,
+                    borderColor: Colors.black,
+                    width: '90%',
+                    marginLeft: '5%',
+
+                }}>
+                    <Text style={styles.text}>
+
+                        Адрес автосервиса: г. Гомель, Проспект Речицкий 135!
+                        <Text style={{fontWeight: 'bold'}}> (Расположение)</Text>
+                    </Text>
+                </View>
+                <View style={styles.container}>
+                    <MapView
+                        provider={PROVIDER_GOOGLE}
+                        style={styles.map}
+                        region={{
+                            latitude: 52.406286466146234,
+                            longitude: 30.910580663987894,
+                            latitudeDelta: 0.001,
+                            longitudeDelta: 0.004,
+                        }}
+                    >
+                    </MapView>
                 </View>
             </View>
         </View>
@@ -86,6 +114,19 @@ const styles = StyleSheet.create({
         // borderRadius: 20,
         elevation: 2
 
+    },
+    container: {
+        ...StyleSheet.absoluteFillObject,
+        height: '90%',
+        width: '100%',
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+        borderWidth: 2,
+        // left: '5%',
+        top: '105%'
+    },
+    map: {
+        ...StyleSheet.absoluteFillObject,
     }
 })
 

@@ -6,6 +6,7 @@ import Colors from '../../constants/colors';
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import {HomeScreen} from "../../screen/home";
 import {homeScreenOptions} from "../../screen/home/HomeScreenView";
+import {AuthScreen} from "../../screen/auth";
 
 const defaultStackNavOptions = {
     headerStyle: {

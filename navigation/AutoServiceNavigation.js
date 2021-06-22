@@ -31,11 +31,15 @@ export const AutoServiceNavigator = () => {
     return (
         <AutoServiceDrawerNavigator.Navigator
             drawerContent={props => {
+                // console.log(props.navigation)
+                const authBtnClick = () => {
+                    props.navigation.navigate('AuthScreen');
+                }
                 return (
                     <View style={styles.drawer}>
                         <View style={styles.container}>
                             <View style={styles.buttonIn}>
-                                <SignInButton />
+                                <SignInButton onPress={authBtnClick} />
                             </View>
                             <View style={styles.buttonUp}>
                                 {/*<SignUpButton />*/}
@@ -141,20 +145,20 @@ export const AutoServiceNavigator = () => {
                     )
                 }}
             />
-            <AutoServiceDrawerNavigator.Screen
-                name="Prices"
-                component={PriceNavigator}
-                options={{
-                    drawerLabel: 'Цены',
-                    drawerIcon: props => (
-                        <MaterialCommunityIcons
-                            name="cash-multiple"
-                            size={23}
-                            color={Colors.splash}
-                        />
-                    )
-                }}
-            />
+            {/*<AutoServiceDrawerNavigator.Screen*/}
+            {/*    name="Prices"*/}
+            {/*    component={PriceNavigator}*/}
+            {/*    options={{*/}
+            {/*        drawerLabel: 'Цены',*/}
+            {/*        drawerIcon: props => (*/}
+            {/*            <MaterialCommunityIcons*/}
+            {/*                name="cash-multiple"*/}
+            {/*                size={23}*/}
+            {/*                color={Colors.splash}*/}
+            {/*            />*/}
+            {/*        )*/}
+            {/*    }}*/}
+            {/*/>*/}
             <AutoServiceDrawerNavigator.Screen
                 name="Orders"
                 component={OrderNavigator}
@@ -188,7 +192,7 @@ const styles = StyleSheet.create({
         // paddingTop: '90%',
         // borderWidth: 0.1,
         // borderRadius: 90,
-        top: '30%',
+        top: '40%',
         left: '30%',
         // elevation: 3
     },
